@@ -27,6 +27,7 @@
   
   self.title = @"dev.abstracture.de";
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease];
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Config" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)] autorelease];
   
   self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
   CGFloat x = newsTable.bounds.size.width/2;
@@ -149,6 +150,11 @@
   [self.activityIndicator startAnimating];
   NSString *url = @"https://user:pass@dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
   [self parseXMLFileAtURL:url];
+}
+
+
+- (void)settingsButtonPressed {
+  NSLog(@"Settings");
 }
 
 
