@@ -17,6 +17,8 @@
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
 		5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */; };
 		5AD7E7C512C8E7A8002D123A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C312C8E7A8002D123A /* SettingsViewController.xib */; };
+		5AD7E85312C8F334002D123A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E85112C8F334002D123A /* WebViewController.m */; };
+		5AD7E85412C8F334002D123A /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7E85212C8F334002D123A /* WebViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,9 @@
 		5AD7E7C112C8E7A8002D123A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5AD7E7C312C8E7A8002D123A /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Classes/SettingsViewController.xib; sourceTree = "<group>"; };
+		5AD7E85012C8F334002D123A /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
+		5AD7E85112C8F334002D123A /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
+		5AD7E85212C8F334002D123A /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AbsReader-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AbsReader-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +66,8 @@
 				1D3623250D0F684500981E51 /* AbsReaderAppDelegate.m */,
 				5AD7E7C112C8E7A8002D123A /* SettingsViewController.h */,
 				5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */,
+				5AD7E85012C8F334002D123A /* WebViewController.h */,
+				5AD7E85112C8F334002D123A /* WebViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -99,6 +106,7 @@
 			children = (
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				5AD7E7C312C8E7A8002D123A /* SettingsViewController.xib */,
+				5AD7E85212C8F334002D123A /* WebViewController.xib */,
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* AbsReader-Info.plist */,
 			);
@@ -168,6 +176,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				28F335F11007B36200424DE2 /* RootViewController.xib in Resources */,
 				5AD7E7C512C8E7A8002D123A /* SettingsViewController.xib in Resources */,
+				5AD7E85412C8F334002D123A /* WebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +191,7 @@
 				1D3623260D0F684500981E51 /* AbsReaderAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */,
 				5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */,
+				5AD7E85312C8F334002D123A /* WebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

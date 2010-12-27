@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "SettingsViewController.h"
+#import "WebViewController.h"
 
 
 @implementation RootViewController
@@ -264,15 +265,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString * storyLink = [[stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
+  NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
+  NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
   
-  // clean up the link - get rid of spaces, returns, and tabs...
-  storyLink = [storyLink stringByReplacingOccurrencesOfString:@" " withString:@""];
-  storyLink = [storyLink stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-  storyLink = [storyLink stringByReplacingOccurrencesOfString:@"	" withString:@""];
-  
+  storyLink = [storyLink stringByReplacingOccurrencesOfString:@"https://" withString:[NSString stringWithFormat:@"https://%@:%@@", user, pass]];
+  //storyLink = [storyLink stringByReplacingOccurrencesOfString:@"#" withString:[@"#" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+  storyLink = [[storyLink componentsSeparatedByString:@"#"] objectAtIndex:0];
   NSLog(@"link: %@", storyLink);
-  // open in Safari
-  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:storyLink]];
+
+  WebViewController *vc = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
+  vc.link = storyLink;
+  [self.navigationController pushViewController:vc animated:YES];
+  [vc release];
+
+  return;
 }
 
 
