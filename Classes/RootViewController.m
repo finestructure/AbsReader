@@ -11,6 +11,7 @@
 
 @implementation RootViewController
 
+@synthesize stories;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -21,6 +22,7 @@
 
   self.title = @"dev.abstracture.de";
   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  stories = [NSMutableArray arrayWithObject:[NSDictionary dictionaryWithObject:@"Some title" forKey:@"title"]];
 }
 
 
@@ -59,13 +61,13 @@
 
 // Customize the number of sections in the table view.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+  return 1;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+  return [stories count];
 }
 
 
@@ -80,8 +82,8 @@
     }
     
 	// Configure the cell.
-
-    return cell;
+  cell.textLabel.text = [[stories objectAtIndex:[indexPath row]] objectForKey:@"title"];
+  return cell;
 }
 
 

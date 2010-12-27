@@ -11,4 +11,6 @@
 @interface RootViewController : UITableViewController {
 }
 
+@property (nonatomic, retain) NSMutableArray *stories;
+
 @end
