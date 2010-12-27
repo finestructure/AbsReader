@@ -23,5 +23,6 @@
 @property (nonatomic, retain) NSMutableString *currentLink;
 
 - (void)parseXMLFileAtURL:(NSString *)url;
+- (void)refresh;
 
 @end

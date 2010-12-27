@@ -24,9 +24,15 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
+  
   self.title = @"dev.abstracture.de";
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease];
+  
+  self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
+  CGFloat x = newsTable.bounds.size.width/2;
+  CGFloat y = newsTable.bounds.size.height/2;
+  CGPoint pos = CGPointMake(x, y);
+  activityIndicator.center = pos;
 }
 
 
@@ -39,17 +45,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-
-  activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
-  [newsTable addSubview:activityIndicator];
-  [activityIndicator startAnimating];
-  CGFloat x = newsTable.bounds.size.width/2;
-  CGFloat y = newsTable.bounds.size.height/2;
-  CGPoint pos = CGPointMake(x, y);
-  activityIndicator.center = pos;
-  
-  NSString *url = @"https://user:pass@dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
-  [self parseXMLFileAtURL:url];
+  [self refresh];
 }
 
 
@@ -84,22 +80,22 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [stories count];
+  return [self.stories count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *CellIdentifier = @"Cell";
+  static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
-    }
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+  }
     
 	// Configure the cell.
-  cell.textLabel.text = [[stories objectAtIndex:[indexPath row]] objectForKey:@"title"];
+  cell.textLabel.text = [[self.stories objectAtIndex:[indexPath row]] objectForKey:@"title"];
   return cell;
 }
 
@@ -145,11 +141,23 @@
 
 
 #pragma mark -
+#pragma mark Workers
+
+
+- (void)refresh {
+  [newsTable addSubview:self.activityIndicator];
+  [self.activityIndicator startAnimating];
+  NSString *url = @"https://user:pass@dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
+  [self parseXMLFileAtURL:url];
+}
+
+
+#pragma mark -
 #pragma mark XML Parsing
 
 
 - (void)parseXMLFileAtURL:(NSString *)url {	
-	stories = [[NSMutableArray alloc] init];
+	self.stories = [NSMutableArray array];
 	
   //you must then convert the path to a proper NSURL or it won't work
   NSURL *xmlURL = [NSURL URLWithString:url];
@@ -184,14 +192,14 @@
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{			
   //NSLog(@"found this element: %@", elementName);
-	currentElement = [elementName copy];
+	self.currentElement = elementName;
 	if ([elementName isEqualToString:@"item"]) {
 		// clear out our story item caches...
-		item = [NSMutableDictionary dictionary];
-		currentTitle = [NSMutableString string];
-		currentDate = [NSMutableString string];
-		currentSummary = [NSMutableString string];
-		currentLink = [NSMutableString string];
+		self.item = [NSMutableDictionary dictionary];
+		self.currentTitle = [NSMutableString string];
+		self.currentDate = [NSMutableString string];
+		self.currentSummary = [NSMutableString string];
+		self.currentLink = [NSMutableString string];
 	}
 	
 }
@@ -199,13 +207,12 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
 	//NSLog(@"ended element: %@", elementName);
 	if ([elementName isEqualToString:@"item"]) {
-		// save values to an item, then store that item into the array...
-		[item setObject:currentTitle forKey:@"title"];
-		[item setObject:currentLink forKey:@"link"];
-		[item setObject:currentSummary forKey:@"summary"];
-		[item setObject:currentDate forKey:@"date"];
+		[self.item setObject:currentTitle forKey:@"title"];
+		[self.item setObject:currentLink forKey:@"link"];
+		[self.item setObject:currentSummary forKey:@"summary"];
+		[self.item setObject:currentDate forKey:@"date"];
 		
-		[stories addObject:[item copy]];
+    [self.stories addObject:self.item];
 	}
 	
 }
@@ -213,23 +220,23 @@
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
 	//NSLog(@"found characters: %@", string);
 	// save the characters for the current item...
-	if ([currentElement isEqualToString:@"title"]) {
-		[currentTitle appendString:string];
-	} else if ([currentElement isEqualToString:@"link"]) {
-		[currentLink appendString:string];
-	} else if ([currentElement isEqualToString:@"description"]) {
-		[currentSummary appendString:string];
-	} else if ([currentElement isEqualToString:@"pubDate"]) {
-		[currentDate appendString:string];
+	if ([self.currentElement isEqualToString:@"title"]) {
+		[self.currentTitle appendString:string];
+	} else if ([self.currentElement isEqualToString:@"link"]) {
+		[self.currentLink appendString:string];
+	} else if ([self.currentElement isEqualToString:@"description"]) {
+		[self.currentSummary appendString:string];
+	} else if ([self.currentElement isEqualToString:@"pubDate"]) {
+		[self.currentDate appendString:string];
 	}
 	
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-	NSLog(@"stories array has %d items", [stories count]);
+	NSLog(@"stories array has %d items", [self.stories count]);
 	[newsTable reloadData];
-	[activityIndicator stopAnimating];
-	[activityIndicator removeFromSuperview];	
+	[self.activityIndicator stopAnimating];
+	[self.activityIndicator removeFromSuperview];	
 }
 
 
@@ -270,4 +277,5 @@
 
 
 @end
+
 
