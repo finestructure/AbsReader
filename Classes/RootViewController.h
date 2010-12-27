@@ -24,5 +24,7 @@
 
 - (void)parseXMLFileAtURL:(NSString *)url;
 - (void)refresh;
+- (void)settingsButtonPressed;
+- (void)showSettings;
 
 @end

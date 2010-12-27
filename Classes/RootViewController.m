@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "SettingsViewController.h"
 
 
 @implementation RootViewController
@@ -148,13 +149,26 @@
 - (void)refresh {
   [newsTable addSubview:self.activityIndicator];
   [self.activityIndicator startAnimating];
-  NSString *url = @"https://user:pass@dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
+  NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
+  NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
+  if (user == nil || pass == nil) {
+    [self showSettings];
+    return;
+  }
+  NSString *url = [NSString stringWithFormat:@"https://%@:%@@dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss", user, pass];
   [self parseXMLFileAtURL:url];
 }
 
 
 - (void)settingsButtonPressed {
-  NSLog(@"Settings");
+  [self showSettings];
+}
+
+
+- (void)showSettings {
+  SettingsViewController *vc = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+  [self.navigationController pushViewController:vc animated:YES];
+  [vc release];
 }
 
 
@@ -239,7 +253,6 @@
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-	NSLog(@"stories array has %d items", [self.stories count]);
 	[newsTable reloadData];
 	[self.activityIndicator stopAnimating];
 	[self.activityIndicator removeFromSuperview];	
