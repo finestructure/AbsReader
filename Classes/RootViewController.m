@@ -263,14 +263,16 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+  NSString * storyLink = [[stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
+  
+  // clean up the link - get rid of spaces, returns, and tabs...
+  storyLink = [storyLink stringByReplacingOccurrencesOfString:@" " withString:@""];
+  storyLink = [storyLink stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+  storyLink = [storyLink stringByReplacingOccurrencesOfString:@"	" withString:@""];
+  
+  NSLog(@"link: %@", storyLink);
+  // open in Safari
+  [[UIApplication sharedApplication] openURL:[NSURL URLWithString:storyLink]];
 }
 
 
