@@ -11,7 +11,12 @@
 
 @implementation RootViewController
 
+@synthesize activityIndicator;
 @synthesize stories;
+@synthesize rssParser;
+@synthesize item;
+@synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink;
+
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -22,7 +27,6 @@
 
   self.title = @"dev.abstracture.de";
   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  stories = [NSMutableArray arrayWithObject:[NSDictionary dictionaryWithObject:@"Some title" forKey:@"title"]];
 }
 
 
@@ -31,11 +35,24 @@
     [super viewWillAppear:animated];
 }
 */
-/*
+
+
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+  [super viewDidAppear:animated];
+
+  activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
+  [newsTable addSubview:activityIndicator];
+  [activityIndicator startAnimating];
+  CGFloat x = newsTable.bounds.size.width/2;
+  CGFloat y = newsTable.bounds.size.height/2;
+  CGPoint pos = CGPointMake(x, y);
+  activityIndicator.center = pos;
+  
+  NSString *url = @"https://user:pass@dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
+  [self parseXMLFileAtURL:url];
 }
-*/
+
+
 /*
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
@@ -125,6 +142,95 @@
     return YES;
 }
 */
+
+
+#pragma mark -
+#pragma mark XML Parsing
+
+
+- (void)parseXMLFileAtURL:(NSString *)url {	
+	stories = [[NSMutableArray alloc] init];
+	
+  //you must then convert the path to a proper NSURL or it won't work
+  NSURL *xmlURL = [NSURL URLWithString:url];
+	
+  // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
+  // this may be necessary only for the toolchain
+  rssParser = [[[NSXMLParser alloc] initWithContentsOfURL:xmlURL] autorelease];
+	
+  // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
+  [rssParser setDelegate:self];
+	
+  // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
+  [rssParser setShouldProcessNamespaces:NO];
+  [rssParser setShouldReportNamespacePrefixes:NO];
+  [rssParser setShouldResolveExternalEntities:NO];
+	
+  [rssParser parse];
+}
+
+
+- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
+	[activityIndicator stopAnimating];
+	[activityIndicator removeFromSuperview];	
+
+	NSString * errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
+	NSLog(@"error parsing XML: %@", errorString);
+	
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[errorAlert show];
+}
+
+
+- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{			
+  //NSLog(@"found this element: %@", elementName);
+	currentElement = [elementName copy];
+	if ([elementName isEqualToString:@"item"]) {
+		// clear out our story item caches...
+		item = [NSMutableDictionary dictionary];
+		currentTitle = [NSMutableString string];
+		currentDate = [NSMutableString string];
+		currentSummary = [NSMutableString string];
+		currentLink = [NSMutableString string];
+	}
+	
+}
+
+- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
+	//NSLog(@"ended element: %@", elementName);
+	if ([elementName isEqualToString:@"item"]) {
+		// save values to an item, then store that item into the array...
+		[item setObject:currentTitle forKey:@"title"];
+		[item setObject:currentLink forKey:@"link"];
+		[item setObject:currentSummary forKey:@"summary"];
+		[item setObject:currentDate forKey:@"date"];
+		
+		[stories addObject:[item copy]];
+	}
+	
+}
+
+- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
+	//NSLog(@"found characters: %@", string);
+	// save the characters for the current item...
+	if ([currentElement isEqualToString:@"title"]) {
+		[currentTitle appendString:string];
+	} else if ([currentElement isEqualToString:@"link"]) {
+		[currentLink appendString:string];
+	} else if ([currentElement isEqualToString:@"description"]) {
+		[currentSummary appendString:string];
+	} else if ([currentElement isEqualToString:@"pubDate"]) {
+		[currentDate appendString:string];
+	}
+	
+}
+
+- (void)parserDidEndDocument:(NSXMLParser *)parser {
+	NSLog(@"stories array has %d items", [stories count]);
+	[newsTable reloadData];
+	[activityIndicator stopAnimating];
+	[activityIndicator removeFromSuperview];	
+}
 
 
 #pragma mark -
