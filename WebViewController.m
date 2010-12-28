@@ -33,17 +33,16 @@
 
   self.data = [NSMutableData data];
   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.link]];
+  [self.webView setDelegate:self];
   [self.webView loadRequest:request];
 }
 
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+- (void)viewWillDisappear:(BOOL)animated {
+  [self.webView setDelegate:nil];
+  [self.webView stopLoading];
 }
-*/
+
 
 #pragma mark -
 #pragma mark UIWebViewDelegate
