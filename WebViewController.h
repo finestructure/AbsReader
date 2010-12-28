@@ -15,5 +15,6 @@
 
 @property (nonatomic, retain) IBOutlet UIWebView *webView;
 @property (nonatomic, retain) NSString *link;
+@property (nonatomic, retain) NSMutableData *data;
 
 @end

@@ -18,6 +18,7 @@
 @synthesize rssParser;
 @synthesize item;
 @synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink, currentAuthor, currentCategory;
+@synthesize rssData;
 
 
 #pragma mark -
@@ -27,7 +28,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.title = @"dev.abstracture.de";
+  self.title = @"AbsReader";
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease];
   //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Config" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)] autorelease];
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)] autorelease];
@@ -158,7 +159,7 @@
     [self showSettings];
     return;
   }
-  NSString *url = [NSString stringWithFormat:@"https://%@:%@@dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss", user, pass];
+  NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
   [self parseXMLFileAtURL:url];
 }
 
@@ -181,23 +182,9 @@
 
 - (void)parseXMLFileAtURL:(NSString *)url {	
 	self.stories = [NSMutableArray array];
-	
-  //you must then convert the path to a proper NSURL or it won't work
-  NSURL *xmlURL = [NSURL URLWithString:url];
-	
-  // here, for some reason you have to use NSClassFromString when trying to alloc NSXMLParser, otherwise you will get an object not found error
-  // this may be necessary only for the toolchain
-  rssParser = [[[NSXMLParser alloc] initWithContentsOfURL:xmlURL] autorelease];
-	
-  // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
-  [rssParser setDelegate:self];
-	
-  // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
-  [rssParser setShouldProcessNamespaces:NO];
-  [rssParser setShouldReportNamespacePrefixes:NO];
-  [rssParser setShouldResolveExternalEntities:NO];
-	
-  [rssParser parse];
+  self.rssData = [NSMutableData data];
+  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+  [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];  
 }
 
 
@@ -414,6 +401,55 @@ const CGFloat kBottomHeight = 15;
     label.text = [info objectForKey:@"summary"];
   }
 }    
+
+
+#pragma mark -
+#pragma mark NSURLConnectionDelegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+  NSLog(@"got auth challange");
+  
+  if ([challenge previousFailureCount] == 0) {
+    NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
+    NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
+
+    [[challenge sender] useCredential:[NSURLCredential credentialWithUser:user password:pass persistence:NSURLCredentialPersistencePermanent] forAuthenticationChallenge:challenge];
+  } else {
+    [[challenge sender] cancelAuthenticationChallenge:challenge]; 
+  }
+}
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+  NSLog(@"received data: %d", [data length]);
+  [self.rssData appendData:data];
+}
+
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+  NSLog(@"finished loading");
+
+  rssParser = [[[NSXMLParser alloc] initWithData:self.rssData] autorelease];
+  [rssParser setDelegate:self];
+  [rssParser setShouldProcessNamespaces:NO];
+  [rssParser setShouldReportNamespacePrefixes:NO];
+  [rssParser setShouldResolveExternalEntities:NO];
+  [rssParser parse];
+}
+
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
+	NSLog(@"Error loading feed: %@", errorString);
+	
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[errorAlert show];
+}
+
+
+- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)connection {
+  return NO;
+}
 
 
 #pragma mark -
