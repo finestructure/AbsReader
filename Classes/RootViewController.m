@@ -226,12 +226,16 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
-	//NSLog(@"ended element: %@", elementName);
 	if ([elementName isEqualToString:@"item"]) {
-		[self.item setObject:currentTitle forKey:@"title"];
-		[self.item setObject:currentLink forKey:@"link"];
-		[self.item setObject:currentSummary forKey:@"summary"];
-		[self.item setObject:currentDate forKey:@"date"];
+    // clean up the link - get rid of spaces, returns, and tabs...
+    NSString *link = [self.currentLink stringByReplacingOccurrencesOfString:@" " withString:@""];
+    link = [link stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    link = [link stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    
+		[self.item setObject:self.currentTitle forKey:@"title"];    
+		[self.item setObject:link forKey:@"link"];
+		[self.item setObject:self.currentSummary forKey:@"summary"];
+		[self.item setObject:self.currentDate forKey:@"date"];
 		
     [self.stories addObject:self.item];
 	}
@@ -264,17 +268,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSString * storyLink = [[stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
-  NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
-  NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
-  
-  storyLink = [storyLink stringByReplacingOccurrencesOfString:@"https://" withString:[NSString stringWithFormat:@"https://%@:%@@", user, pass]];
-  //storyLink = [storyLink stringByReplacingOccurrencesOfString:@"#" withString:[@"#" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-  storyLink = [[storyLink componentsSeparatedByString:@"#"] objectAtIndex:0];
-  NSLog(@"link: %@", storyLink);
+  NSString * link = [[stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
 
   WebViewController *vc = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
-  vc.link = storyLink;
+  vc.link = link;
   [self.navigationController pushViewController:vc animated:YES];
   [vc release];
 

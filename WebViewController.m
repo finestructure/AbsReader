@@ -29,8 +29,24 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
-  NSURL *url = [NSURL URLWithString:self.link];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+
+  NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
+  NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
+  
+  NSRange pos = [self.link rangeOfString:@"://"];
+  NSUInteger offset = pos.location + pos.length;
+  NSString *protocol = [self.link substringToIndex:offset];
+  NSString *remainder = [self.link substringFromIndex:offset];
+  pos = [remainder rangeOfString:@"/"];
+  offset = pos.location + pos.length;
+  NSString *host = [remainder substringToIndex:offset-1];
+  remainder = [remainder substringFromIndex:offset];
+
+  NSString *base = [NSString stringWithFormat:@"%@%@:%@@%@", protocol, user, pass, host];
+  NSURL *baseUrl = [NSURL URLWithString:base];  
+  NSURL *fullUrl = [NSURL URLWithString:remainder relativeToURL:baseUrl];
+  
+  NSURLRequest *request = [NSURLRequest requestWithURL:fullUrl];
   [self.webView loadRequest:request];
 }
 
