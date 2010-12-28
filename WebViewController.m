@@ -48,12 +48,12 @@
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-  NSLog(@"started loading");
+  //NSLog(@"started loading");
 }
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-  NSLog(@"finished loading");
+  //NSLog(@"finished loading");
 }
 
 

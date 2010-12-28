@@ -408,8 +408,7 @@ const CGFloat kBottomHeight = 15;
 #pragma mark NSURLConnectionDelegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-  NSLog(@"got auth challange");
-  
+  //NSLog(@"got auth challange");
   if ([challenge previousFailureCount] == 0) {
     NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
     NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
@@ -422,14 +421,12 @@ const CGFloat kBottomHeight = 15;
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  NSLog(@"received data: %d", [data length]);
   [self.rssData appendData:data];
 }
 
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-  NSLog(@"finished loading");
-
+  //NSLog(@"finished loading");
   rssParser = [[[NSXMLParser alloc] initWithData:self.rssData] autorelease];
   [rssParser setDelegate:self];
   [rssParser setShouldProcessNamespaces:NO];
