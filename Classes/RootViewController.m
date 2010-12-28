@@ -40,6 +40,7 @@
   activityIndicator.center = pos;
 
   newsTable.rowHeight = 90;
+  [self refresh];
 }
 
 
@@ -52,7 +53,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
-  [self refresh];
 }
 
 
