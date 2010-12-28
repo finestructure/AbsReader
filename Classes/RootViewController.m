@@ -232,11 +232,12 @@
     NSString *link = [self.currentLink stringByReplacingOccurrencesOfString:@" " withString:@""];
     link = [link stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     link = [link stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    NSString *date = [self.currentDate stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
 		[self.item setObject:self.currentTitle forKey:@"title"];    
 		[self.item setObject:link forKey:@"link"];
 		[self.item setObject:self.currentSummary forKey:@"summary"];
-		[self.item setObject:self.currentDate forKey:@"date"];
+		[self.item setObject:date forKey:@"date"];
 		
     [self.stories addObject:self.item];
 	}
