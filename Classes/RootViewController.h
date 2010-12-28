@@ -21,10 +21,14 @@
 @property (nonatomic, retain) NSMutableString *currentDate;
 @property (nonatomic, retain) NSMutableString *currentSummary;
 @property (nonatomic, retain) NSMutableString *currentLink;
+@property (nonatomic, retain) NSMutableString *currentAuthor;
+@property (nonatomic, retain) NSMutableString *currentCategory;
 
 - (void)parseXMLFileAtURL:(NSString *)url;
 - (void)refresh;
 - (void)settingsButtonPressed;
 - (void)showSettings;
+- (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier;
+- (void)configureCell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath;
 
 @end

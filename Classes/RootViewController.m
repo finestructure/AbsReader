@@ -17,7 +17,7 @@
 @synthesize stories;
 @synthesize rssParser;
 @synthesize item;
-@synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink;
+@synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink, currentAuthor, currentCategory;
 
 
 #pragma mark -
@@ -37,6 +37,8 @@
   CGFloat y = newsTable.bounds.size.height/2;
   CGPoint pos = CGPointMake(x, y);
   activityIndicator.center = pos;
+
+  newsTable.rowHeight = 90;
 }
 
 
@@ -95,11 +97,10 @@
     
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell = [self tableViewCellWithReuseIdentifier:CellIdentifier];
   }
     
-	// Configure the cell.
-  cell.textLabel.text = [[self.stories objectAtIndex:[indexPath row]] objectForKey:@"title"];
+  [self configureCell:cell forIndexPath:indexPath];
   return cell;
 }
 
@@ -222,22 +223,27 @@
 		self.currentDate = [NSMutableString string];
 		self.currentSummary = [NSMutableString string];
 		self.currentLink = [NSMutableString string];
+    self.currentAuthor = [NSMutableString string];
+    self.currentCategory = [NSMutableString string];
 	}
 	
 }
 
+
+- (NSString *)cleanup:(NSString *)string {
+  NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+  return [string stringByTrimmingCharactersInSet:whitespace];
+}
+
+
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
 	if ([elementName isEqualToString:@"item"]) {
-    // clean up the link - get rid of spaces, returns, and tabs...
-    NSString *link = [self.currentLink stringByReplacingOccurrencesOfString:@" " withString:@""];
-    link = [link stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    link = [link stringByReplacingOccurrencesOfString:@"\t" withString:@""];
-    NSString *date = [self.currentDate stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-    
-		[self.item setObject:self.currentTitle forKey:@"title"];    
-		[self.item setObject:link forKey:@"link"];
-		[self.item setObject:self.currentSummary forKey:@"summary"];
-		[self.item setObject:date forKey:@"date"];
+		[self.item setObject:[self cleanup:self.currentTitle] forKey:@"title"];    
+		[self.item setObject:[self cleanup:self.currentLink] forKey:@"link"];
+		[self.item setObject:[self cleanup:self.currentSummary] forKey:@"summary"];
+		[self.item setObject:[self cleanup:self.currentDate] forKey:@"date"];
+    [self.item setObject:[self cleanup:self.currentAuthor] forKey:@"author"];
+    [self.item setObject:[self cleanup:self.currentCategory] forKey:@"category"];
 		
     [self.stories addObject:self.item];
 	}
@@ -255,7 +261,11 @@
 		[self.currentSummary appendString:string];
 	} else if ([self.currentElement isEqualToString:@"pubDate"]) {
 		[self.currentDate appendString:string];
-	}
+	} else if ([self.currentElement isEqualToString:@"dc:creator"]) {
+    [self.currentAuthor appendString:string];
+	} else if ([self.currentElement isEqualToString:@"category"]) {
+    [self.currentCategory appendString:string];
+  }
 	
 }
 
@@ -279,6 +289,131 @@
 
   return;
 }
+
+
+#pragma mark -
+#pragma mark Configuring table view cells
+
+
+const CGFloat kRowWidth = 320;
+const CGFloat kTopOffset = 10;
+
+const CGFloat kRightOffset = 24;
+const CGFloat kLeftOffset = 10;
+
+const CGFloat kTopHeight = 15;
+const CGFloat kMiddleHeight = 40;
+const CGFloat kBottomHeight = 15;
+
+
+- (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier {
+	
+	UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+  
+  // author
+  {
+    CGFloat x = kLeftOffset +2;
+    CGFloat y = kTopOffset;
+    CGFloat width = 80;
+    CGFloat height = kTopHeight;
+    CGRect rect = CGRectMake(x, y, width, height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.tag = 1;
+    label.font = [UIFont systemFontOfSize:12];
+    label.adjustsFontSizeToFitWidth = NO;
+    label.textColor = [UIColor grayColor];
+    label.highlightedTextColor = [UIColor whiteColor];
+    [cell.contentView addSubview:label];
+  }
+  
+  // date
+  {
+    CGFloat x = 100;
+    CGFloat y = kTopOffset;
+    CGFloat width = kRowWidth - x - kRightOffset;
+    CGFloat height = kTopHeight;
+    CGRect rect = CGRectMake(x, y, width, height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.tag = 2;
+    label.font = [UIFont systemFontOfSize:12];
+    label.adjustsFontSizeToFitWidth = NO;
+    label.textColor = [UIColor grayColor];
+    label.highlightedTextColor = [UIColor whiteColor];
+    label.textAlignment = UITextAlignmentRight;
+    [cell.contentView addSubview:label];
+  }
+  
+  // desc
+  {
+    CGFloat x = kLeftOffset;
+    CGFloat y = kTopOffset + kTopHeight;
+    CGFloat width = kRowWidth - x - kRightOffset;
+    CGFloat height = kMiddleHeight;
+    CGRect rect = CGRectMake(x, y, width, height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.tag = 3;
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.adjustsFontSizeToFitWidth = NO;
+    label.highlightedTextColor = [UIColor whiteColor];
+    [cell.contentView addSubview:label];
+  }
+  
+  // summary
+  {
+    CGFloat x = kLeftOffset +2;
+    CGFloat y = kTopOffset + kTopHeight + kMiddleHeight;
+    CGFloat width = kRowWidth - x - kRightOffset;
+    CGFloat height = kBottomHeight;
+    CGRect rect = CGRectMake(x, y, width, height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.tag = 4;
+    label.font = [UIFont boldSystemFontOfSize:12];
+    label.adjustsFontSizeToFitWidth = NO;
+    label.textColor = [UIColor grayColor];
+    label.highlightedTextColor = [UIColor whiteColor];
+    [cell.contentView addSubview:label];
+  }
+  
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  
+	return cell;
+}
+
+
+- (void)configureCell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
+  
+	static NSDateFormatter *dateFormatter = nil;
+	if (dateFormatter == nil) {
+		dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"LLL-dd HH:mm"];
+	}
+	
+  NSDictionary *info = [self.stories objectAtIndex:[indexPath row]];
+  
+	// author
+  {
+    UILabel *label = (UILabel *)[cell viewWithTag:1];
+    label.text = [info objectForKey:@"author"];
+  }
+	
+	// date
+	{
+    UILabel *label = (UILabel *)[cell viewWithTag:2];
+    label.text = [info objectForKey:@"date"]; //[dateFormatter stringFromDate:[info objectForKey:@"date"]];
+  }
+  
+	// title
+  {
+    UILabel *label = (UILabel *)[cell viewWithTag:3];
+    label.text = [info objectForKey:@"title"];
+  }
+  
+	// summary
+  {
+    UILabel *label = (UILabel *)[cell viewWithTag:4];
+    label.text = [info objectForKey:@"summary"];
+  }
+}    
 
 
 #pragma mark -
