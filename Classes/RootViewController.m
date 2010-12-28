@@ -151,6 +151,8 @@
 
 
 - (void)refresh {
+  self.stories = [NSMutableArray array];
+  [newsTable reloadData];
   [newsTable addSubview:self.activityIndicator];
   [self.activityIndicator startAnimating];
   NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
@@ -181,7 +183,6 @@
 
 
 - (void)parseXMLFileAtURL:(NSString *)url {	
-	self.stories = [NSMutableArray array];
   self.rssData = [NSMutableData data];
   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
   [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];  
