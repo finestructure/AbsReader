@@ -13,6 +13,7 @@
 
 @synthesize usernameField;
 @synthesize passwordField;
+@synthesize versionLabel;
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 /*
@@ -33,6 +34,8 @@
   NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
   self.usernameField.text = user;
   self.passwordField.text = pass;
+  NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+  self.versionLabel.text = version;
 }
 
 

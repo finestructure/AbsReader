@@ -22,9 +22,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
   [self.window addSubview:navigationController.view];
   [self.window makeKeyAndVisible];
-  NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-  NSLog(@"app version: %@", version);
-
   return YES;
 }
 
