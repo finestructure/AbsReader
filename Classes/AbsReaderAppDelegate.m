@@ -51,7 +51,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   RootViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
-  [rootViewController safeRefresh];
+  if ([rootViewController isViewLoaded]) {
+    [rootViewController safeRefresh];
+  }
 }
 
 
