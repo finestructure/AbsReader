@@ -1,7 +1,7 @@
 #import <GHUnit/GHUnit.h>
 #import "ArticleCache.h"
 
-@interface ArticleCacheTest : GHTestCase { }
+@interface ArticleCacheTest : GHAsyncTestCase { }
 @property (nonatomic, retain) ArticleCache *cache;
 @end
 
@@ -22,13 +22,29 @@
 }
 
 
+- (void)checkProgress {
+  if (self.cache.refreshInProgress == NO) {
+    [self notify:kGHUnitWaitStatusSuccess forSelector:@selector(test_parseXml)];
+  } else {
+    [self performSelector:@selector(checkProgress) withObject:nil afterDelay:0.1];
+  }
+}
+
+
 - (void)test_parseXml {
   NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
   NSURL *url = [thisBundle URLForResource:@"rss_test" withExtension:@"xml"];
   GHAssertNotNil(url, nil);
+
+  [self prepare];
   [self.cache parseXMLFileAtURL:url];
+  
+  [self checkProgress];
+  
+  [self waitForStatus:kGHUnitWaitStatusSuccess timeout:5.0];
+  
   GHAssertNotNil(self.cache.rssData, nil);
-  GHAssertTrue([self.cache.rssData length] > 0, nil);
+  GHAssertEquals((int)[self.cache.rssData length], 30448, nil);
 }
 
 
