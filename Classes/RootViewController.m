@@ -200,7 +200,7 @@
 	NSString * errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
 	NSLog(@"error parsing XML: %@", errorString);
 	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error parsing feed" message:[parseError localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
   self.refreshInProgress = NO;
 }
@@ -476,7 +476,7 @@ const CGFloat kBottomHeight = 15;
 	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
 	NSLog(@"Error loading feed: %@", errorString);
 	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
   self.refreshInProgress = NO;
 }
