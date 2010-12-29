@@ -25,9 +25,12 @@
 @property (nonatomic, retain) NSMutableString *currentCategory;
 @property (nonatomic, retain) NSMutableData *rssData;
 @property (assign) BOOL recordCharacters;
+@property (nonatomic, retain) NSDate *lastRefresh;
+@property (assign) BOOL refreshInProgress;
 
 - (void)parseXMLFileAtURL:(NSString *)url;
 - (void)refresh;
+- (void)safeRefresh;
 - (void)settingsButtonPressed;
 - (void)showSettings;
 - (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier;

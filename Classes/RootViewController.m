@@ -20,6 +20,8 @@
 @synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink, currentAuthor, currentCategory;
 @synthesize rssData;
 @synthesize recordCharacters;
+@synthesize lastRefresh;
+@synthesize refreshInProgress;
 
 
 #pragma mark -
@@ -45,28 +47,11 @@
 }
 
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-
-
 - (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
+	[super viewDidAppear:animated];
+  [self safeRefresh];
 }
 
-
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-*/
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -151,7 +136,25 @@
 #pragma mark Workers
 
 
+- (void)safeRefresh {
+  if (self.lastRefresh == nil) {
+    [self refresh];
+  } else {
+    static double refreshInterval = 15*60; // seconds
+    NSDate *now = [NSDate date];
+    NSTimeInterval diff = [now timeIntervalSinceDate:lastRefresh];
+    if (diff > refreshInterval) {
+      [self refresh];
+    }
+  }
+}
+
+
 - (void)refresh {
+  if (self.refreshInProgress) {
+    return;
+  }
+  self.refreshInProgress = YES;
   self.stories = [NSMutableArray array];
   [newsTable reloadData];
   [newsTable addSubview:self.activityIndicator];
@@ -199,6 +202,7 @@
 	
 	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading content" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
+  self.refreshInProgress = NO;
 }
 
 
@@ -290,7 +294,9 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 	[newsTable reloadData];
 	[self.activityIndicator stopAnimating];
-	[self.activityIndicator removeFromSuperview];	
+	[self.activityIndicator removeFromSuperview];
+  self.lastRefresh = [NSDate date];
+  self.refreshInProgress = NO;
 }
 
 
@@ -472,6 +478,7 @@ const CGFloat kBottomHeight = 15;
 	
 	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
+  self.refreshInProgress = NO;
 }
 
 
