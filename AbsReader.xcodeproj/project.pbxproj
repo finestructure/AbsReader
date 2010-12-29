@@ -202,8 +202,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "version=$(git describe --tags --dirty)\necho version: $version\n\ninfo_plist=$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Info.plist\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $info_plist\n";
+			shellPath = /bin/sh;
+			shellScript = "# run git status to refresh index (sometimes the repos would be reported as dirty otherwise)\ngit status\nversion=$(git describe --tags --dirty)\necho version: $version\n\ninfo_plist=$BUILT_PRODUCTS_DIR/$PRODUCT_NAME.app/Info.plist\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $version\" $info_plist\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
