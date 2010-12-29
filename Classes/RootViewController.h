@@ -24,6 +24,7 @@
 @property (nonatomic, retain) NSMutableString *currentAuthor;
 @property (nonatomic, retain) NSMutableString *currentCategory;
 @property (nonatomic, retain) NSMutableData *rssData;
+@property (assign) BOOL recordCharacters;
 
 - (void)parseXMLFileAtURL:(NSString *)url;
 - (void)refresh;

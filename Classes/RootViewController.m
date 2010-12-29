@@ -19,6 +19,7 @@
 @synthesize item;
 @synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink, currentAuthor, currentCategory;
 @synthesize rssData;
+@synthesize recordCharacters;
 
 
 #pragma mark -
@@ -202,10 +203,9 @@
 
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{			
-  //NSLog(@"found this element: %@", elementName);
 	self.currentElement = elementName;
 	if ([elementName isEqualToString:@"item"]) {
-		// clear out our story item caches...
+    self.recordCharacters = YES;
 		self.item = [NSMutableDictionary dictionary];
 		self.currentTitle = [NSMutableString string];
 		self.currentDate = [NSMutableString string];
@@ -213,34 +213,64 @@
 		self.currentLink = [NSMutableString string];
     self.currentAuthor = [NSMutableString string];
     self.currentCategory = [NSMutableString string];
-	}
+	} else if ([elementName isEqualToString:@"title"]
+             || [elementName isEqualToString:@"link"]
+             || [elementName isEqualToString:@"description"]
+             || [elementName isEqualToString:@"pubDate"]
+             || [elementName isEqualToString:@"dc:creator"]
+             || [elementName isEqualToString:@"category"]) {
+    self.recordCharacters = YES;
+  }
 	
 }
 
 
-- (NSString *)cleanup:(NSString *)string {
-  NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+- (NSString *)removeWhitespace:(NSString *)string {
+  static NSCharacterSet *whitespace = nil;
+  if (whitespace == nil) {
+    whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+  }
   return [string stringByTrimmingCharactersInSet:whitespace];
+}
+
+
+- (NSString *)flattenHTML:(NSString *)html {
+  NSScanner *scanner = [NSScanner scannerWithString:html];
+  NSString *temp = nil;
+  html = [self removeWhitespace:html];
+    
+  while ([scanner isAtEnd] == NO) {
+    [scanner scanUpToString:@"<" intoString:nil];
+    [scanner scanUpToString:@">" intoString:&temp];
+    html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", temp] withString:@""];
+  }  
+  return html;
 }
 
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
 	if ([elementName isEqualToString:@"item"]) {
-		[self.item setObject:[self cleanup:self.currentTitle] forKey:@"title"];    
-		[self.item setObject:[self cleanup:self.currentLink] forKey:@"link"];
-		[self.item setObject:[self cleanup:self.currentSummary] forKey:@"summary"];
-		[self.item setObject:[self cleanup:self.currentDate] forKey:@"date"];
-    [self.item setObject:[self cleanup:self.currentAuthor] forKey:@"author"];
-    [self.item setObject:[self cleanup:self.currentCategory] forKey:@"category"];
-		
+		[self.item setObject:self.currentTitle forKey:@"title"];    
+		[self.item setObject:self.currentLink forKey:@"link"];
+		[self.item setObject:[self flattenHTML:self.currentSummary] forKey:@"summary"];
+		[self.item setObject:self.currentDate forKey:@"date"];
+    [self.item setObject:self.currentAuthor forKey:@"author"];
+    [self.item setObject:self.currentCategory forKey:@"category"];
     [self.stories addObject:self.item];
+	} else if ([elementName isEqualToString:@"title"]
+             || [elementName isEqualToString:@"link"]
+             || [elementName isEqualToString:@"description"]
+             || [elementName isEqualToString:@"pubDate"]
+             || [elementName isEqualToString:@"dc:creator"]
+             || [elementName isEqualToString:@"category"]) {
+    self.recordCharacters = NO;
 	}
-	
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
-	//NSLog(@"found characters: %@", string);
-	// save the characters for the current item...
+  if (self.recordCharacters == NO) {
+    return;
+  }
 	if ([self.currentElement isEqualToString:@"title"]) {
 		[self.currentTitle appendString:string];
 	} else if ([self.currentElement isEqualToString:@"link"]) {
