@@ -10,10 +10,13 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <UIKit/UIKit.h>
 
+#import "ArticleCache.h"
+
 
 @interface ArticleCacheTest : SenTestCase {
 
 }
 
+@property (nonatomic, retain) ArticleCache *cache;
 
 @end

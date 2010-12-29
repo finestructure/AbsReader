@@ -24,6 +24,7 @@
 		5AD7EE7612CB8D09002D123A /* ArticleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* ArticleCache.m */; };
 		5AD7EE9112CB8F3D002D123A /* ArticleCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE8112CB8E4F002D123A /* ArticleCacheTest.m */; };
 		5AD7EEBE12CB9192002D123A /* ArticleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* ArticleCache.m */; };
+		5AD7EED412CB9327002D123A /* rss_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EED312CB9327002D123A /* rss_test.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		5AD7EE8112CB8E4F002D123A /* ArticleCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleCacheTest.m; path = Classes/ArticleCacheTest.m; sourceTree = "<group>"; };
 		5AD7EE8A12CB8EC4002D123A /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD7EE8B12CB8EC4002D123A /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
+		5AD7EED312CB9327002D123A /* rss_test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rss_test.xml; path = Resources/rss_test.xml; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AbsReader-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AbsReader-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5AD7EED312CB9327002D123A /* rss_test.xml */,
 				28F335F01007B36200424DE2 /* RootViewController.xib */,
 				5AD7E7C312C8E7A8002D123A /* SettingsViewController.xib */,
 				5AD7E85212C8F334002D123A /* WebViewController.xib */,
@@ -242,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AD7EED412CB9327002D123A /* rss_test.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
