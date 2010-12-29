@@ -41,6 +41,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
   [self.webView setDelegate:nil];
   [self.webView stopLoading];
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 
@@ -48,12 +49,12 @@
 #pragma mark UIWebViewDelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-  //NSLog(@"started loading");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-  //NSLog(@"finished loading");
+  [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 
