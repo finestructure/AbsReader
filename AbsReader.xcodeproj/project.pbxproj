@@ -241,13 +241,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Sven Schmidt";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = AbsReader_Prefix.pch;
 				INFOPLIST_FILE = "AbsReader-Info.plist";
 				PRODUCT_NAME = AbsReader;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "94AFBE65-7ABD-4395-8168-B844DEDE79E1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
