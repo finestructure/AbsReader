@@ -17,7 +17,13 @@
 @synthesize stories;
 @synthesize rssParser;
 @synthesize item;
-@synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink, currentAuthor, currentCategory;
+@synthesize currentElement;
+@synthesize currentTitle;
+@synthesize currentDate;
+@synthesize currentSummary;
+@synthesize currentLink;
+@synthesize currentAuthor;
+@synthesize currentCategory;
 @synthesize rssData;
 @synthesize recordCharacters;
 @synthesize lastRefresh;
@@ -40,6 +46,7 @@
 - (void)parseXMLFileAtURL:(NSURL *)url {	
   self.refreshInProgress = YES;
   self.rssData = [NSMutableData data];
+  self.stories = [NSMutableArray array];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
 }

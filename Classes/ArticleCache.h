@@ -10,7 +10,6 @@
 
 
 @interface ArticleCache : NSObject<NSXMLParserDelegate> {
-
 }
 
 @property (nonatomic, retain) NSMutableDictionary *cache;

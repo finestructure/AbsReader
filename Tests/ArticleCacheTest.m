@@ -45,6 +45,7 @@
   
   GHAssertNotNil(self.cache.rssData, nil);
   GHAssertEquals((int)[self.cache.rssData length], 30448, nil);
+  GHAssertEquals((int)[self.cache.stories count], 50, nil);
 }
 
 
