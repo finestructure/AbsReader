@@ -169,7 +169,6 @@
 
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  NSLog(@"got data");
   [self.rssData appendData:data];
 }
 
