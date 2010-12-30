@@ -23,6 +23,7 @@
 @property (nonatomic, retain) NSMutableString *currentLink;
 @property (nonatomic, retain) NSMutableString *currentAuthor;
 @property (nonatomic, retain) NSMutableString *currentCategory;
+@property (nonatomic, retain) NSMutableString *currentGuid;
 @property (nonatomic, retain) NSMutableData *rssData;
 @property (assign) BOOL recordCharacters;
 @property (nonatomic, retain) NSDate *lastRefresh;

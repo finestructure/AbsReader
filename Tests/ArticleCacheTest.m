@@ -64,9 +64,12 @@
 }
 
 
-- (void)test_parseUuid {
+- (void)test_parseGuid {
   [self parseTestXml];
-  GHAssertNotNil(self.cache.rssData, nil);
+  GHAssertNotNil(self.cache.stories, nil);
+  NSString *guid = [[self.cache.stories objectAtIndex:0] objectForKey:@"guid"];
+  GHAssertNotNil(guid, nil);
+  GHAssertTrue([guid length] > 0, nil);
 }
 
 @end

@@ -24,6 +24,7 @@
 @synthesize currentLink;
 @synthesize currentAuthor;
 @synthesize currentCategory;
+@synthesize currentGuid;
 @synthesize rssData;
 @synthesize recordCharacters;
 @synthesize lastRefresh;
@@ -74,12 +75,14 @@
 		self.currentLink = [NSMutableString string];
     self.currentAuthor = [NSMutableString string];
     self.currentCategory = [NSMutableString string];
+    self.currentGuid = [NSMutableString string];
 	} else if ([elementName isEqualToString:@"title"]
              || [elementName isEqualToString:@"link"]
              || [elementName isEqualToString:@"description"]
              || [elementName isEqualToString:@"pubDate"]
              || [elementName isEqualToString:@"dc:creator"]
-             || [elementName isEqualToString:@"category"]) {
+             || [elementName isEqualToString:@"category"]
+             || [elementName isEqualToString:@"guid"]) {
     self.recordCharacters = YES;
   }	
 }
@@ -116,13 +119,15 @@
 		[self.item setObject:self.currentDate forKey:@"date"];
     [self.item setObject:self.currentAuthor forKey:@"author"];
     [self.item setObject:self.currentCategory forKey:@"category"];
+    [self.item setObject:self.currentGuid forKey:@"guid"];
     [self.stories addObject:self.item];
 	} else if ([elementName isEqualToString:@"title"]
              || [elementName isEqualToString:@"link"]
              || [elementName isEqualToString:@"description"]
              || [elementName isEqualToString:@"pubDate"]
              || [elementName isEqualToString:@"dc:creator"]
-             || [elementName isEqualToString:@"category"]) {
+             || [elementName isEqualToString:@"category"]
+             || [elementName isEqualToString:@"guid"]) {
     self.recordCharacters = NO;
 	}
 }
@@ -143,6 +148,8 @@
     [self.currentAuthor appendString:string];
 	} else if ([self.currentElement isEqualToString:@"category"]) {
     [self.currentCategory appendString:string];
+  } else if ([self.currentElement isEqualToString:@"guid"]) {
+    [self.currentGuid appendString:string];
   }	
 }
 
