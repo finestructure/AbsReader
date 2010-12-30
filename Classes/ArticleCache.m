@@ -74,8 +74,7 @@
              || [elementName isEqualToString:@"dc:creator"]
              || [elementName isEqualToString:@"category"]) {
     self.recordCharacters = YES;
-  }
-	
+  }	
 }
 
 
@@ -137,8 +136,7 @@
     [self.currentAuthor appendString:string];
 	} else if ([self.currentElement isEqualToString:@"category"]) {
     [self.currentCategory appendString:string];
-  }
-	
+  }	
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
