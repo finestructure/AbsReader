@@ -17,14 +17,7 @@
 @synthesize stories;
 @synthesize rssParser;
 @synthesize item;
-@synthesize currentElement;
-@synthesize currentTitle;
-@synthesize currentDate;
-@synthesize currentSummary;
-@synthesize currentLink;
-@synthesize currentAuthor;
-@synthesize currentCategory;
-@synthesize currentGuid;
+@synthesize currentValue;
 @synthesize rssData;
 @synthesize recordCharacters;
 @synthesize lastRefresh;
@@ -65,26 +58,15 @@
 
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{			
-	self.currentElement = elementName;
+  self.currentValue = [NSMutableString string];
+  self.recordCharacters = YES;
 	if ([elementName isEqualToString:@"item"]) {
-    self.recordCharacters = YES;
 		self.item = [NSMutableDictionary dictionary];
-		self.currentTitle = [NSMutableString string];
-		self.currentDate = [NSMutableString string];
-		self.currentSummary = [NSMutableString string];
-		self.currentLink = [NSMutableString string];
-    self.currentAuthor = [NSMutableString string];
-    self.currentCategory = [NSMutableString string];
-    self.currentGuid = [NSMutableString string];
-	} else if ([elementName isEqualToString:@"title"]
-             || [elementName isEqualToString:@"link"]
-             || [elementName isEqualToString:@"description"]
-             || [elementName isEqualToString:@"pubDate"]
-             || [elementName isEqualToString:@"dc:creator"]
-             || [elementName isEqualToString:@"category"]
-             || [elementName isEqualToString:@"guid"]) {
-    self.recordCharacters = YES;
-  }	
+  } else if ([elementName isEqualToString:@"description"]) {
+    [self.item setObject:[self flattenHTML:self.currentValue] forKey:elementName];
+  } else {
+    [self.item setObject:self.currentValue forKey:elementName];
+  }
 }
 
 
@@ -113,44 +95,16 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
 	if ([elementName isEqualToString:@"item"]) {
-		[self.item setObject:self.currentTitle forKey:@"title"];    
-		[self.item setObject:self.currentLink forKey:@"link"];
-		[self.item setObject:[self flattenHTML:self.currentSummary] forKey:@"summary"];
-		[self.item setObject:self.currentDate forKey:@"date"];
-    [self.item setObject:self.currentAuthor forKey:@"author"];
-    [self.item setObject:self.currentCategory forKey:@"category"];
-    [self.item setObject:self.currentGuid forKey:@"guid"];
     [self.stories addObject:self.item];
-	} else if ([elementName isEqualToString:@"title"]
-             || [elementName isEqualToString:@"link"]
-             || [elementName isEqualToString:@"description"]
-             || [elementName isEqualToString:@"pubDate"]
-             || [elementName isEqualToString:@"dc:creator"]
-             || [elementName isEqualToString:@"category"]
-             || [elementName isEqualToString:@"guid"]) {
-    self.recordCharacters = NO;
 	}
+  self.recordCharacters = NO;
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
   if (self.recordCharacters == NO) {
     return;
   }
-	if ([self.currentElement isEqualToString:@"title"]) {
-		[self.currentTitle appendString:string];
-	} else if ([self.currentElement isEqualToString:@"link"]) {
-		[self.currentLink appendString:string];
-	} else if ([self.currentElement isEqualToString:@"description"]) {
-		[self.currentSummary appendString:string];
-	} else if ([self.currentElement isEqualToString:@"pubDate"]) {
-		[self.currentDate appendString:string];
-	} else if ([self.currentElement isEqualToString:@"dc:creator"]) {
-    [self.currentAuthor appendString:string];
-	} else if ([self.currentElement isEqualToString:@"category"]) {
-    [self.currentCategory appendString:string];
-  } else if ([self.currentElement isEqualToString:@"guid"]) {
-    [self.currentGuid appendString:string];
-  }	
+  [self.currentValue appendString:string];
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
