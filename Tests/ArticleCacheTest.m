@@ -38,15 +38,35 @@
 
   [self prepare];
   [self.cache parseXMLFileAtURL:url];
-  
   [self checkProgress];
-  
-  [self waitForStatus:kGHUnitWaitStatusSuccess timeout:5.0];
+  [self waitForStatus:kGHUnitWaitStatusSuccess timeout:1.0];
   
   GHAssertNotNil(self.cache.rssData, nil);
   GHAssertEquals((int)[self.cache.rssData length], 30448, nil);
   GHAssertEquals((int)[self.cache.stories count], 50, nil);
 }
 
+
+- (void)parseTestXml {
+  NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [thisBundle URLForResource:@"rss_test" withExtension:@"xml"];
+  GHAssertNotNil(url, nil);
+  
+  [self.cache parseXMLFileAtURL:url];
+
+  NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
+  NSDate *timeOut = [NSDate dateWithTimeIntervalSinceNow:1];
+  while (self.cache.refreshInProgress 
+         && [timeOut compare:[NSDate date]] == NSOrderedDescending
+         && [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate:loopUntil]) {
+    loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
+  }
+}
+
+
+- (void)test_parseUuid {
+  [self parseTestXml];
+  GHAssertNotNil(self.cache.rssData, nil);
+}
 
 @end
