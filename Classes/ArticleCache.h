@@ -25,7 +25,6 @@
 @property (assign) BOOL refreshInProgress;
 
 - (void)parseXMLFileAtURL:(NSURL *)url;
-- (NSString *)flattenHTML:(NSString *)html;
 
 @end
 

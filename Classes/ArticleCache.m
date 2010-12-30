@@ -59,15 +59,13 @@
   self.recordCharacters = YES;
 	if ([elementName isEqualToString:@"item"]) {
 		self.item = [NSMutableDictionary dictionary];
-  } else if ([elementName isEqualToString:@"description"]) {
-    [self.item setObject:[self flattenHTML:self.currentValue] forKey:elementName];
   } else {
     [self.item setObject:self.currentValue forKey:elementName];
   }
 }
 
 
-- (NSString *)removeWhitespace:(NSString *)string {
+- (NSString *)trimWhitespace:(NSString *)string {
   static NSCharacterSet *whitespace = nil;
   if (whitespace == nil) {
     whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
@@ -79,20 +77,21 @@
 - (NSString *)flattenHTML:(NSString *)html {
   NSScanner *scanner = [NSScanner scannerWithString:html];
   NSString *temp = nil;
-  html = [self removeWhitespace:html];
   
   while ([scanner isAtEnd] == NO) {
     [scanner scanUpToString:@"<" intoString:nil];
     [scanner scanUpToString:@">" intoString:&temp];
     html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", temp] withString:@""];
   }  
-  return html;
+  return [self trimWhitespace:html];
 }
 
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
 	if ([elementName isEqualToString:@"item"]) {
     [self.stories addObject:self.item];
+  } else if ([elementName isEqualToString:@"description"]) {
+    [self.item setObject:[self flattenHTML:self.currentValue] forKey:elementName];
 	}
   self.recordCharacters = NO;
 }

@@ -64,12 +64,15 @@
 }
 
 
-- (void)test_parseGuid {
+- (void)test_xmlContent {
   [self parseTestXml];
   GHAssertNotNil(self.cache.stories, nil);
-  NSString *guid = [[self.cache.stories objectAtIndex:0] objectForKey:@"guid"];
-  GHAssertNotNil(guid, nil);
-  GHAssertTrue([guid length] > 0, nil);
+  NSArray *tags = [NSArray arrayWithObjects:@"title", @"dc:creator", @"pubDate", @"description", nil];
+  for (NSString *tag in tags) {
+    NSString *value = [[self.cache.stories objectAtIndex:0] objectForKey:tag];
+    GHAssertNotNil(value, @"value for %@ is nil", tag);
+    GHAssertTrue([value length] > 0, @"length for %@ is 0", tag);
+  }
 }
 
 @end
