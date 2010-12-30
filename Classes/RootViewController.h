@@ -7,28 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ArticleCache.h"
 
 @interface RootViewController : UITableViewController<NSXMLParserDelegate> {
   IBOutlet UITableView *newsTable;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, retain) NSMutableArray *stories;
-@property (nonatomic, retain) NSXMLParser *rssParser;
-@property (nonatomic, retain) NSMutableDictionary *item;
-@property (nonatomic, retain) NSString *currentElement;
-@property (nonatomic, retain) NSMutableString *currentTitle;
-@property (nonatomic, retain) NSMutableString *currentDate;
-@property (nonatomic, retain) NSMutableString *currentSummary;
-@property (nonatomic, retain) NSMutableString *currentLink;
-@property (nonatomic, retain) NSMutableString *currentAuthor;
-@property (nonatomic, retain) NSMutableString *currentCategory;
-@property (nonatomic, retain) NSMutableData *rssData;
-@property (assign) BOOL recordCharacters;
-@property (nonatomic, retain) NSDate *lastRefresh;
-@property (assign) BOOL refreshInProgress;
+@property (nonatomic, retain) ArticleCache *articles;
 
-- (void)parseXMLFileAtURL:(NSString *)url;
 - (void)refresh;
 - (void)safeRefresh;
 - (void)settingsButtonPressed;

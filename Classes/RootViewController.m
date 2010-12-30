@@ -14,14 +14,7 @@
 @implementation RootViewController
 
 @synthesize activityIndicator;
-@synthesize stories;
-@synthesize rssParser;
-@synthesize item;
-@synthesize currentElement, currentTitle, currentDate, currentSummary, currentLink, currentAuthor, currentCategory;
-@synthesize rssData;
-@synthesize recordCharacters;
-@synthesize lastRefresh;
-@synthesize refreshInProgress;
+@synthesize articles;
 
 
 #pragma mark -
@@ -42,6 +35,8 @@
   CGPoint pos = CGPointMake(x, y);
   activityIndicator.center = pos;
 
+  self.articles = [[[ArticleCache alloc] init] autorelease];
+  
   newsTable.rowHeight = 90;
   [self refresh];
 }
@@ -73,7 +68,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.stories count];
+  return [self.articles.stories count];
 }
 
 
@@ -137,12 +132,12 @@
 
 
 - (void)safeRefresh {
-  if (self.lastRefresh == nil) {
+  if (self.articles.lastRefresh == nil) {
     [self refresh];
   } else {
     static double refreshInterval = 15*60; // seconds
     NSDate *now = [NSDate date];
-    NSTimeInterval diff = [now timeIntervalSinceDate:lastRefresh];
+    NSTimeInterval diff = [now timeIntervalSinceDate:self.articles.lastRefresh];
     if (diff > refreshInterval) {
       [self refresh];
     }
@@ -151,11 +146,9 @@
 
 
 - (void)refresh {
-  if (self.refreshInProgress) {
+  if (self.articles.refreshInProgress) {
     return;
   }
-  self.refreshInProgress = YES;
-  self.stories = [NSMutableArray array];
   [newsTable reloadData];
   [newsTable addSubview:self.activityIndicator];
   [self.activityIndicator startAnimating];
@@ -166,7 +159,7 @@
     return;
   }
   NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
-  [self parseXMLFileAtURL:url];
+  [self.articles parseXMLFileAtURL:[NSURL URLWithString:url]];
 }
 
 
@@ -186,14 +179,7 @@
 #pragma mark XML Parsing
 
 
-- (void)parseXMLFileAtURL:(NSString *)url {	
-  self.rssData = [NSMutableData data];
-  NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-  [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];  
-}
-
-
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
+- (void)parseErrorOccurred:(NSError *)parseError {
 	[activityIndicator stopAnimating];
 	[activityIndicator removeFromSuperview];	
 
@@ -202,101 +188,13 @@
 	
 	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error parsing feed" message:[parseError localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
-  self.refreshInProgress = NO;
 }
 
 
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{			
-	self.currentElement = elementName;
-	if ([elementName isEqualToString:@"item"]) {
-    self.recordCharacters = YES;
-		self.item = [NSMutableDictionary dictionary];
-		self.currentTitle = [NSMutableString string];
-		self.currentDate = [NSMutableString string];
-		self.currentSummary = [NSMutableString string];
-		self.currentLink = [NSMutableString string];
-    self.currentAuthor = [NSMutableString string];
-    self.currentCategory = [NSMutableString string];
-	} else if ([elementName isEqualToString:@"title"]
-             || [elementName isEqualToString:@"link"]
-             || [elementName isEqualToString:@"description"]
-             || [elementName isEqualToString:@"pubDate"]
-             || [elementName isEqualToString:@"dc:creator"]
-             || [elementName isEqualToString:@"category"]) {
-    self.recordCharacters = YES;
-  }
-	
-}
-
-
-- (NSString *)removeWhitespace:(NSString *)string {
-  static NSCharacterSet *whitespace = nil;
-  if (whitespace == nil) {
-    whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
-  }
-  return [string stringByTrimmingCharactersInSet:whitespace];
-}
-
-
-- (NSString *)flattenHTML:(NSString *)html {
-  NSScanner *scanner = [NSScanner scannerWithString:html];
-  NSString *temp = nil;
-  html = [self removeWhitespace:html];
-    
-  while ([scanner isAtEnd] == NO) {
-    [scanner scanUpToString:@"<" intoString:nil];
-    [scanner scanUpToString:@">" intoString:&temp];
-    html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", temp] withString:@""];
-  }  
-  return html;
-}
-
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
-	if ([elementName isEqualToString:@"item"]) {
-		[self.item setObject:self.currentTitle forKey:@"title"];    
-		[self.item setObject:self.currentLink forKey:@"link"];
-		[self.item setObject:[self flattenHTML:self.currentSummary] forKey:@"summary"];
-		[self.item setObject:self.currentDate forKey:@"date"];
-    [self.item setObject:self.currentAuthor forKey:@"author"];
-    [self.item setObject:self.currentCategory forKey:@"category"];
-    [self.stories addObject:self.item];
-	} else if ([elementName isEqualToString:@"title"]
-             || [elementName isEqualToString:@"link"]
-             || [elementName isEqualToString:@"description"]
-             || [elementName isEqualToString:@"pubDate"]
-             || [elementName isEqualToString:@"dc:creator"]
-             || [elementName isEqualToString:@"category"]) {
-    self.recordCharacters = NO;
-	}
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
-  if (self.recordCharacters == NO) {
-    return;
-  }
-	if ([self.currentElement isEqualToString:@"title"]) {
-		[self.currentTitle appendString:string];
-	} else if ([self.currentElement isEqualToString:@"link"]) {
-		[self.currentLink appendString:string];
-	} else if ([self.currentElement isEqualToString:@"description"]) {
-		[self.currentSummary appendString:string];
-	} else if ([self.currentElement isEqualToString:@"pubDate"]) {
-		[self.currentDate appendString:string];
-	} else if ([self.currentElement isEqualToString:@"dc:creator"]) {
-    [self.currentAuthor appendString:string];
-	} else if ([self.currentElement isEqualToString:@"category"]) {
-    [self.currentCategory appendString:string];
-  }
-	
-}
-
-- (void)parserDidEndDocument:(NSXMLParser *)parser {
+- (void)parserDidEndDocument {
 	[newsTable reloadData];
 	[self.activityIndicator stopAnimating];
 	[self.activityIndicator removeFromSuperview];
-  self.lastRefresh = [NSDate date];
-  self.refreshInProgress = NO;
 }
 
 
@@ -304,7 +202,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSString * link = [[stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
+  NSString * link = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
 
   WebViewController *vc = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
   vc.link = link;
@@ -412,7 +310,7 @@ const CGFloat kBottomHeight = 15;
 		[dateFormatter setDateFormat:@"LLL-dd HH:mm"];
 	}
 	
-  NSDictionary *info = [self.stories objectAtIndex:[indexPath row]];
+  NSDictionary *info = [self.articles.stories objectAtIndex:[indexPath row]];
   
 	// author
   {
@@ -443,47 +341,12 @@ const CGFloat kBottomHeight = 15;
 #pragma mark -
 #pragma mark NSURLConnectionDelegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-  //NSLog(@"got auth challange");
-  if ([challenge previousFailureCount] == 0) {
-    NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
-    NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
-
-    [[challenge sender] useCredential:[NSURLCredential credentialWithUser:user password:pass persistence:NSURLCredentialPersistencePermanent] forAuthenticationChallenge:challenge];
-  } else {
-    [[challenge sender] cancelAuthenticationChallenge:challenge]; 
-  }
-}
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  [self.rssData appendData:data];
-}
-
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-  //NSLog(@"finished loading");
-  rssParser = [[[NSXMLParser alloc] initWithData:self.rssData] autorelease];
-  [rssParser setDelegate:self];
-  [rssParser setShouldProcessNamespaces:NO];
-  [rssParser setShouldReportNamespacePrefixes:NO];
-  [rssParser setShouldResolveExternalEntities:NO];
-  [rssParser parse];
-}
-
-
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
 	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
 	NSLog(@"Error loading feed: %@", errorString);
 	
 	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
-  self.refreshInProgress = NO;
-}
-
-
-- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)connection {
-  return NO;
 }
 
 
