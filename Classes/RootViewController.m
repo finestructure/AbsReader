@@ -328,13 +328,13 @@ const CGFloat kBottomHeight = 15;
 	// author
   {
     UILabel *label = (UILabel *)[cell viewWithTag:1];
-    label.text = [info objectForKey:@"author"];
+    label.text = [info objectForKey:@"dc:creator"];
   }
 	
 	// date
 	{
     UILabel *label = (UILabel *)[cell viewWithTag:2];
-    label.text = [info objectForKey:@"date"]; //[dateFormatter stringFromDate:[info objectForKey:@"date"]];
+    label.text = [info objectForKey:@"pubDate"]; //[dateFormatter stringFromDate:[info objectForKey:@"date"]];
   }
   
 	// title
@@ -346,7 +346,7 @@ const CGFloat kBottomHeight = 15;
 	// summary
   {
     UILabel *label = (UILabel *)[cell viewWithTag:4];
-    label.text = [info objectForKey:@"summary"];
+    label.text = [info objectForKey:@"description"];
   }
 }    
 
