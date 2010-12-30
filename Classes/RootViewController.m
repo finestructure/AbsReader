@@ -36,6 +36,7 @@
   activityIndicator.center = pos;
 
   self.articles = [[[ArticleCache alloc] init] autorelease];
+  self.articles.delegate = self;
   
   newsTable.rowHeight = 90;
   [self refresh];
@@ -176,25 +177,37 @@
 
 
 #pragma mark -
-#pragma mark XML Parsing
+#pragma mark ArticleCacheDelegate
 
 
-- (void)parseErrorOccurred:(NSError *)parseError {
+- (void)errorOccurred:(NSError *)error {
 	[activityIndicator stopAnimating];
 	[activityIndicator removeFromSuperview];	
 
-	NSString * errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
-	NSLog(@"error parsing XML: %@", errorString);
+	NSString * errorString = [NSString stringWithFormat:@"Error fetching feed (Error code %i )", [error code]];
+	NSLog(@"%@", errorString);
 	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error parsing feed" message:[parseError localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error fetching feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
 }
 
 
-- (void)parserDidEndDocument {
+- (void)didEndDocument {
 	[newsTable reloadData];
 	[self.activityIndicator stopAnimating];
 	[self.activityIndicator removeFromSuperview];
+}
+
+
+#pragma mark -
+#pragma mark NSURLConnectionDelegate
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
+	NSLog(@"Error loading feed: %@", errorString);
+	
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	[errorAlert show];
 }
 
 
@@ -336,18 +349,6 @@ const CGFloat kBottomHeight = 15;
     label.text = [info objectForKey:@"summary"];
   }
 }    
-
-
-#pragma mark -
-#pragma mark NSURLConnectionDelegate
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
-	NSLog(@"Error loading feed: %@", errorString);
-	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[errorAlert show];
-}
 
 
 #pragma mark -

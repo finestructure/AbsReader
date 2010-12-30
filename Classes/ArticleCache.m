@@ -13,6 +13,7 @@
 
 @implementation ArticleCache
 
+@synthesize delegate;
 @synthesize cache;
 @synthesize stories;
 @synthesize rssParser;
@@ -48,12 +49,8 @@
 
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-	NSString * errorString = [NSString stringWithFormat:@"Unable to download story feed from web site (Error code %i )", [parseError code]];
-	NSLog(@"error parsing XML: %@", errorString);
-	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error parsing feed" message:[parseError localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[errorAlert show];
   self.refreshInProgress = NO;
+  [self.delegate errorOccurred:parseError];
 }
 
 
@@ -110,6 +107,7 @@
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
   self.lastRefresh = [NSDate date];
   self.refreshInProgress = NO;
+  [self.delegate didEndDocument];
 }
 
 
@@ -146,12 +144,8 @@
 
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
-	NSLog(@"Error loading feed: %@", errorString);
-	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-	[errorAlert show];
   self.refreshInProgress = NO;
+  [self.delegate errorOccurred:error];
 }
 
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ArticleCache.h"
 
-@interface RootViewController : UITableViewController<NSXMLParserDelegate> {
+@interface RootViewController : UITableViewController<ArticleCacheDelegate> {
   IBOutlet UITableView *newsTable;
 }
 
