@@ -152,9 +152,6 @@
   if (self.articles.refreshInProgress) {
     return;
   }
-  [newsTable reloadData];
-  [newsTable addSubview:self.activityIndicator];
-  [self.activityIndicator startAnimating];
   NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
   NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
   if (user == nil || pass == nil) {
@@ -163,6 +160,10 @@
   }
   NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
   [self.articles parseXMLFileAtURL:[NSURL URLWithString:url]];
+  [newsTable reloadData];
+  [newsTable addSubview:self.activityIndicator];
+  newsTable.scrollEnabled = NO;
+  [self.activityIndicator startAnimating];
 }
 
 
@@ -185,6 +186,7 @@
 - (void)errorOccurred:(NSError *)error {
 	[activityIndicator stopAnimating];
 	[activityIndicator removeFromSuperview];	
+  newsTable.scrollEnabled = YES;
 
 	NSString * errorString = [NSString stringWithFormat:@"Error fetching feed (Error code %i )", [error code]];
 	NSLog(@"%@", errorString);
@@ -198,6 +200,7 @@
 	[newsTable reloadData];
 	[self.activityIndicator stopAnimating];
 	[self.activityIndicator removeFromSuperview];
+  newsTable.scrollEnabled = YES;
 }
 
 
