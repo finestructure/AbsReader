@@ -339,13 +339,19 @@ const CGFloat kBottomHeight = 15;
 	// date
 	{
     UILabel *label = (UILabel *)[cell viewWithTag:2];
-    label.text = [info objectForKey:@"pubDate"]; //[dateFormatter stringFromDate:[info objectForKey:@"date"]];
+    label.text = [dateFormatter stringFromDate:[info objectForKey:@"pubDate"]];
   }
   
 	// title
   {
     UILabel *label = (UILabel *)[cell viewWithTag:3];
     label.text = [info objectForKey:@"title"];
+    NSString *guid = [info objectForKey:@"guid"];
+    if ([self.articles alreadyVisited:guid]) {
+      label.textColor = [UIColor grayColor];
+    } else {
+      label.textColor = [UIColor blackColor];
+    }
   }
   
 	// summary

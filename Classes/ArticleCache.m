@@ -92,7 +92,18 @@
     [self.stories addObject:self.item];
   } else if ([elementName isEqualToString:@"description"]) {
     [self.item setObject:[self flattenHTML:self.currentValue] forKey:elementName];
-	}
+	} else if ([elementName isEqualToString:@"pubDate"]) {
+    static NSDateFormatter *formatter = nil;
+    if (formatter == nil) {
+      formatter = [[NSDateFormatter alloc] init];
+      NSLocale *enUS = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+      [formatter setLocale:enUS];
+      [enUS release];
+      [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss z"];
+    }
+    NSDate *date = [formatter dateFromString:self.currentValue];
+    [self.item setObject:date forKey:@"pubDate"];
+  }
   self.recordCharacters = NO;
 }
 
