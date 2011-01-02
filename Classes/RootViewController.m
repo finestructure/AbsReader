@@ -48,6 +48,8 @@
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
   [self safeRefresh];
+  // TODO: only reload updated cells (read mark)
+  [newsTable reloadData];
 }
 
 
@@ -220,7 +222,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSString * link = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
+  NSString *link = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
+  NSString *guid = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
+  NSDate *date = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
+  [self.articles markGuidRead:guid forDate:date];
 
   WebViewController *vc = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
   vc.link = link;

@@ -23,14 +23,38 @@
 @synthesize recordCharacters;
 @synthesize lastRefresh;
 @synthesize refreshInProgress;
+@synthesize readArticles;
 
 
 - (id)init {
   self = [super init];
   if (self) {
     self.cache = [NSMutableDictionary dictionary];
+    self.readArticles = [[NSUserDefaults standardUserDefaults] objectForKey:@"readArticles"];
+    if (self.readArticles == nil) {
+      self.readArticles = [NSMutableDictionary dictionary];
+      [[NSUserDefaults standardUserDefaults] setObject:self.readArticles forKey:@"readArticles"];
+    }
   }
   return self;
+}
+
+
+#pragma mark -
+#pragma mark Workers
+
+
+- (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date {
+  [self.readArticles setObject:date forKey:guid];
+  if ([self.readArticles count] > 200) {
+    // TODO: trim down list if it gets too long
+  }
+  [[NSUserDefaults standardUserDefaults] setObject:self.readArticles forKey:@"readArticles"];
+}
+
+
+- (BOOL)alreadyVisited:(NSString *)guid {
+  return [self.readArticles objectForKey:guid] != nil;
 }
 
 

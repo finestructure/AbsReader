@@ -23,8 +23,11 @@
 @property (assign) BOOL recordCharacters;
 @property (nonatomic, retain) NSDate *lastRefresh;
 @property (assign) BOOL refreshInProgress;
+@property (nonatomic, retain) NSMutableDictionary *readArticles;
 
 - (void)parseXMLFileAtURL:(NSURL *)url;
+- (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date;
+- (BOOL)alreadyVisited:(NSString *)guid;
 
 @end
 
