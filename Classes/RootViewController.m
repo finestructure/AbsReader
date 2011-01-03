@@ -42,6 +42,12 @@
   
   newsTable.rowHeight = 90;
   [self refresh];
+  
+  UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+  gr.numberOfTapsRequired = 2;
+  gr.delaysTouchesBegan = YES;
+  [newsTable addGestureRecognizer:gr];
+  [gr release];
 }
 
 
@@ -184,6 +190,22 @@
 - (NSUInteger)unreadCount {
   return [self.articles unreadCount];
 }
+
+
+#pragma mark -
+#pragma mark Gesture Handlers
+
+
+- (void)handleDoubleTap:(UIGestureRecognizer *)sender {
+  CGPoint p = [sender locationInView:newsTable];
+  NSIndexPath *indexPath = [newsTable indexPathForRowAtPoint:p];
+  NSString *guid = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
+  NSDate *date = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
+  [self.articles markGuidRead:guid forDate:date];
+  NSArray *indexes = [NSArray arrayWithObject:indexPath];
+	[newsTable reloadRowsAtIndexPaths:indexes withRowAnimation:NO];
+}
+
 
 #pragma mark -
 #pragma mark ArticleCacheDelegate
