@@ -34,6 +34,17 @@
     if (self.readArticles == nil) {
       self.readArticles = [NSMutableDictionary dictionary];
       [[NSUserDefaults standardUserDefaults] setObject:self.readArticles forKey:@"readArticles"];
+    } else {
+      // delete entries older than 90 days from cache
+      NSMutableArray *keysToRemove = [NSMutableArray array];
+      float nintyDays = 86400*90;
+      NSDate *earliestDate = [NSDate dateWithTimeIntervalSinceNow:nintyDays];
+      [self.readArticles enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([(NSDate *)obj compare:earliestDate] == NSOrderedDescending) {
+            [keysToRemove addObject:key];
+        }
+      }];
+      [self.readArticles removeObjectsForKeys:keysToRemove];
     }
   }
   return self;
@@ -46,9 +57,6 @@
 
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date {
   [self.readArticles setObject:date forKey:guid];
-  if ([self.readArticles count] > 200) {
-    // TODO: trim down list if it gets too long
-  }
   [[NSUserDefaults standardUserDefaults] setObject:self.readArticles forKey:@"readArticles"];
 }
 
