@@ -28,11 +28,14 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   [[NSUserDefaults standardUserDefaults] synchronize];
+  RootViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
+  if ([rootViewController isViewLoaded]) {
+    application.applicationIconBadgeNumber = [rootViewController unreadCount];
+  }
 }
 
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-  [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

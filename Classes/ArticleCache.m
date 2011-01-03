@@ -66,6 +66,16 @@
 }
 
 
+- (NSUInteger)unreadCount {
+  NSMutableSet *guids = [NSMutableSet set];
+  [stories enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [guids addObject:[(NSDictionary *)obj objectForKey:@"guid"]];
+  }];
+  [guids minusSet:[NSSet setWithArray:[self.readArticles allKeys]]];
+  return [guids count];
+}
+
+
 #pragma mark -
 #pragma mark XML Parsing
 

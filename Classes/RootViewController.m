@@ -181,6 +181,10 @@
 }
 
 
+- (NSUInteger)unreadCount {
+  return [self.articles unreadCount];
+}
+
 #pragma mark -
 #pragma mark ArticleCacheDelegate
 
