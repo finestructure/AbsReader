@@ -43,19 +43,25 @@
   newsTable.rowHeight = 90;
   [self refresh];
   
-  UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-  gr.numberOfTapsRequired = 2;
-  gr.delaysTouchesBegan = YES;
-  [newsTable addGestureRecognizer:gr];
-  [gr release];
+  {
+    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    gr.numberOfTapsRequired = 2;
+    gr.delaysTouchesBegan = YES;
+    [newsTable addGestureRecognizer:gr];
+    [gr release];
+  }
+  {
+    UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    gr.delaysTouchesBegan = YES;
+    [newsTable addGestureRecognizer:gr];
+    [gr release];
+  }
 }
 
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
   [self safeRefresh];
-  // TODO: only reload updated cells (read mark)
-  [newsTable reloadData];
 }
 
 
@@ -192,6 +198,15 @@
 }
 
 
+- (void)markCellAsRead:(NSIndexPath *)indexPath {
+  NSString *guid = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
+  NSDate *date = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
+  [self.articles markGuidRead:guid forDate:date];
+  NSArray *indexes = [NSArray arrayWithObject:indexPath];
+	[newsTable reloadRowsAtIndexPaths:indexes withRowAnimation:NO];
+}
+
+
 #pragma mark -
 #pragma mark Gesture Handlers
 
@@ -199,11 +214,14 @@
 - (void)handleDoubleTap:(UIGestureRecognizer *)sender {
   CGPoint p = [sender locationInView:newsTable];
   NSIndexPath *indexPath = [newsTable indexPathForRowAtPoint:p];
-  NSString *guid = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
-  NSDate *date = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
-  [self.articles markGuidRead:guid forDate:date];
-  NSArray *indexes = [NSArray arrayWithObject:indexPath];
-	[newsTable reloadRowsAtIndexPaths:indexes withRowAnimation:NO];
+  [self markCellAsRead:indexPath];
+}
+
+
+- (void)handleSwipe:(UIGestureRecognizer *)sender {
+	CGPoint p = [sender locationInView:newsTable];
+  NSIndexPath *indexPath = [newsTable indexPathForRowAtPoint:p];
+  [self markCellAsRead:indexPath];
 }
 
 
@@ -249,14 +267,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString *link = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
-  NSString *guid = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
-  NSDate *date = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
-  [self.articles markGuidRead:guid forDate:date];
-
+  
   WebViewController *vc = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
   vc.link = link;
   [self.navigationController pushViewController:vc animated:YES];
   [vc release];
+
+  [self markCellAsRead:indexPath];
 
   return;
 }
