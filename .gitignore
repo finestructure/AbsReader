@@ -1,3 +1,6 @@
 AbsReader.xcodeproj/sas.*
 build/*
 AbsReader.xcodeproj/project.xcworkspace/xcuserdata/sas.*
+AbsReader.xcodeproj/xcuserdata/sas.*
+AutomationTests/AppReaderTests.trace/*
+tuneup
