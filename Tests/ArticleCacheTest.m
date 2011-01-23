@@ -67,12 +67,17 @@
 - (void)test_xmlContent {
   [self parseTestXml];
   GHAssertNotNil(self.cache.stories, nil);
-  NSArray *tags = [NSArray arrayWithObjects:@"title", @"dc:creator", @"pubDate", @"description", nil];
+  // test string values
+  NSArray *tags = [NSArray arrayWithObjects:@"title", @"dc:creator", @"description", nil];
   for (NSString *tag in tags) {
     NSString *value = [[self.cache.stories objectAtIndex:0] objectForKey:tag];
     GHAssertNotNil(value, @"value for %@ is nil", tag);
+    GHAssertTrue([value isKindOfClass:[NSString class]], @"requiring NSString for %@", tag);
     GHAssertTrue([value length] > 0, @"length for %@ is 0", tag);
   }
+  // test date value
+  NSDate *date = [[self.cache.stories objectAtIndex:0] objectForKey:@"pubDate"];
+  GHAssertTrue([date isKindOfClass:[NSDate class]], @"requiring NSDate");
 }
 
 @end
