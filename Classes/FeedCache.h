@@ -10,7 +10,7 @@
 
 @protocol ArticleCacheDelegate;
 
-@interface ArticleCache : NSObject<NSXMLParserDelegate> {
+@interface FeedCache : NSObject<NSXMLParserDelegate> {
 }
 
 @property (nonatomic, assign) id<ArticleCacheDelegate> delegate;

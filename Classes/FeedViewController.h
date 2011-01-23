@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ArticleCache.h"
+#import "FeedCache.h"
 
 @interface FeedViewController : UITableViewController<ArticleCacheDelegate> {
   IBOutlet UITableView *newsTable;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, retain) ArticleCache *articles;
+@property (nonatomic, retain) FeedCache *articles;
 
 - (void)refresh;
 - (void)safeRefresh;

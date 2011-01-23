@@ -18,7 +18,7 @@
 		5A2A570D12CBA666001095A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		5A2A570E12CBA66C001095A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5A2A570F12CBA671001095A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		5A2A574A12CBA97A001095A5 /* ArticleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* ArticleCache.m */; };
+		5A2A574A12CBA97A001095A5 /* FeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* FeedCache.m */; };
 		5A2A575712CBAA13001095A5 /* rss_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EED312CB9327002D123A /* rss_test.xml */; };
 		5A2A578112CBABBF001095A5 /* ArticleCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578012CBABBF001095A5 /* ArticleCacheTest.m */; };
 		5A2A578312CBABE3001095A5 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */; };
@@ -34,7 +34,7 @@
 		5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */; };
 		5AD7EA2712C9FFFE002D123A /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EA2612C9FFFE002D123A /* gear@2x.png */; };
 		5AD7EA7812CA055A002D123A /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EA7712CA055A002D123A /* gear.png */; };
-		5AD7EE7612CB8D09002D123A /* ArticleCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* ArticleCache.m */; };
+		5AD7EE7612CB8D09002D123A /* FeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* FeedCache.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,8 +69,8 @@
 		5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5AD7EA2612C9FFFE002D123A /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gear@2x.png"; path = "Resources/gear@2x.png"; sourceTree = "<group>"; };
 		5AD7EA7712CA055A002D123A /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = Resources/gear.png; sourceTree = "<group>"; };
-		5AD7EE7412CB8D09002D123A /* ArticleCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleCache.h; sourceTree = "<group>"; };
-		5AD7EE7512CB8D09002D123A /* ArticleCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCache.m; sourceTree = "<group>"; };
+		5AD7EE7412CB8D09002D123A /* FeedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCache.h; sourceTree = "<group>"; };
+		5AD7EE7512CB8D09002D123A /* FeedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCache.m; sourceTree = "<group>"; };
 		5AD7EE8B12CB8EC4002D123A /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		5AD7EED312CB9327002D123A /* rss_test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rss_test.xml; path = Resources/rss_test.xml; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AbsReader-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AbsReader-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
@@ -112,8 +112,8 @@
 				5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */,
 				5A817F0712ECB0A8008AA8A9 /* WebViewController.h */,
 				5A817F0812ECB0A8008AA8A9 /* WebViewController.m */,
-				5AD7EE7412CB8D09002D123A /* ArticleCache.h */,
-				5AD7EE7512CB8D09002D123A /* ArticleCache.m */,
+				5AD7EE7412CB8D09002D123A /* FeedCache.h */,
+				5AD7EE7512CB8D09002D123A /* FeedCache.m */,
 				5ABC038212ECBB19008D3641 /* RootViewController.h */,
 				5ABC038312ECBB19008D3641 /* RootViewController.m */,
 			);
@@ -309,7 +309,7 @@
 				1D3623260D0F684500981E51 /* AbsReaderAppDelegate.m in Sources */,
 				28C286E10D94DF7D0034E888 /* FeedViewController.m in Sources */,
 				5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */,
-				5AD7EE7612CB8D09002D123A /* ArticleCache.m in Sources */,
+				5AD7EE7612CB8D09002D123A /* FeedCache.m in Sources */,
 				5A817F0912ECB0A8008AA8A9 /* WebViewController.m in Sources */,
 				5ABC038512ECBB19008D3641 /* RootViewController.m in Sources */,
 			);
@@ -319,7 +319,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A2A574A12CBA97A001095A5 /* ArticleCache.m in Sources */,
+				5A2A574A12CBA97A001095A5 /* FeedCache.m in Sources */,
 				5A2A578112CBABBF001095A5 /* ArticleCacheTest.m in Sources */,
 				5A2A578312CBABE3001095A5 /* GHUnitIOSTestMain.m in Sources */,
 			);

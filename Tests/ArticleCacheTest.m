@@ -1,8 +1,8 @@
 #import <GHUnit/GHUnit.h>
-#import "ArticleCache.h"
+#import "FeedCache.h"
 
 @interface ArticleCacheTest : GHAsyncTestCase { }
-@property (nonatomic, retain) ArticleCache *cache;
+@property (nonatomic, retain) FeedCache *cache;
 @end
 
 
@@ -13,7 +13,7 @@
 
 
 - (void)setUp {
-  self.cache = [[[ArticleCache alloc] init] autorelease];
+  self.cache = [[[FeedCache alloc] init] autorelease];
 }
 
 

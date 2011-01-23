@@ -38,7 +38,7 @@
   CGPoint pos = CGPointMake(x, y);
   activityIndicator.center = pos;
 
-  self.articles = [[[ArticleCache alloc] init] autorelease];
+  self.articles = [[[FeedCache alloc] init] autorelease];
   self.articles.delegate = self;
   
   newsTable.rowHeight = 90;

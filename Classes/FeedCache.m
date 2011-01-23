@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ArticleCache.h"
+#import "FeedCache.h"
 
 
-@implementation ArticleCache
+@implementation FeedCache
 
 @synthesize delegate;
 @synthesize cache;
