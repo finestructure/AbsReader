@@ -45,6 +45,11 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+  [self.navigationController setToolbarHidden:YES animated:animated];
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
   return YES;
 }

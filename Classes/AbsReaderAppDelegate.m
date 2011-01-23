@@ -22,7 +22,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
   [self.window addSubview:navigationController.view];
   [self.window makeKeyAndVisible];
-  self.navigationController.toolbarHidden = NO;
   return YES;
 }
 
