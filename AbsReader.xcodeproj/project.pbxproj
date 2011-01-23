@@ -20,7 +20,7 @@
 		5A2A570F12CBA671001095A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		5A2A574A12CBA97A001095A5 /* FeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* FeedCache.m */; };
 		5A2A575712CBAA13001095A5 /* rss_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EED312CB9327002D123A /* rss_test.xml */; };
-		5A2A578112CBABBF001095A5 /* ArticleCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578012CBABBF001095A5 /* ArticleCacheTest.m */; };
+		5A2A578112CBABBF001095A5 /* FeedCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578012CBABBF001095A5 /* FeedCacheTest.m */; };
 		5A2A578312CBABE3001095A5 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */; };
 		5A2A57AD12CBAE0A001095A5 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2A57AC12CBAE0A001095A5 /* GHUnit.framework */; };
 		5A817F0212ECAC0B008AA8A9 /* app_icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0012ECAB8C008AA8A9 /* app_icon-57.png */; };
@@ -52,7 +52,7 @@
 		5A1D24F312EC9071000BA65C /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "check@2x.png"; path = "Resources/check@2x.png"; sourceTree = "<group>"; };
 		5A2A56FF12CBA612001095A5 /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2A570112CBA612001095A5 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		5A2A578012CBABBF001095A5 /* ArticleCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleCacheTest.m; path = Tests/ArticleCacheTest.m; sourceTree = "<group>"; };
+		5A2A578012CBABBF001095A5 /* FeedCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedCacheTest.m; path = Tests/FeedCacheTest.m; sourceTree = "<group>"; };
 		5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHUnitIOSTestMain.m; path = Tests/GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		5A2A57AC12CBAE0A001095A5 /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = /Users/sas/Library/Frameworks/GHUnit.framework; sourceTree = "<absolute>"; };
 		5A817F0012ECAB8C008AA8A9 /* app_icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon-57.png"; path = "Resources/app_icon-57.png"; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 		5AD7EE9012CB8EE1002D123A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				5A2A578012CBABBF001095A5 /* ArticleCacheTest.m */,
+				5A2A578012CBABBF001095A5 /* FeedCacheTest.m */,
 				5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */,
 			);
 			name = Tests;
@@ -320,7 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A2A574A12CBA97A001095A5 /* FeedCache.m in Sources */,
-				5A2A578112CBABBF001095A5 /* ArticleCacheTest.m in Sources */,
+				5A2A578112CBABBF001095A5 /* FeedCacheTest.m in Sources */,
 				5A2A578312CBABE3001095A5 /* GHUnitIOSTestMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

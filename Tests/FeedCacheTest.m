@@ -1,13 +1,13 @@
 #import <GHUnit/GHUnit.h>
 #import "FeedCache.h"
 
-@interface ArticleCacheTest : GHAsyncTestCase { }
+@interface FeedCacheTest : GHAsyncTestCase { }
 @property (nonatomic, retain) FeedCache *cache;
 @end
 
 
 
-@implementation ArticleCacheTest
+@implementation FeedCacheTest
 
 @synthesize cache;
 
