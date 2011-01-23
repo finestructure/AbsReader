@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.title = @"AbsReader";
+  self.title = @"Feed Title";
   /*
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease];
    */
