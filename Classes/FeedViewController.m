@@ -39,6 +39,8 @@
   activityIndicator.center = pos;
 
   self.articles = [[[FeedCache alloc] init] autorelease];
+  NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
+  self.articles.url = [NSURL URLWithString:url];
   self.articles.delegate = self;
   
   newsTable.rowHeight = 90;
@@ -176,8 +178,7 @@
     [self showSettings];
     return;
   }
-  NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
-  [self.articles parseXMLFileAtURL:[NSURL URLWithString:url]];
+  [self.articles refresh];
   [newsTable reloadData];
   [newsTable addSubview:self.activityIndicator];
   newsTable.scrollEnabled = NO;

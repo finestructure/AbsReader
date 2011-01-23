@@ -14,6 +14,7 @@
 @implementation FeedCache
 
 @synthesize delegate;
+@synthesize url;
 @synthesize cache;
 @synthesize stories;
 @synthesize rssParser;
@@ -92,11 +93,11 @@
 #pragma mark XML Parsing
 
 
-- (void)parseXMLFileAtURL:(NSURL *)url {	
+- (void)refresh {	
   self.refreshInProgress = YES;
   self.rssData = [NSMutableData data];
   self.stories = [NSMutableArray array];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+  NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
   [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
 }
 

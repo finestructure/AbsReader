@@ -14,6 +14,7 @@
 }
 
 @property (nonatomic, assign) id<FeedCacheDelegate> delegate;
+@property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSMutableDictionary *cache;
 @property (nonatomic, retain) NSMutableArray *stories;
 @property (nonatomic, retain) NSXMLParser *rssParser;
@@ -25,7 +26,7 @@
 @property (assign) BOOL refreshInProgress;
 @property (nonatomic, retain) NSMutableDictionary *readArticles;
 
-- (void)parseXMLFileAtURL:(NSURL *)url;
+- (void)refresh;
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date;
 - (void)markAllRead;
 - (BOOL)alreadyVisited:(NSString *)guid;

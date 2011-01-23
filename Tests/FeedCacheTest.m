@@ -37,7 +37,8 @@
   GHAssertNotNil(url, nil);
 
   [self prepare];
-  [self.cache parseXMLFileAtURL:url];
+  self.cache.url = url;
+  [self.cache refresh];
   [self checkProgress];
   [self waitForStatus:kGHUnitWaitStatusSuccess timeout:1.0];
   
@@ -52,7 +53,8 @@
   NSURL *url = [thisBundle URLForResource:@"rss_test" withExtension:@"xml"];
   GHAssertNotNil(url, nil);
   
-  [self.cache parseXMLFileAtURL:url];
+  self.cache.url = url;
+  [self.cache refresh];
 
   NSDate *loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
   NSDate *timeOut = [NSDate dateWithTimeIntervalSinceNow:1];
