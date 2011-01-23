@@ -15,7 +15,6 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28C286E10D94DF7D0034E888 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* RootViewController.m */; };
 		28F335F11007B36200424DE2 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F335F01007B36200424DE2 /* RootViewController.xib */; };
-		5A1D24F112EC8A23000BA65C /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A1D24F012EC8A23000BA65C /* app_icon.png */; };
 		5A1D24F412EC9071000BA65C /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A1D24F212EC9071000BA65C /* check.png */; };
 		5A1D24F512EC9071000BA65C /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A1D24F312EC9071000BA65C /* check@2x.png */; };
 		5A2A570D12CBA666001095A5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -26,6 +25,7 @@
 		5A2A578112CBABBF001095A5 /* ArticleCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578012CBABBF001095A5 /* ArticleCacheTest.m */; };
 		5A2A578312CBABE3001095A5 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */; };
 		5A2A57AD12CBAE0A001095A5 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2A57AC12CBAE0A001095A5 /* GHUnit.framework */; };
+		5A817F0212ECAC0B008AA8A9 /* app_icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0012ECAB8C008AA8A9 /* app_icon-57.png */; };
 		5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */; };
 		5AD7E7C512C8E7A8002D123A /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C312C8E7A8002D123A /* SettingsViewController.xib */; };
 		5AD7E85312C8F334002D123A /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E85112C8F334002D123A /* WebViewController.m */; };
@@ -48,7 +48,6 @@
 		28C286E00D94DF7D0034E888 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		28F335F01007B36200424DE2 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		5A1D24F012EC8A23000BA65C /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon.png; path = Resources/app_icon.png; sourceTree = "<group>"; };
 		5A1D24F212EC9071000BA65C /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = Resources/check.png; sourceTree = "<group>"; };
 		5A1D24F312EC9071000BA65C /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "check@2x.png"; path = "Resources/check@2x.png"; sourceTree = "<group>"; };
 		5A2A56FF12CBA612001095A5 /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +55,7 @@
 		5A2A578012CBABBF001095A5 /* ArticleCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleCacheTest.m; path = Tests/ArticleCacheTest.m; sourceTree = "<group>"; };
 		5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHUnitIOSTestMain.m; path = Tests/GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		5A2A57AC12CBAE0A001095A5 /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = /Users/sas/Library/Frameworks/GHUnit.framework; sourceTree = "<absolute>"; };
+		5A817F0012ECAB8C008AA8A9 /* app_icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "app_icon-57.png"; path = "Resources/app_icon-57.png"; sourceTree = "<group>"; };
 		5AD7E7C112C8E7A8002D123A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5AD7E7C312C8E7A8002D123A /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Classes/SettingsViewController.xib; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 				5AD7EA2612C9FFFE002D123A /* gear@2x.png */,
 				5A1D24F212EC9071000BA65C /* check.png */,
 				5A1D24F312EC9071000BA65C /* check@2x.png */,
-				5A1D24F012EC8A23000BA65C /* app_icon.png */,
+				5A817F0012ECAB8C008AA8A9 /* app_icon-57.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -259,9 +259,9 @@
 				5AD7E85412C8F334002D123A /* WebViewController.xib in Resources */,
 				5AD7EA2712C9FFFE002D123A /* gear@2x.png in Resources */,
 				5AD7EA7812CA055A002D123A /* gear.png in Resources */,
-				5A1D24F112EC8A23000BA65C /* app_icon.png in Resources */,
 				5A1D24F412EC9071000BA65C /* check.png in Resources */,
 				5A1D24F512EC9071000BA65C /* check@2x.png in Resources */,
+				5A817F0212ECAC0B008AA8A9 /* app_icon-57.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
