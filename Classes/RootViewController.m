@@ -25,10 +25,11 @@
   [super viewDidLoad];
   
   self.title = @"AbsReader";
+  /*
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease];
+   */
   self.navigationItem.leftBarButtonItem.isAccessibilityElement = YES;
   self.navigationItem.leftBarButtonItem.accessibilityLabel = @"refresh";
-  //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@"Config" style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)] autorelease];
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)] autorelease];
   
   self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
@@ -56,6 +57,10 @@
     [newsTable addGestureRecognizer:gr];
     [gr release];
   }
+  
+  NSMutableArray *buttons = [NSMutableArray array];
+  [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease]];
+  self.toolbarItems = buttons;
 }
 
 
