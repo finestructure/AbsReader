@@ -6,12 +6,12 @@
 //  Copyright 2010 abstracture GmbH & Co. KG. All rights reserved.
 //
 
-#import "RootViewController.h"
+#import "FeedViewController.h"
 #import "SettingsViewController.h"
 #import "WebViewController.h"
 
 
-@implementation RootViewController
+@implementation FeedViewController
 
 @synthesize activityIndicator;
 @synthesize articles;

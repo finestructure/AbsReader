@@ -7,7 +7,7 @@
 //
 
 #import "AbsReaderAppDelegate.h"
-#import "RootViewController.h"
+#import "FeedViewController.h"
 
 
 @implementation AbsReaderAppDelegate
@@ -28,7 +28,7 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application {
   [[NSUserDefaults standardUserDefaults] synchronize];
-  RootViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
+  FeedViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
   if ([rootViewController isViewLoaded]) {
     application.applicationIconBadgeNumber = [rootViewController unreadCount];
   }
@@ -47,7 +47,7 @@
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  RootViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
+  FeedViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
   if ([rootViewController isViewLoaded]) {
     [rootViewController safeRefresh];
   }
