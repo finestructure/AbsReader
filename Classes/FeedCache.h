@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ArticleCacheDelegate;
+@protocol FeedCacheDelegate;
 
 @interface FeedCache : NSObject<NSXMLParserDelegate> {
 }
 
-@property (nonatomic, assign) id<ArticleCacheDelegate> delegate;
+@property (nonatomic, assign) id<FeedCacheDelegate> delegate;
 @property (nonatomic, retain) NSMutableDictionary *cache;
 @property (nonatomic, retain) NSMutableArray *stories;
 @property (nonatomic, retain) NSXMLParser *rssParser;
@@ -33,7 +33,7 @@
 
 @end
 
-@protocol ArticleCacheDelegate<NSObject>
+@protocol FeedCacheDelegate<NSObject>
 
 - (void)errorOccurred:(NSError *)error;
 - (void)didEndDocument;
