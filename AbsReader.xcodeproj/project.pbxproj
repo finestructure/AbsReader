@@ -29,6 +29,8 @@
 		5A817F0F12ECB0BD008AA8A9 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */; };
 		5A817F1012ECB0BD008AA8A9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */; };
 		5A817F1112ECB0BD008AA8A9 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */; };
+		5ABC038512ECBB19008D3641 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABC038312ECBB19008D3641 /* RootViewController.m */; };
+		5ABC038612ECBB19008D3641 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ABC038412ECBB19008D3641 /* RootViewController.xib */; };
 		5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */; };
 		5AD7EA2712C9FFFE002D123A /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EA2612C9FFFE002D123A /* gear@2x.png */; };
 		5AD7EA7812CA055A002D123A /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EA7712CA055A002D123A /* gear.png */; };
@@ -60,6 +62,9 @@
 		5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedViewController.xib; path = Resources/FeedViewController.xib; sourceTree = "<group>"; };
 		5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Resources/SettingsViewController.xib; sourceTree = "<group>"; };
 		5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebViewController.xib; path = Resources/WebViewController.xib; sourceTree = "<group>"; };
+		5ABC038212ECBB19008D3641 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		5ABC038312ECBB19008D3641 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		5ABC038412ECBB19008D3641 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootViewController.xib; path = Classes/RootViewController.xib; sourceTree = "<group>"; };
 		5AD7E7C112C8E7A8002D123A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5AD7EA2612C9FFFE002D123A /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gear@2x.png"; path = "Resources/gear@2x.png"; sourceTree = "<group>"; };
@@ -109,6 +114,8 @@
 				5A817F0812ECB0A8008AA8A9 /* WebViewController.m */,
 				5AD7EE7412CB8D09002D123A /* ArticleCache.h */,
 				5AD7EE7512CB8D09002D123A /* ArticleCache.m */,
+				5ABC038212ECBB19008D3641 /* RootViewController.h */,
+				5ABC038312ECBB19008D3641 /* RootViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -151,6 +158,7 @@
 			children = (
 				5A817F0A12ECB0BD008AA8A9 /* MainWindow.xib */,
 				5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */,
+				5ABC038412ECBB19008D3641 /* RootViewController.xib */,
 				5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */,
 				5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */,
 				5AD7EED312CB9327002D123A /* rss_test.xml */,
@@ -262,6 +270,7 @@
 				5A817F0F12ECB0BD008AA8A9 /* FeedViewController.xib in Resources */,
 				5A817F1012ECB0BD008AA8A9 /* SettingsViewController.xib in Resources */,
 				5A817F1112ECB0BD008AA8A9 /* WebViewController.xib in Resources */,
+				5ABC038612ECBB19008D3641 /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +311,7 @@
 				5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */,
 				5AD7EE7612CB8D09002D123A /* ArticleCache.m in Sources */,
 				5A817F0912ECB0A8008AA8A9 /* WebViewController.m in Sources */,
+				5ABC038512ECBB19008D3641 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
