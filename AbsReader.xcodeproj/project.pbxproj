@@ -26,7 +26,7 @@
 		5A817F0212ECAC0B008AA8A9 /* app_icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0012ECAB8C008AA8A9 /* app_icon-57.png */; };
 		5A817F0912ECB0A8008AA8A9 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A817F0812ECB0A8008AA8A9 /* WebViewController.m */; };
 		5A817F0E12ECB0BD008AA8A9 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0A12ECB0BD008AA8A9 /* MainWindow.xib */; };
-		5A817F0F12ECB0BD008AA8A9 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0B12ECB0BD008AA8A9 /* RootViewController.xib */; };
+		5A817F0F12ECB0BD008AA8A9 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */; };
 		5A817F1012ECB0BD008AA8A9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */; };
 		5A817F1112ECB0BD008AA8A9 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */; };
 		5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */; };
@@ -43,7 +43,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* AbsReader_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbsReader_Prefix.pch; sourceTree = "<group>"; };
-		28C286DF0D94DF7D0034E888 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = FeedViewController.h; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5A1D24F212EC9071000BA65C /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = Resources/check.png; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		5A817F0712ECB0A8008AA8A9 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		5A817F0812ECB0A8008AA8A9 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		5A817F0A12ECB0BD008AA8A9 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
-		5A817F0B12ECB0BD008AA8A9 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootViewController.xib; path = Resources/RootViewController.xib; sourceTree = "<group>"; };
+		5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedViewController.xib; path = Resources/FeedViewController.xib; sourceTree = "<group>"; };
 		5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Resources/SettingsViewController.xib; sourceTree = "<group>"; };
 		5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebViewController.xib; path = Resources/WebViewController.xib; sourceTree = "<group>"; };
 		5AD7E7C112C8E7A8002D123A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				5A817F0A12ECB0BD008AA8A9 /* MainWindow.xib */,
-				5A817F0B12ECB0BD008AA8A9 /* RootViewController.xib */,
+				5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */,
 				5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */,
 				5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */,
 				5AD7EED312CB9327002D123A /* rss_test.xml */,
@@ -259,7 +259,7 @@
 				5A1D24F512EC9071000BA65C /* check@2x.png in Resources */,
 				5A817F0212ECAC0B008AA8A9 /* app_icon-57.png in Resources */,
 				5A817F0E12ECB0BD008AA8A9 /* MainWindow.xib in Resources */,
-				5A817F0F12ECB0BD008AA8A9 /* RootViewController.xib in Resources */,
+				5A817F0F12ECB0BD008AA8A9 /* FeedViewController.xib in Resources */,
 				5A817F1012ECB0BD008AA8A9 /* SettingsViewController.xib in Resources */,
 				5A817F1112ECB0BD008AA8A9 /* WebViewController.xib in Resources */,
 			);
