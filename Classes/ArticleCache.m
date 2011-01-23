@@ -55,9 +55,21 @@
 #pragma mark Workers
 
 
+// Keep track of the date (pubdate of the article) as well as the guid
+// in order to be able to limit the list size to a certain depth.
+// Otherwise the list of read article guids would grow indefinitely.
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date {
   [self.readArticles setObject:date forKey:guid];
   [[NSUserDefaults standardUserDefaults] setObject:self.readArticles forKey:@"readArticles"];
+}
+
+
+- (void)markAllRead {
+  for (NSDictionary *story in self.stories) {
+    NSString *guid = [story objectForKey:@"guid"];
+    NSDate *pubDate = [story objectForKey:@"pubDate"];
+    [self markGuidRead:guid forDate:pubDate];
+  }
 }
 
 

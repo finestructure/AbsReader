@@ -27,6 +27,7 @@
 
 - (void)parseXMLFileAtURL:(NSURL *)url;
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date;
+- (void)markAllRead;
 - (BOOL)alreadyVisited:(NSString *)guid;
 - (NSUInteger)unreadCount;
 

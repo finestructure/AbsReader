@@ -60,6 +60,7 @@
   
   NSMutableArray *buttons = [NSMutableArray array];
   [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease]];
+  [buttons addObject:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)] autorelease]];
   self.toolbarItems = buttons;
 }
 
@@ -211,6 +212,11 @@
 	[newsTable reloadRowsAtIndexPaths:indexes withRowAnimation:NO];
 }
 
+
+- (void)markAllRead {
+  [self.articles markAllRead];
+  [newsTable reloadData];
+}
 
 #pragma mark -
 #pragma mark Gesture Handlers
