@@ -4,3 +4,4 @@ AbsReader.xcodeproj/project.xcworkspace/xcuserdata/sas.*
 AbsReader.xcodeproj/xcuserdata/*
 AutomationTests/AppReaderTests.trace/*
 tuneup
+releases/*.ipa
