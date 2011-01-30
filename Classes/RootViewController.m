@@ -59,25 +59,15 @@
 
   self.feeds = [NSMutableArray array];
   self.feedControllers = [NSMutableArray array];
-  {
+  NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
+	for (NSString *url in defaultFeeds) {
+    NSDictionary *info = [defaultFeeds objectForKey:url];
     FeedCache *feed = [[[FeedCache alloc] init] autorelease];
-    NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
     feed.url = [NSURL URLWithString:url];
-    feed.title = @"abs Timeline";
+    feed.title = [info objectForKey:@"title"];
     FeedViewController *vc = [[FeedViewController alloc] initWithNibName:@"FeedViewController" bundle:nil];
     vc.feed = feed;
     vc.title = feed.title;
-    feed.delegate = vc;
-    [self.feeds addObject:feed];
-    [self.feedControllers addObject:vc];
-  }
-  {
-    FeedCache *feed = [[[FeedCache alloc] init] autorelease];
-    NSString *url = @"https://dev.abstracture.de/projects/gf/timeline?milestone=on&ticket=on&ticket_details=on&wiki=on&max=50&authors=&daysback=90&format=rss";
-    feed.url = [NSURL URLWithString:url];
-    feed.title = @"GF Timeline";
-    FeedViewController *vc = [[FeedViewController alloc] initWithNibName:@"FeedViewController" bundle:nil];
-    vc.feed = feed;
     feed.delegate = vc;
     [self.feeds addObject:feed];
     [self.feedControllers addObject:vc];

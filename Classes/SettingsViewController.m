@@ -17,25 +17,52 @@
 @synthesize passwordField;
 @synthesize versionLabel;
 
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization.
-    }
-    return self;
-}
-*/
+#pragma mark -
+#pragma mark Workers
 
+
+- (void)save:(id)sender {
+	// Collect info
+  NSString *url = self.urlField.text;
+  NSMutableDictionary *info = [NSMutableDictionary dictionary];
+  [info setObject:self.titleField.text forKey:@"title"];
+  [info setObject:url forKey:@"url"];
+  [info setObject:self.usernameField.text forKey:@"username"];
+  [info setObject:self.passwordField.text forKey:@"password"];
+
+  NSDictionary *defaults_dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
+  NSMutableDictionary *feeds = [NSMutableDictionary dictionaryWithDictionary:defaults_dict];
+  if ([feeds objectForKey:url] != nil) {
+    UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+  } else {
+    [feeds setObject:info forKey:url];
+    [[NSUserDefaults standardUserDefaults] setObject:feeds forKey:@"Feeds"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+  }
+}
+
+
+- (void)cancel:(id)sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark -
+#pragma mark - View lifecycle
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
-  NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
-  NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
-  self.usernameField.text = user;
-  self.passwordField.text = pass;
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)] autorelease];
+  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
+  
+	self.titleField.text = @"";
+  self.urlField.text = @"";
+  self.usernameField.text = @"";
+  self.passwordField.text = @"";
   NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
   self.versionLabel.text = version;
 }
@@ -48,11 +75,6 @@
 
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-  if (textField == self.usernameField) {
-    [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:@"Username"];
-  } else if (textField == self.passwordField) {
-    [[NSUserDefaults standardUserDefaults] setObject:textField.text forKey:@"Password"];
-  }
 }
 
 
