@@ -16,6 +16,7 @@
 @synthesize delegate;
 @synthesize title;
 @synthesize url;
+@synthesize urlString;
 @synthesize cache;
 @synthesize stories;
 @synthesize rssParser;

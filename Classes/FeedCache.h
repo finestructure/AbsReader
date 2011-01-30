@@ -16,6 +16,7 @@
 @property (nonatomic, assign) id<FeedCacheDelegate> delegate;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) NSString *urlString;
 @property (nonatomic, retain) NSMutableDictionary *cache;
 @property (nonatomic, retain) NSMutableArray *stories;
 @property (nonatomic, retain) NSXMLParser *rssParser;
