@@ -54,6 +54,7 @@
     NSDictionary *info = [defaultFeeds objectForKey:url];
     FeedCache *feed = [[[FeedCache alloc] init] autorelease];
     feed.url = [NSURL URLWithString:url];
+    feed.urlString = url;
     feed.title = [info objectForKey:@"title"];
     FeedViewController *vc = [[FeedViewController alloc] initWithNibName:@"FeedViewController" bundle:nil];
     vc.feed = feed;
@@ -79,7 +80,7 @@
 
   self.title = @"AbsReader";
 
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.navigationItem.leftBarButtonItem = self.editButtonItem;
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFeed:)] autorelease];
 
   [self loadFeedList];
@@ -146,28 +147,33 @@
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    // Delete the row from the data source
+    NSString *url = [[feeds objectAtIndex:indexPath.row] urlString];
+    NSDictionary *defaults_dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
+    NSMutableDictionary *updatedDict = [NSMutableDictionary dictionaryWithDictionary:defaults_dict];
+    [updatedDict removeObjectForKey:url];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:updatedDict forKey:@"Feeds"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [feeds removeObjectAtIndex:indexPath.row];
+    [feedControllers removeObjectAtIndex:indexPath.row];
+    
+    // Remove row from table view
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+  }   
+  else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+  }
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
