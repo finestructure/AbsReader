@@ -38,7 +38,6 @@
   } else {
     [feeds setObject:info forKey:url];
     [[NSUserDefaults standardUserDefaults] setObject:feeds forKey:@"Feeds"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kFeedAdded object:self];
     

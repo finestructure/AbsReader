@@ -161,7 +161,6 @@
     [updatedDict removeObjectForKey:url];
     
     [[NSUserDefaults standardUserDefaults] setObject:updatedDict forKey:@"Feeds"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [feeds removeObjectAtIndex:indexPath.row];
     [feedControllers removeObjectAtIndex:indexPath.row];

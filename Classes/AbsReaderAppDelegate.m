@@ -27,7 +27,6 @@
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-  [[NSUserDefaults standardUserDefaults] synchronize];
   FeedViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
   if ([rootViewController isViewLoaded]) {
     application.applicationIconBadgeNumber = [rootViewController unreadCount];
