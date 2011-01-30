@@ -29,7 +29,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
   FeedViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
   if ([rootViewController isViewLoaded]) {
-    application.applicationIconBadgeNumber = [rootViewController unreadCount];
+    //application.applicationIconBadgeNumber = [rootViewController unreadCount];
   }
 }
 
@@ -48,7 +48,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
   FeedViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
   if ([rootViewController isViewLoaded]) {
-    [rootViewController safeRefresh];
+    //[rootViewController safeRefresh];
   }
 }
 
