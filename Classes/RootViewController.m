@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "FeedViewController.h"
+#import "SettingsViewController.h"
 
 
 @implementation RootViewController
@@ -34,12 +35,27 @@
 }
 
 
+#pragma mark -
+#pragma mark Workers
+
+
+- (void)addFeed:(id)sender {
+  SettingsViewController *vc = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+  [self.navigationController pushViewController:vc animated:YES];
+  [vc release];
+}
+
+
+#pragma mark -
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
   self.title = @"AbsReader";
+
+  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFeed:)] autorelease];
 
   self.feeds = [NSMutableArray array];
   self.feedControllers = [NSMutableArray array];
