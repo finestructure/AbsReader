@@ -14,7 +14,7 @@
 @implementation FeedViewController
 
 @synthesize activityIndicator;
-@synthesize articles;
+@synthesize feed;
 
 
 #pragma mark -
@@ -38,10 +38,10 @@
   CGPoint pos = CGPointMake(x, y);
   activityIndicator.center = pos;
 
-  self.articles = [[[FeedCache alloc] init] autorelease];
+  self.feed = [[[FeedCache alloc] init] autorelease];
   NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
-  self.articles.url = [NSURL URLWithString:url];
-  self.articles.delegate = self;
+  self.feed.url = [NSURL URLWithString:url];
+  self.feed.delegate = self;
   
   newsTable.rowHeight = 90;
   [self refresh];
@@ -91,7 +91,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return [self.articles.stories count];
+  return [self.feed.stories count];
 }
 
 
@@ -155,12 +155,12 @@
 
 
 - (void)safeRefresh {
-  if (self.articles.lastRefresh == nil) {
+  if (self.feed.lastRefresh == nil) {
     [self refresh];
   } else {
     static double refreshInterval = 15*60; // seconds
     NSDate *now = [NSDate date];
-    NSTimeInterval diff = [now timeIntervalSinceDate:self.articles.lastRefresh];
+    NSTimeInterval diff = [now timeIntervalSinceDate:self.feed.lastRefresh];
     if (diff > refreshInterval) {
       [self refresh];
     }
@@ -169,7 +169,7 @@
 
 
 - (void)refresh {
-  if (self.articles.refreshInProgress) {
+  if (self.feed.refreshInProgress) {
     return;
   }
   NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
@@ -178,7 +178,7 @@
     [self showSettings];
     return;
   }
-  [self.articles refresh];
+  [self.feed refresh];
   [newsTable reloadData];
   [newsTable addSubview:self.activityIndicator];
   newsTable.scrollEnabled = NO;
@@ -199,21 +199,21 @@
 
 
 - (NSUInteger)unreadCount {
-  return [self.articles unreadCount];
+  return [self.feed unreadCount];
 }
 
 
 - (void)markCellAsRead:(NSIndexPath *)indexPath {
-  NSString *guid = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
-  NSDate *date = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
-  [self.articles markGuidRead:guid forDate:date];
+  NSString *guid = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
+  NSDate *date = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
+  [self.feed markGuidRead:guid forDate:date];
   NSArray *indexes = [NSArray arrayWithObject:indexPath];
 	[newsTable reloadRowsAtIndexPaths:indexes withRowAnimation:NO];
 }
 
 
 - (void)markAllRead {
-  [self.articles markAllRead];
+  [self.feed markAllRead];
   [newsTable reloadData];
 }
 
@@ -276,7 +276,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSString *link = [[self.articles.stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
+  NSString *link = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey: @"link"];
   
   WebViewController *vc = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
   vc.link = link;
@@ -386,7 +386,7 @@ const CGFloat kBottomHeight = 15;
 		[dateFormatter setDateFormat:@"LLL-dd HH:mm"];
 	}
 	
-  NSDictionary *info = [self.articles.stories objectAtIndex:[indexPath row]];
+  NSDictionary *info = [self.feed.stories objectAtIndex:[indexPath row]];
   
 	// author
   {
@@ -405,7 +405,7 @@ const CGFloat kBottomHeight = 15;
     UILabel *label = (UILabel *)[cell viewWithTag:3];
     label.text = [info objectForKey:@"title"];
     NSString *guid = [info objectForKey:@"guid"];
-    if ([self.articles alreadyVisited:guid]) {
+    if ([self.feed alreadyVisited:guid]) {
       label.textColor = [UIColor grayColor];
     } else {
       label.textColor = [UIColor blackColor];

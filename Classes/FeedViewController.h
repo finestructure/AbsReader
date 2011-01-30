@@ -14,7 +14,7 @@
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, retain) FeedCache *articles;
+@property (nonatomic, retain) FeedCache *feed;
 
 - (void)refresh;
 - (void)safeRefresh;
