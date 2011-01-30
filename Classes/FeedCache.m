@@ -14,6 +14,7 @@
 @implementation FeedCache
 
 @synthesize delegate;
+@synthesize title;
 @synthesize url;
 @synthesize cache;
 @synthesize stories;
