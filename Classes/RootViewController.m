@@ -51,11 +51,7 @@
   self.feedControllers = [NSMutableArray array];
   NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
 	for (NSString *url in defaultFeeds) {
-    NSDictionary *info = [defaultFeeds objectForKey:url];
-    FeedCache *feed = [[[FeedCache alloc] init] autorelease];
-    feed.url = [NSURL URLWithString:url];
-    feed.urlString = url;
-    feed.title = [info objectForKey:@"title"];
+    FeedCache *feed = [[[FeedCache alloc] initWithUrlString:url] autorelease];
     FeedViewController *vc = [[FeedViewController alloc] initWithNibName:@"FeedViewController" bundle:nil];
     vc.feed = feed;
     vc.title = feed.title;

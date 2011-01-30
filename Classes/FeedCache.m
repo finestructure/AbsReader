@@ -14,9 +14,13 @@
 @implementation FeedCache
 
 @synthesize delegate;
+
 @synthesize title;
 @synthesize url;
 @synthesize urlString;
+@synthesize username;
+@synthesize password;
+
 @synthesize cache;
 @synthesize stories;
 @synthesize rssParser;
@@ -29,14 +33,24 @@
 @synthesize readArticles;
 
 
-- (id)init {
+- (id)initWithUrlString:(NSString *)string {
   self = [super init];
-  if (self) {
+  if (self) {    
+    self.url = [NSURL URLWithString:string];
+    self.urlString = urlString;
     self.cache = [NSMutableDictionary dictionary];
-    self.readArticles = [[NSUserDefaults standardUserDefaults] objectForKey:@"readArticles"];
+
+    // fetch data from user defaults
+    NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
+    NSDictionary *info = [defaultFeeds objectForKey:url];
+
+    self.title = [info objectForKey:@"title"];
+    self.username = [info objectForKey:@"username"];
+    self.password = [info objectForKey:@"password"];
+    self.readArticles = [info objectForKey:@"readArticles"];
     if (self.readArticles == nil) {
       self.readArticles = [NSMutableDictionary dictionary];
-      [[NSUserDefaults standardUserDefaults] setObject:self.readArticles forKey:@"readArticles"];
+			//[self updateDefaultsWithObject:self.readArticles forKey:@"readArticles"];
     } else {
       // delete entries older than 90 days from cache
       NSMutableArray *keysToRemove = [NSMutableArray array];
@@ -63,7 +77,7 @@
 // Otherwise the list of read article guids would grow indefinitely.
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date {
   [self.readArticles setObject:date forKey:guid];
-  [[NSUserDefaults standardUserDefaults] setObject:self.readArticles forKey:@"readArticles"];
+  [self updateDefaultsWithObject:self.readArticles forKey:@"readArticles"];
 }
 
 
@@ -88,6 +102,17 @@
   }];
   [guids minusSet:[NSSet setWithArray:[self.readArticles allKeys]]];
   return [guids count];
+}
+
+
+- (void)updateDefaultsWithObject:(id)object forKey:(NSString *)key {
+  NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
+  NSDictionary *info = [defaultFeeds objectForKey:self.urlString];
+  NSMutableDictionary *feedsUpdate = [NSMutableDictionary dictionaryWithDictionary:defaultFeeds];
+  NSMutableDictionary *infoUpdate = [NSMutableDictionary dictionaryWithDictionary:info];
+  [infoUpdate setObject:object forKey:key];
+  [feedsUpdate setObject:infoUpdate forKey:self.urlString];
+  [[NSUserDefaults standardUserDefaults] setObject:feedsUpdate forKey:@"Feeds"];
 }
 
 
@@ -184,10 +209,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
   //NSLog(@"got auth challange");
   if ([challenge previousFailureCount] == 0) {
-    NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
-    NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
-    
-    [[challenge sender] useCredential:[NSURLCredential credentialWithUser:user password:pass persistence:NSURLCredentialPersistencePermanent] forAuthenticationChallenge:challenge];
+    [[challenge sender] useCredential:[NSURLCredential credentialWithUser:self.username password:self.password persistence:NSURLCredentialPersistencePermanent] forAuthenticationChallenge:challenge];
   } else {
     [[challenge sender] cancelAuthenticationChallenge:challenge]; 
   }

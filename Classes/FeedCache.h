@@ -14,9 +14,13 @@
 }
 
 @property (nonatomic, assign) id<FeedCacheDelegate> delegate;
+
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSString *urlString;
+@property (nonatomic, retain) NSString *username;
+@property (nonatomic, retain) NSString *password;
+
 @property (nonatomic, retain) NSMutableDictionary *cache;
 @property (nonatomic, retain) NSMutableArray *stories;
 @property (nonatomic, retain) NSXMLParser *rssParser;
@@ -28,11 +32,13 @@
 @property (assign) BOOL refreshInProgress;
 @property (nonatomic, retain) NSMutableDictionary *readArticles;
 
+- (id)initWithUrlString:(NSString *)urlString;
 - (void)refresh;
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date;
 - (void)markAllRead;
 - (BOOL)alreadyVisited:(NSString *)guid;
 - (NSUInteger)unreadCount;
+- (void)updateDefaultsWithObject:(id)object forKey:(NSString *)key;
 
 @end
 

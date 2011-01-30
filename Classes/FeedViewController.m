@@ -165,9 +165,7 @@
   if (self.feed.refreshInProgress) {
     return;
   }
-  NSString *user = [[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
-  NSString *pass = [[NSUserDefaults standardUserDefaults] stringForKey:@"Password"];
-  if (user == nil || pass == nil) {
+  if (feed.username == nil || feed.password == nil) {
     [self showSettings];
     return;
   }
