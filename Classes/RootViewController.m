@@ -46,17 +46,7 @@
 }
 
 
-#pragma mark -
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-
-  self.title = @"AbsReader";
-
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFeed:)] autorelease];
-
+- (void)loadFeedList {
   self.feeds = [NSMutableArray array];
   self.feedControllers = [NSMutableArray array];
   NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
@@ -72,6 +62,29 @@
     [self.feeds addObject:feed];
     [self.feedControllers addObject:vc];
   }
+  [(UITableView *)self.view reloadData];
+}
+
+
+- (void)refreshFeedList:(NSNotification *)notification {
+  [self loadFeedList];
+}
+
+
+#pragma mark -
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad {
+  [super viewDidLoad];
+
+  self.title = @"AbsReader";
+
+  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFeed:)] autorelease];
+
+  [self loadFeedList];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeedList:) name:kFeedAdded object:nil];
 }
 
 
