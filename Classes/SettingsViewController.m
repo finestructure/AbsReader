@@ -11,6 +11,8 @@
 
 @implementation SettingsViewController
 
+@synthesize titleField;
+@synthesize urlField;
 @synthesize usernameField;
 @synthesize passwordField;
 @synthesize versionLabel;
