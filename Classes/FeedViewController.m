@@ -24,7 +24,6 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.title = @"Feed Title";
   /*
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease];
    */
@@ -38,13 +37,7 @@
   CGPoint pos = CGPointMake(x, y);
   activityIndicator.center = pos;
 
-  self.feed = [[[FeedCache alloc] init] autorelease];
-  NSString *url = @"https://dev.abstracture.de/projects/abstracture/timeline?ticket=on&ticket_details=on&changeset=on&milestone=on&wiki=on&max=50&daysback=90&format=rss";
-  self.feed.url = [NSURL URLWithString:url];
-  self.feed.delegate = self;
-  
   newsTable.rowHeight = 90;
-  [self refresh];
   
   {
     UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];

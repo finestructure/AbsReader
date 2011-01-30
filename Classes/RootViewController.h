@@ -14,4 +14,7 @@
     
 }
 
+@property (nonatomic, retain) NSMutableArray *feeds;
+@property (nonatomic, retain) NSMutableArray *feedControllers;
+
 @end
