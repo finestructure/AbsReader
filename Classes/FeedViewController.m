@@ -238,7 +238,7 @@
 	NSString * errorString = [NSString stringWithFormat:@"Error fetching feed (Error code %i )", [error code]];
 	NSLog(@"%@", errorString);
 	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error fetching feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Error fetching feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 	[errorAlert show];
 }
 
@@ -258,7 +258,7 @@
 	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
 	NSLog(@"Error loading feed: %@", errorString);
 	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 	[errorAlert show];
 }
 

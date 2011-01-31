@@ -72,7 +72,7 @@
 	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
 	NSLog(@"Error loading page: %@", errorString);
 	
-	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading page" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+	UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Error loading page" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
 	[errorAlert show];
   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }

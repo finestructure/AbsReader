@@ -33,7 +33,7 @@
   NSDictionary *defaults_dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
   NSMutableDictionary *feeds = [NSMutableDictionary dictionaryWithDictionary:defaults_dict];
   if ([feeds objectForKey:url] != nil) {
-    UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [errorAlert show];
   } else {
     [feeds setObject:info forKey:url];
