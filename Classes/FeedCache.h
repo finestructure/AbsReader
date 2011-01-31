@@ -10,7 +10,7 @@
 
 @protocol FeedCacheDelegate;
 
-@interface FeedCache : NSObject<NSXMLParserDelegate> {
+@interface FeedCache : NSObject<NSXMLParserDelegate, NSCoding> {
 }
 
 @property (nonatomic, assign) id<FeedCacheDelegate> delegate;
@@ -39,6 +39,9 @@
 - (BOOL)alreadyVisited:(NSString *)guid;
 - (NSUInteger)unreadCount;
 - (void)updateDefaultsWithObject:(id)object forKey:(NSString *)key;
+
+- (id)initWithCoder:(NSCoder *)decoder;
+- (void)encodeWithCoder:(NSCoder *)encoder;
 
 @end
 

@@ -243,4 +243,31 @@
 }
 
 
+#pragma - NSCoding
+
+
+- (id)initWithCoder:(NSCoder *)decoder {
+  self = [super init];
+  if (self) {
+    self.title = [decoder decodeObjectForKey:@"title"];
+    self.url = [decoder decodeObjectForKey:@"url"];
+    self.urlString = [decoder decodeObjectForKey:@"urlString"];
+    self.username = [decoder decodeObjectForKey:@"username"];
+    self.password = [decoder decodeObjectForKey:@"password"];
+    self.readArticles = [decoder decodeObjectForKey:@"readArticles"];
+  }
+  return self;
+}
+
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+  [encoder encodeObject:self.title forKey:@"title"];
+  [encoder encodeObject:self.url forKey:@"url"];
+  [encoder encodeObject:self.urlString forKey:@"urlString"];
+  [encoder encodeObject:self.username forKey:@"username"];
+  [encoder encodeObject:self.password forKey:@"password"];
+  [encoder encodeObject:self.readArticles forKey:@"readArticles"];
+}
+
+
 @end
