@@ -22,5 +22,6 @@ static NSString *kFeedInfoUpdated __attribute__ ((unused)) = @"FeedInfoUpdated";
 @property (nonatomic, retain) IBOutlet UILabel *versionLabel;
 
 @property (nonatomic, retain) FeedCache *feed;
+@property (assign) BOOL isNew;
 
 @end

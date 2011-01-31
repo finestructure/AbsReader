@@ -17,6 +17,8 @@
 @synthesize passwordField;
 @synthesize versionLabel;
 @synthesize feed;
+@synthesize isNew;
+
 
 #pragma mark -
 #pragma mark Workers
@@ -24,6 +26,8 @@
 
 - (void)save:(id)sender {
   NSString *url = self.urlField.text;
+  NSString *oldUrl = self.feed.urlString;
+  BOOL urlChanged = ![oldUrl isEqualToString:url];
   
   self.feed.title = self.titleField.text;
   self.feed.urlString = url;
@@ -34,10 +38,16 @@
 
   NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
   
-  if ([defaults objectForKey:url] != nil) {
+  if (self.isNew && [defaults objectForKey:url] != nil) {
     UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [errorAlert show];
   } else {
+    if (urlChanged) {
+      // delete previous version from user defaults
+      NSMutableDictionary *update = [NSMutableDictionary dictionaryWithDictionary:defaults];
+      [update removeObjectForKey:oldUrl];
+      [[NSUserDefaults standardUserDefaults] setObject:update forKey:@"Feeds"];
+    }
     [self.feed saveToUserDefaults];
     [[NSNotificationCenter defaultCenter] postNotificationName:kFeedInfoUpdated object:self];
     [self.navigationController popViewControllerAnimated:YES];

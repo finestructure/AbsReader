@@ -42,6 +42,7 @@
 - (void)addFeed:(id)sender {
   SettingsViewController *vc = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
   vc.feed = [[[FeedCache alloc] init] autorelease];
+  vc.isNew = YES;
   [self.navigationController pushViewController:vc animated:YES];
   [vc release];
 }
