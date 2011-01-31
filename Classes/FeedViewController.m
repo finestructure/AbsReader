@@ -184,6 +184,7 @@
 
 - (void)showSettings {
   SettingsViewController *vc = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+  vc.feed = self.feed;
   [self.navigationController pushViewController:vc animated:YES];
   [vc release];
 }

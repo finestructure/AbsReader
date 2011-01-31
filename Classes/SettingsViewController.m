@@ -59,10 +59,11 @@
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)] autorelease];
   self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
   
-	self.titleField.text = @"";
-  self.urlField.text = @"";
-  self.usernameField.text = @"";
-  self.passwordField.text = @"";
+	self.titleField.text = self.feed.title;
+  self.urlField.text = self.feed.urlString;
+  self.usernameField.text = self.feed.username;
+  self.passwordField.text = self.feed.password;
+  
   NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
   self.versionLabel.text = version;
 }
