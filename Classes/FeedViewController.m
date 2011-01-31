@@ -58,6 +58,10 @@
   [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
   [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease]];
   self.toolbarItems = buttons;
+
+  [[NSNotificationCenter defaultCenter] addObserverForName:kFeedInfoUpdated object:nil queue:nil usingBlock:^(NSNotification *notification) {
+    self.title = self.feed.title;
+  }];
 }
 
 
