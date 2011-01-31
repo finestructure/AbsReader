@@ -37,12 +37,12 @@
   self = [super init];
   if (self) {    
     self.url = [NSURL URLWithString:string];
-    self.urlString = urlString;
+    self.urlString = string;
     self.cache = [NSMutableDictionary dictionary];
 
     // fetch data from user defaults
     NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
-    NSDictionary *info = [defaultFeeds objectForKey:url];
+    NSDictionary *info = [defaultFeeds objectForKey:urlString];
 
     self.title = [info objectForKey:@"title"];
     self.username = [info objectForKey:@"username"];
