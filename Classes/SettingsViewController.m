@@ -39,7 +39,7 @@
     [errorAlert show];
   } else {
     [self.feed saveToUserDefaults];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kFeedAdded object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kFeedInfoUpdated object:self];
     [self.navigationController popViewControllerAnimated:YES];
   }
 }

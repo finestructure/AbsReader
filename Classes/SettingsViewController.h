@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FeedCache.h"
 
-static NSString *kFeedAdded __attribute__ ((unused)) = @"FeedAdded";
+static NSString *kFeedInfoUpdated __attribute__ ((unused)) = @"FeedInfoUpdated";
 
 
 @interface SettingsViewController : UIViewController<UITextFieldDelegate> {

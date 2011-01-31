@@ -83,7 +83,7 @@
 
   [self loadFeedList];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeedList:) name:kFeedAdded object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeedList:) name:kFeedInfoUpdated object:nil];
 }
 
 
