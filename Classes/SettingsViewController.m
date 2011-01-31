@@ -26,8 +26,15 @@
 
 - (void)save:(id)sender {
   NSString *url = self.urlField.text;
+  
+  if (url == nil) {
+    UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"No URL specified" message:@"Please provide a valid URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    [errorAlert show];
+    return;
+  }
+  
   NSString *oldUrl = self.feed.urlString;
-  BOOL urlChanged = ![oldUrl isEqualToString:url];
+  BOOL urlChanged = (oldUrl != nil) && ![oldUrl isEqualToString:url];
   
   self.feed.title = self.titleField.text;
   self.feed.urlString = url;
@@ -41,6 +48,7 @@
   if (self.isNew && [defaults objectForKey:url] != nil) {
     UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [errorAlert show];
+    return;
   } else {
     if (urlChanged) {
       // delete previous version from user defaults
