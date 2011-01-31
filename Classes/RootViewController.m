@@ -41,6 +41,7 @@
 
 - (void)addFeed:(id)sender {
   SettingsViewController *vc = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
+  vc.feed = [[[FeedCache alloc] init] autorelease];
   [self.navigationController pushViewController:vc animated:YES];
   [vc release];
 }
@@ -51,7 +52,8 @@
   self.feedControllers = [NSMutableArray array];
   NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
 	for (NSString *url in defaultFeeds) {
-    FeedCache *feed = [[[FeedCache alloc] initWithUrlString:url] autorelease];
+    NSData *data = [defaultFeeds objectForKey:url];
+    FeedCache *feed = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     FeedViewController *vc = [[FeedViewController alloc] initWithNibName:@"FeedViewController" bundle:nil];
     vc.feed = feed;
     vc.title = feed.title;

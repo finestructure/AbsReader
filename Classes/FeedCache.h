@@ -32,13 +32,14 @@
 @property (assign) BOOL refreshInProgress;
 @property (nonatomic, retain) NSMutableDictionary *readArticles;
 
-- (id)initWithUrlString:(NSString *)urlString;
+- (id)init;
+- (void)setup;
 - (void)refresh;
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date;
 - (void)markAllRead;
 - (BOOL)alreadyVisited:(NSString *)guid;
 - (NSUInteger)unreadCount;
-- (void)updateDefaultsWithObject:(id)object forKey:(NSString *)key;
+- (void)saveToUserDefaults;
 
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)encoder;

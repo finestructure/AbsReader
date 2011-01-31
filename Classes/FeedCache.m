@@ -33,43 +33,39 @@
 @synthesize readArticles;
 
 
-- (id)initWithUrlString:(NSString *)string {
+#pragma mark - Init
+
+
+- (id)init {
   self = [super init];
-  if (self) {    
-    self.url = [NSURL URLWithString:string];
-    self.urlString = string;
-    self.cache = [NSMutableDictionary dictionary];
-
-    // fetch data from user defaults
-    NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
-    NSDictionary *info = [defaultFeeds objectForKey:urlString];
-
-    self.title = [info objectForKey:@"title"];
-    self.username = [info objectForKey:@"username"];
-    self.password = [info objectForKey:@"password"];
-    self.readArticles = [info objectForKey:@"readArticles"];
-    if (self.readArticles == nil) {
-      self.readArticles = [NSMutableDictionary dictionary];
-			[self updateDefaultsWithObject:self.readArticles forKey:@"readArticles"];
-    } else {
-      // delete entries older than 90 days from cache
-      NSMutableArray *keysToRemove = [NSMutableArray array];
-      float nintyDays = 86400*90;
-      NSDate *earliestDate = [NSDate dateWithTimeIntervalSinceNow:nintyDays];
-      [self.readArticles enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if ([(NSDate *)obj compare:earliestDate] == NSOrderedDescending) {
-            [keysToRemove addObject:key];
-        }
-      }];
-      [self.readArticles removeObjectsForKeys:keysToRemove];
-    }
+  if (self) {
+    [self setup];
   }
   return self;
 }
 
 
-#pragma mark -
-#pragma mark Workers
+- (void)setup {
+  self.cache = [NSMutableDictionary dictionary];
+  
+  if (self.readArticles == nil) {
+    self.readArticles = [NSMutableDictionary dictionary];
+  } else {
+    // delete entries older than 90 days from cache
+    NSMutableArray *keysToRemove = [NSMutableArray array];
+    float nintyDays = 86400*90;
+    NSDate *earliestDate = [NSDate dateWithTimeIntervalSinceNow:nintyDays];
+    [self.readArticles enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+      if ([(NSDate *)obj compare:earliestDate] == NSOrderedDescending) {
+        [keysToRemove addObject:key];
+      }
+    }];
+    [self.readArticles removeObjectsForKeys:keysToRemove];
+  }
+}
+
+
+#pragma mark - Workers
 
 
 // Keep track of the date (pubdate of the article) as well as the guid
@@ -77,7 +73,7 @@
 // Otherwise the list of read article guids would grow indefinitely.
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date {
   [self.readArticles setObject:date forKey:guid];
-  [self updateDefaultsWithObject:self.readArticles forKey:@"readArticles"];
+  [self saveToUserDefaults];
 }
 
 
@@ -105,19 +101,16 @@
 }
 
 
-- (void)updateDefaultsWithObject:(id)object forKey:(NSString *)key {
+- (void)saveToUserDefaults {
   NSDictionary *defaultFeeds = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
-  NSDictionary *info = [defaultFeeds objectForKey:self.urlString];
   NSMutableDictionary *feedsUpdate = [NSMutableDictionary dictionaryWithDictionary:defaultFeeds];
-  NSMutableDictionary *infoUpdate = [NSMutableDictionary dictionaryWithDictionary:info];
-  [infoUpdate setObject:object forKey:key];
-  [feedsUpdate setObject:infoUpdate forKey:self.urlString];
+  NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
+  [feedsUpdate setObject:data forKey:self.urlString];
   [[NSUserDefaults standardUserDefaults] setObject:feedsUpdate forKey:@"Feeds"];
 }
 
 
-#pragma mark -
-#pragma mark XML Parsing
+#pragma mark - XML Parsing
 
 
 - (void)refresh {	
@@ -203,8 +196,8 @@
 }
 
 
-#pragma mark -
-#pragma mark NSURLConnectionDelegate
+#pragma mark - NSURLConnectionDelegate
+
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
   //NSLog(@"got auth challange");
@@ -255,6 +248,7 @@
     self.username = [decoder decodeObjectForKey:@"username"];
     self.password = [decoder decodeObjectForKey:@"password"];
     self.readArticles = [decoder decodeObjectForKey:@"readArticles"];
+    [self setup];
   }
   return self;
 }

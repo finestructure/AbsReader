@@ -16,31 +16,30 @@
 @synthesize usernameField;
 @synthesize passwordField;
 @synthesize versionLabel;
+@synthesize feed;
 
 #pragma mark -
 #pragma mark Workers
 
 
 - (void)save:(id)sender {
-	// Collect info
   NSString *url = self.urlField.text;
-  NSMutableDictionary *info = [NSMutableDictionary dictionary];
-  [info setObject:self.titleField.text forKey:@"title"];
-  [info setObject:url forKey:@"url"];
-  [info setObject:self.usernameField.text forKey:@"username"];
-  [info setObject:self.passwordField.text forKey:@"password"];
+  
+  self.feed.title = self.titleField.text;
+  self.feed.urlString = url;
+  self.feed.url = [NSURL URLWithString:url];
+  self.feed.username = self.usernameField.text;
+  self.feed.password = self.passwordField.text;
+  
 
-  NSDictionary *defaults_dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
-  NSMutableDictionary *feeds = [NSMutableDictionary dictionaryWithDictionary:defaults_dict];
-  if ([feeds objectForKey:url] != nil) {
+  NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
+  
+  if ([defaults objectForKey:url] != nil) {
     UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
     [errorAlert show];
   } else {
-    [feeds setObject:info forKey:url];
-    [[NSUserDefaults standardUserDefaults] setObject:feeds forKey:@"Feeds"];
-    
+    [self.feed saveToUserDefaults];
     [[NSNotificationCenter defaultCenter] postNotificationName:kFeedAdded object:self];
-    
     [self.navigationController popViewControllerAnimated:YES];
   }
 }

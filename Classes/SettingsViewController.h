@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedCache.h"
 
 static NSString *kFeedAdded __attribute__ ((unused)) = @"FeedAdded";
 
@@ -19,5 +20,7 @@ static NSString *kFeedAdded __attribute__ ((unused)) = @"FeedAdded";
 @property (nonatomic, retain) IBOutlet UITextField *usernameField;
 @property (nonatomic, retain) IBOutlet UITextField *passwordField;
 @property (nonatomic, retain) IBOutlet UILabel *versionLabel;
+
+@property (nonatomic, retain) FeedCache *feed;
 
 @end
