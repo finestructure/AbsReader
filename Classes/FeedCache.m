@@ -50,7 +50,7 @@
     self.readArticles = [info objectForKey:@"readArticles"];
     if (self.readArticles == nil) {
       self.readArticles = [NSMutableDictionary dictionary];
-			//[self updateDefaultsWithObject:self.readArticles forKey:@"readArticles"];
+			[self updateDefaultsWithObject:self.readArticles forKey:@"readArticles"];
     } else {
       // delete entries older than 90 days from cache
       NSMutableArray *keysToRemove = [NSMutableArray array];
