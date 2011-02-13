@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FeedCache.h"
 
-@interface FeedViewController : UITableViewController<FeedCacheDelegate> {
+@interface FeedViewController : UITableViewController<FeedCacheDelegate, UIActionSheetDelegate> {
   IBOutlet UITableView *newsTable;
 }
 

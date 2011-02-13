@@ -210,9 +210,10 @@
 
 
 - (void)markAllRead {
-  [self.feed markAllRead];
-  [newsTable reloadData];
+  UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Mark all read" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Mark Read" otherButtonTitles:nil] autorelease];
+  [sheet showFromBarButtonItem:[self.toolbarItems objectAtIndex:0] animated:YES];
 }
+
 
 #pragma mark -
 #pragma mark Gesture Handlers
@@ -435,6 +436,17 @@ const CGFloat kBottomHeight = 15;
 
 - (void)dealloc {
     [super dealloc];
+}
+
+
+#pragma mark - UIActionSheetDelegate
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 0) {
+    [self.feed markAllRead];
+    [newsTable reloadData];    
+  }
 }
 
 
