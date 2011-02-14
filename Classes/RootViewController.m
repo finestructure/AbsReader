@@ -61,6 +61,7 @@
     feed.delegate = vc;
     [self.feeds addObject:feed];
     [self.feedControllers addObject:vc];
+    [feed refresh];
   }
   [(UITableView *)self.view reloadData];
 }
