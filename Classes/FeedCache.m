@@ -195,6 +195,7 @@
   self.lastRefresh = [NSDate date];
   self.refreshInProgress = NO;
   [self.delegate didEndDocument];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kFeedLoaded object:self];
 }
 
 
