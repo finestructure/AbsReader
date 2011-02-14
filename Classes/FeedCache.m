@@ -205,7 +205,13 @@
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
   //NSLog(@"got auth challange");
   if ([challenge previousFailureCount] == 0) {
-    [[challenge sender] useCredential:[NSURLCredential credentialWithUser:self.username password:self.password persistence:NSURLCredentialPersistencePermanent] forAuthenticationChallenge:challenge];
+    if (self.username == nil || self.password == nil) {
+      NSString *msg = [NSString stringWithFormat:@"Feed '%@' requires authentication but credentials are not fully provided. Please enter them in the feed settings.", self.title];
+      [[UIAlertView alloc] initWithTitle:@"Login required" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+      [[challenge sender] cancelAuthenticationChallenge:challenge];
+    } else {
+      [[challenge sender] useCredential:[NSURLCredential credentialWithUser:self.username password:self.password persistence:NSURLCredentialPersistencePermanent] forAuthenticationChallenge:challenge];
+    }
   } else {
     [[challenge sender] cancelAuthenticationChallenge:challenge]; 
   }
