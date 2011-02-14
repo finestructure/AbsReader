@@ -29,7 +29,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
   RootViewController *rootViewController = [navigationController.viewControllers objectAtIndex:0];
   if ([rootViewController isViewLoaded]) {
-    //application.applicationIconBadgeNumber = [rootViewController unreadCount];
+    application.applicationIconBadgeNumber = [rootViewController unreadCount];
   }
 }
 

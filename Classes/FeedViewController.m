@@ -162,11 +162,6 @@
 }
 
 
-- (NSUInteger)unreadCount {
-  return [self.feed unreadCount];
-}
-
-
 - (void)markCellAsRead:(NSIndexPath *)indexPath {
   NSString *guid = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
   NSDate *date = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];

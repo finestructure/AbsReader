@@ -16,6 +16,8 @@
 
 - (void)refresh;
 - (void)safeRefresh;
+- (NSUInteger)unreadCount;
+
 
 @property (nonatomic, retain) NSMutableArray *feeds;
 @property (nonatomic, retain) NSMutableArray *feedControllers;

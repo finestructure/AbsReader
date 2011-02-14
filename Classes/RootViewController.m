@@ -115,6 +115,15 @@
 }
 
 
+- (NSUInteger)unreadCount {
+  NSUInteger total = 0;
+  for (FeedCache *feed in self.feeds) {
+    total += [feed unreadCount];
+  }
+  return total;
+}
+
+
 #pragma mark - View lifecycle
 
 

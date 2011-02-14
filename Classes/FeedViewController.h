@@ -20,6 +20,5 @@
 - (void)showSettings;
 - (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier;
 - (void)configureCell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath;
-- (NSUInteger)unreadCount;
 
 @end
