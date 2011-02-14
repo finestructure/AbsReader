@@ -39,6 +39,30 @@
 #pragma mark Workers
 
 
+- (void)safeRefresh {
+  static double refreshInterval = 15*60; // seconds
+  NSDate *now = [NSDate date];
+
+  for (FeedCache *feed in self.feeds) {
+    NSTimeInterval diff = [now timeIntervalSinceDate:feed.lastRefresh];
+    if (feed.lastRefresh == nil || diff > refreshInterval) {
+      [feed refresh];
+      [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    }
+  }
+}
+
+
+- (void)refresh {
+  for (FeedCache *feed in self.feeds) {
+    if (! feed.refreshInProgress) {
+      [feed refresh];
+      [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    }
+  }
+}
+
+
 - (void)addFeed:(id)sender {
   SettingsViewController *vc = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
   vc.feed = [[[FeedCache alloc] init] autorelease];

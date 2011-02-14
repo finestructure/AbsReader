@@ -16,8 +16,6 @@
 @property (nonatomic, retain) UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, retain) FeedCache *feed;
 
-- (void)refresh;
-- (void)safeRefresh;
 - (void)settingsButtonPressed;
 - (void)showSettings;
 - (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier;

@@ -148,36 +148,6 @@
 #pragma mark Workers
 
 
-- (void)safeRefresh {
-  if (self.feed.lastRefresh == nil) {
-    [self refresh];
-  } else {
-    static double refreshInterval = 15*60; // seconds
-    NSDate *now = [NSDate date];
-    NSTimeInterval diff = [now timeIntervalSinceDate:self.feed.lastRefresh];
-    if (diff > refreshInterval) {
-      [self refresh];
-    }
-  }
-}
-
-
-- (void)refresh {
-  if (self.feed.refreshInProgress) {
-    return;
-  }
-  if (feed.username == nil || feed.password == nil) {
-    [self showSettings];
-    return;
-  }
-  [self.feed refresh];
-  [newsTable reloadData];
-  [newsTable addSubview:self.activityIndicator];
-  newsTable.scrollEnabled = NO;
-  [self.activityIndicator startAnimating];
-}
-
-
 - (void)settingsButtonPressed {
   [self showSettings];
 }
