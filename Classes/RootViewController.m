@@ -72,8 +72,13 @@
 }
 
 
-#pragma mark -
+- (void)articleLoaded:(NSNotification *)notification {
+  [self.tableView reloadData];
+}
+
+
 #pragma mark - View lifecycle
+
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -86,6 +91,7 @@
   [self loadFeedList];
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeedList:) name:kFeedInfoUpdated object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(articleLoaded:) name:kArticleLoaded object:nil];
 }
 
 
@@ -141,7 +147,7 @@
   }
   
   FeedCache *feed = [self.feeds objectAtIndex:indexPath.row];
-  cell.textLabel.text = feed.title;
+  cell.textLabel.text = [NSString stringWithFormat:@"%@ (%d)", feed.title, [feed unreadCount]];
   
   return cell;
 }
