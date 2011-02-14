@@ -113,7 +113,15 @@
   self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFeed:)] autorelease];
 
   [self loadFeedList];
+
+  // set up toolbar
+  NSMutableArray *buttons = [NSMutableArray array];
+  //[buttons addObject:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)] autorelease]];
+  [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
+  [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease]];
+  self.toolbarItems = buttons;
   
+  // register notification handlers
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeedList:) name:kFeedInfoUpdated object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(articleLoaded:) name:kArticleLoaded object:nil];
 }
@@ -132,6 +140,7 @@
 - (void)viewDidAppear:(BOOL)animated {
   [super viewDidAppear:animated];
   [self.tableView reloadData];
+  [self.navigationController setToolbarHidden:NO animated:animated];
 }
 
 
