@@ -124,6 +124,12 @@
 }
 
 
+- (void)markAllRead {
+  UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Mark all read" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Mark Read" otherButtonTitles:nil] autorelease];
+  [sheet showFromBarButtonItem:[self.toolbarItems objectAtIndex:0] animated:YES];
+}
+
+
 #pragma mark - View lifecycle
 
 
@@ -139,7 +145,7 @@
 
   // set up toolbar
   NSMutableArray *buttons = [NSMutableArray array];
-  //[buttons addObject:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)] autorelease]];
+  [buttons addObject:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)] autorelease]];
   [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
   [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease]];
   self.toolbarItems = buttons;
@@ -254,11 +260,26 @@
 }
 */
 
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   FeedViewController *vc = [self.feedControllers objectAtIndex:indexPath.row];
   [self.navigationController pushViewController:vc animated:YES];
 }
+
+
+#pragma mark - UIActionSheetDelegate
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 0) {
+    for (FeedCache *feed in self.feeds) {
+      [feed markAllRead];
+    }
+    [self.tableView reloadData];    
+  }
+}
+
 
 @end
