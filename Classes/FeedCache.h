@@ -10,6 +10,9 @@
 
 @protocol FeedCacheDelegate;
 
+static NSString *kArticleLoaded __attribute__ ((unused)) = @"ArticleLoaded";
+
+
 @interface FeedCache : NSObject<NSXMLParserDelegate, NSCoding> {
 }
 

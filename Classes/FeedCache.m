@@ -165,6 +165,8 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{     
 	if ([elementName isEqualToString:@"item"]) {
     [self.stories addObject:self.item];
+    NSDictionary *info = [NSDictionary dictionaryWithObject:self.item forKey:@"article"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kArticleLoaded object:self userInfo:info];
   } else if ([elementName isEqualToString:@"description"]) {
     [self.item setObject:[self flattenHTML:self.currentValue] forKey:elementName];
 	} else if ([elementName isEqualToString:@"pubDate"]) {
