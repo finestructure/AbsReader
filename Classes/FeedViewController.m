@@ -67,7 +67,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-  [self safeRefresh];
   [self.navigationController setToolbarHidden:NO animated:animated];
 }
 
