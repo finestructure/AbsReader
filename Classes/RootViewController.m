@@ -85,8 +85,8 @@
     feed.delegate = vc;
     [self.feeds addObject:feed];
     [self.feedControllers addObject:vc];
-    [feed refresh];
   }
+  [self refresh];
   [(UITableView *)self.view reloadData];
 }
 
@@ -98,6 +98,20 @@
 
 - (void)articleLoaded:(NSNotification *)notification {
   [self.tableView reloadData];
+}
+
+
+- (void)feedLoaded:(NSNotification *)notification {
+  BOOL allDone = YES;
+  for (FeedCache *feed in self.feeds) {
+    if (feed.refreshInProgress) {
+      allDone = NO;
+      break;
+    }
+  }
+  if (allDone) {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+  }
 }
 
 
@@ -124,6 +138,7 @@
   // register notification handlers
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeedList:) name:kFeedInfoUpdated object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(articleLoaded:) name:kArticleLoaded object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(feedLoaded:) name:kFeedLoaded object:nil];
 }
 
 
