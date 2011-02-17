@@ -81,8 +81,9 @@
   for (NSDictionary *story in self.stories) {
     NSString *guid = [story objectForKey:@"guid"];
     NSDate *pubDate = [story objectForKey:@"pubDate"];
-    [self markGuidRead:guid forDate:pubDate];
+    [self.readArticles setObject:pubDate forKey:guid];
   }
+  [self saveToUserDefaults];
 }
 
 
