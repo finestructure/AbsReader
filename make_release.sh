@@ -1,6 +1,5 @@
 #!/bin/sh
 
-sdk="/Xcode4/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.2.sdk"
 product="build/Release-iphoneos/AbsReader.app"
 artwork="Resources/app_icon-512.png"
 publishing_target="abslogin:~/public_html/AbsReader/"
@@ -8,7 +7,7 @@ manifest="absreader_manifest.plist"
 tempdir=.tmp
 
 # build release
-xcodebuild -target AbsReader -configuration Release -sdk $sdk
+xcodebuild -target AbsReader -configuration Release
 
 # get version
 version=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" $product/Info.plist)
