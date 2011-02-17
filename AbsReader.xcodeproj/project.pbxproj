@@ -41,7 +41,6 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* AbsReaderAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbsReaderAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* AbsReaderAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbsReaderAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* AbsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = AbsReader.app; path = "/Users/sas/Projects/AbsReader/build/Release-iphoneos/AbsReader.app"; sourceTree = "<absolute>"; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* AbsReader_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbsReader_Prefix.pch; sourceTree = "<group>"; };
@@ -50,7 +49,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5A1D24F212EC9071000BA65C /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = check.png; path = Resources/check.png; sourceTree = "<group>"; };
 		5A1D24F312EC9071000BA65C /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "check@2x.png"; path = "Resources/check@2x.png"; sourceTree = "<group>"; };
-		5A2A56FF12CBA612001095A5 /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Tests.app; path = "/Users/sas/Projects/AbsReader/build/Release-iphoneos/Tests.app"; sourceTree = "<absolute>"; };
 		5A2A570112CBA612001095A5 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		5A2A578012CBABBF001095A5 /* FeedCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedCacheTest.m; path = Tests/FeedCacheTest.m; sourceTree = "<group>"; };
 		5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHUnitIOSTestMain.m; path = Tests/GHUnitIOSTestMain.m; sourceTree = "<group>"; };
@@ -62,6 +60,8 @@
 		5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedViewController.xib; path = Resources/FeedViewController.xib; sourceTree = "<group>"; };
 		5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingsViewController.xib; path = Resources/SettingsViewController.xib; sourceTree = "<group>"; };
 		5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebViewController.xib; path = Resources/WebViewController.xib; sourceTree = "<group>"; };
+		5A8EEF75130D4CF800CA4C8F /* AbsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AbsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A8EEF78130D4CF800CA4C8F /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABC038212ECBB19008D3641 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		5ABC038312ECBB19008D3641 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		5ABC038712ECBC14008D3641 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootViewController.xib; path = Resources/RootViewController.xib; sourceTree = "<group>"; };
@@ -130,6 +130,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				5AD7EE8B12CB8EC4002D123A /* UnitTests-Info.plist */,
 				5A2A570112CBA612001095A5 /* Tests-Info.plist */,
+				5A8EEF76130D4CF800CA4C8F /* Products */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -173,6 +174,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5A8EEF76130D4CF800CA4C8F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5A8EEF75130D4CF800CA4C8F /* AbsReader.app */,
+				5A8EEF78130D4CF800CA4C8F /* Tests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5AD7EE9012CB8EE1002D123A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +210,7 @@
 			);
 			name = AbsReader;
 			productName = AbsReader;
-			productReference = 1D6058910D05DD3D006BFB54 /* AbsReader.app */;
+			productReference = 5A8EEF75130D4CF800CA4C8F /* AbsReader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5A2A56FE12CBA612001095A5 /* Tests */ = {
@@ -217,7 +227,7 @@
 			);
 			name = Tests;
 			productName = Tests;
-			productReference = 5A2A56FF12CBA612001095A5 /* Tests.app */;
+			productReference = 5A8EEF78130D4CF800CA4C8F /* Tests.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -237,6 +247,7 @@
 				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 5A8EEF76130D4CF800CA4C8F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -342,7 +353,7 @@
 				GCC_PREFIX_HEADER = AbsReader_Prefix.pch;
 				INFOPLIST_FILE = "AbsReader-Info.plist";
 				PRODUCT_NAME = AbsReader;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "AB542A23-FB5D-460E-8F90-CF3AE72EEB26";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "21B1AF8B-EFC4-4301-826F-1932AD92C51A";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
