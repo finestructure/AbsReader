@@ -205,6 +205,12 @@
 	[activityIndicator removeFromSuperview];	
   newsTable.scrollEnabled = YES;
 
+  if ([error code] == -1012) {
+    // "user canceled authentication" (or rather we did, because there was no password given)
+    // ignore this to prevent an additional alert sheet from popping up
+    return;
+  }
+  
 	NSString * errorString = [NSString stringWithFormat:@"Error fetching feed (Error code %i )", [error code]];
 	NSLog(@"%@", errorString);
 	
