@@ -189,6 +189,84 @@
 }
 
 
+#pragma mark - Configuring table view cells
+
+
+- (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier {
+	
+	UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+  
+  const CGFloat rowHeight = 24;
+  const CGFloat rowWidth = 320;
+  
+  // title
+  {
+    CGFloat x = 10;
+    CGFloat y = 10;
+    CGFloat width = 200;
+    CGFloat height = rowHeight;
+    CGRect rect = CGRectMake(x, y, width, height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.tag = 1;
+    label.font = [UIFont boldSystemFontOfSize:16];
+    label.adjustsFontSizeToFitWidth = NO;
+    label.highlightedTextColor = [UIColor whiteColor];
+    [cell.contentView addSubview:label];
+  }
+  
+  // count
+  {
+    CGFloat x = rowWidth - 55;
+    CGFloat y = 9;
+    CGFloat width = 30;
+    CGFloat height = rowHeight;
+    CGRect rect = CGRectMake(x, y, width, height);
+    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    label.tag = 2;
+    label.font = [UIFont boldSystemFontOfSize:12];
+    label.adjustsFontSizeToFitWidth = NO;
+    label.highlightedTextColor = [UIColor whiteColor];
+    label.textAlignment = UITextAlignmentRight;
+    [cell.contentView addSubview:label];
+  }
+  
+  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+  
+	return cell;
+}
+
+
+- (void)configureCell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
+  
+	static NSDateFormatter *dateFormatter = nil;
+	if (dateFormatter == nil) {
+		dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"LLL-dd HH:mm"];
+	}
+	
+  FeedCache *feed = [self.feeds objectAtIndex:indexPath.row];
+  
+	// title
+  {
+    UILabel *label = (UILabel *)[cell viewWithTag:1];
+    label.text = feed.title;
+    if ([feed unreadCount] == 0) {
+      label.textColor = [UIColor grayColor];
+    } else {
+      label.textColor = [UIColor blackColor];
+    }
+  }
+  
+	// count
+  {
+    UILabel *label = (UILabel *)[cell viewWithTag:2];
+    if ([feed unreadCount] > 0) {
+      label.text = [NSString stringWithFormat:@"%d", [feed unreadCount]];
+    }
+  }
+}    
+
+
 #pragma mark - Table view data source
 
 
@@ -207,12 +285,10 @@
   
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
   if (cell == nil) {
-    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+		cell = [self tableViewCellWithReuseIdentifier:CellIdentifier];
   }
   
-  FeedCache *feed = [self.feeds objectAtIndex:indexPath.row];
-  cell.textLabel.text = [NSString stringWithFormat:@"%@ (%d)", feed.title, [feed unreadCount]];
-  
+  [self configureCell:cell forIndexPath:indexPath];
   return cell;
 }
 
