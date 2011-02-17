@@ -262,6 +262,8 @@
     UILabel *label = (UILabel *)[cell viewWithTag:2];
     if ([feed unreadCount] > 0) {
       label.text = [NSString stringWithFormat:@"%d", [feed unreadCount]];
+    } else {
+      label.text = @"";
     }
   }
 }    
