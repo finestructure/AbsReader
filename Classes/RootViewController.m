@@ -139,15 +139,37 @@
   self.title = @"AbsReader";
 
   self.navigationItem.leftBarButtonItem = self.editButtonItem;
-  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFeed:)] autorelease];
+  {
+    UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFeed:)];
+    b.isAccessibilityElement = YES;
+    b.accessibilityLabel = @"add feed";
+    self.navigationItem.rightBarButtonItem = b;
+    [b release];
+  }
 
   [self loadFeedList];
 
   // set up toolbar
   NSMutableArray *buttons = [NSMutableArray array];
-  [buttons addObject:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)] autorelease]];
-  [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease]];
-  [buttons addObject:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)] autorelease]];
+  {
+    UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)];
+    b.isAccessibilityElement = YES;
+    b.accessibilityLabel = @"mark all read";
+    [buttons addObject:b];
+    [b release];
+  }
+  {
+    UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [buttons addObject:b];
+    [b release];
+  }
+  {
+    UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
+    b.isAccessibilityElement = YES;
+    b.accessibilityLabel = @"refresh";
+    [buttons addObject:b];
+    [b release];
+  }
   self.toolbarItems = buttons;
   
   // register notification handlers
