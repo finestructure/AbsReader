@@ -415,6 +415,7 @@ const CGFloat kBottomHeight = 15;
   if (buttonIndex == 0) {
     [self.feed markAllRead];
     [newsTable reloadData];    
+    [self.navigationController popViewControllerAnimated:YES];
   }
 }
 
