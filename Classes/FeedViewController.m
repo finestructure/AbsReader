@@ -264,7 +264,7 @@ const CGFloat kRowWidth = 320;
 const CGFloat kTopOffset = 10;
 
 const CGFloat kRightOffset = 24;
-const CGFloat kLeftOffset = 10;
+const CGFloat kLeftOffset = 20;
 
 const CGFloat kTopHeight = 15;
 const CGFloat kMiddleHeight = 40;
@@ -339,6 +339,22 @@ const CGFloat kBottomHeight = 15;
     [cell.contentView addSubview:label];
   }
   
+  // bullet
+  {
+    CGFloat x = 3;
+    CGFloat y = 38;
+    CGFloat width = 15;
+    CGFloat height = 15;
+    CGRect rect = CGRectMake(x, y, width, height);
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
+    label.tag = 5;
+    label.font = [UIFont boldSystemFontOfSize:36];
+    label.textColor = [UIColor grayColor];
+    label.text = @"•";
+    [cell.contentView addSubview:label];
+    [label release];
+  }
+  
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   
 	return cell;
@@ -354,7 +370,8 @@ const CGFloat kBottomHeight = 15;
 	}
 	
   NSDictionary *info = [self.feed.stories objectAtIndex:[indexPath row]];
-  
+  NSString *guid = [info objectForKey:@"guid"];
+
 	// author
   {
     UILabel *label = (UILabel *)[cell viewWithTag:1];
@@ -371,7 +388,6 @@ const CGFloat kBottomHeight = 15;
   {
     UILabel *label = (UILabel *)[cell viewWithTag:3];
     label.text = [info objectForKey:@"title"];
-    NSString *guid = [info objectForKey:@"guid"];
     if ([self.feed alreadyVisited:guid]) {
       label.textColor = [UIColor grayColor];
     } else {
@@ -383,6 +399,12 @@ const CGFloat kBottomHeight = 15;
   {
     UILabel *label = (UILabel *)[cell viewWithTag:4];
     label.text = [info objectForKey:@"description"];
+  }
+  
+  // bullet
+  {
+    UILabel *label = (UILabel *)[cell viewWithTag:5];
+    label.hidden = [self.feed alreadyVisited:guid];
   }
 }    
 
