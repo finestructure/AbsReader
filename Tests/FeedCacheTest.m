@@ -20,11 +20,11 @@
 #pragma mark - Helpers
 
 
-- (void)checkProgress {
+- (void)checkProgress_test_parseXml {
   if (self.feed.refreshInProgress == NO) {
     [self notify:kGHUnitWaitStatusSuccess forSelector:@selector(test_parseXml)];
   } else {
-    [self performSelector:@selector(checkProgress) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(checkProgress_test_parseXml) withObject:nil afterDelay:0.1];
   }
 }
 
@@ -63,7 +63,7 @@
   [self prepare];
   self.feed.url = url;
   [self.feed refresh];
-  [self checkProgress];
+  [self checkProgress_test_parseXml];
   [self waitForStatus:kGHUnitWaitStatusSuccess timeout:1.0];
   
   GHAssertNotNil(self.feed.rssData, nil);
