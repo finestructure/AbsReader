@@ -77,6 +77,12 @@
 }
 
 
+- (void)markGuidUnread:(NSString *)guid {
+  [self.readArticles removeObjectForKey:guid];
+  [self saveToUserDefaults];
+}
+
+
 - (void)markAllRead {
   for (NSDictionary *story in self.stories) {
     NSString *guid = [story objectForKey:@"guid"];

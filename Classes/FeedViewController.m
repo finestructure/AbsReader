@@ -40,15 +40,34 @@
   newsTable.rowHeight = 90;
   
   {
-    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTouchDoubleTap:)];
+    gr.delaysTouchesBegan = YES;
     gr.numberOfTapsRequired = 2;
+    gr.numberOfTouchesRequired = 1;
     gr.delaysTouchesBegan = YES;
     [newsTable addGestureRecognizer:gr];
     [gr release];
   }
   {
-    UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTouchDoubleTap:)];
     gr.delaysTouchesBegan = YES;
+    gr.numberOfTapsRequired = 2;
+    gr.numberOfTouchesRequired = 2;
+    gr.delaysTouchesBegan = YES;
+    [newsTable addGestureRecognizer:gr];
+    [gr release];
+  }
+  {
+    UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipe:)];
+    gr.delaysTouchesBegan = YES;
+    gr.direction = UISwipeGestureRecognizerDirectionRight;
+    [newsTable addGestureRecognizer:gr];
+    [gr release];
+  }
+  {
+    UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipe:)];
+    gr.delaysTouchesBegan = YES;
+    gr.direction = UISwipeGestureRecognizerDirectionLeft;
     [newsTable addGestureRecognizer:gr];
     [gr release];
   }
@@ -163,6 +182,14 @@
 }
 
 
+- (void)markCellAsUnread:(NSIndexPath *)indexPath {
+  NSString *guid = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
+  [self.feed markGuidUnread:guid];
+  NSArray *indexes = [NSArray arrayWithObject:indexPath];
+	[newsTable reloadRowsAtIndexPaths:indexes withRowAnimation:NO];
+}
+
+
 - (void)markCellAsRead:(NSIndexPath *)indexPath {
   NSString *guid = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey:@"guid"];
   NSDate *date = [[self.feed.stories objectAtIndex:[indexPath row]] objectForKey:@"pubDate"];
@@ -182,17 +209,31 @@
 #pragma mark Gesture Handlers
 
 
-- (void)handleDoubleTap:(UIGestureRecognizer *)sender {
+- (void)handleSingleTouchDoubleTap:(UIGestureRecognizer *)sender {
   CGPoint p = [sender locationInView:newsTable];
   NSIndexPath *indexPath = [newsTable indexPathForRowAtPoint:p];
   [self markCellAsRead:indexPath];
 }
 
 
-- (void)handleSwipe:(UIGestureRecognizer *)sender {
+- (void)handleDoubleTouchDoubleTap:(UIGestureRecognizer *)sender {
+  CGPoint p = [sender locationInView:newsTable];
+  NSIndexPath *indexPath = [newsTable indexPathForRowAtPoint:p];
+  [self markCellAsUnread:indexPath];
+}
+
+
+- (void)handleRightSwipe:(UIGestureRecognizer *)sender {
 	CGPoint p = [sender locationInView:newsTable];
   NSIndexPath *indexPath = [newsTable indexPathForRowAtPoint:p];
   [self markCellAsRead:indexPath];
+}
+
+
+- (void)handleLeftSwipe:(UIGestureRecognizer *)sender {
+	CGPoint p = [sender locationInView:newsTable];
+  NSIndexPath *indexPath = [newsTable indexPathForRowAtPoint:p];
+  [self markCellAsUnread:indexPath];
 }
 
 

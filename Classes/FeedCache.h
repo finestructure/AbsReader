@@ -40,6 +40,7 @@ static NSString *kFeedLoaded __attribute__ ((unused)) = @"kFeedLoaded";
 - (void)setup;
 - (void)refresh;
 - (void)markGuidRead:(NSString *)guid forDate:(NSDate *)date;
+- (void)markGuidUnread:(NSString *)guid;
 - (void)markAllRead;
 - (BOOL)alreadyVisited:(NSString *)guid;
 - (NSUInteger)unreadCount;
