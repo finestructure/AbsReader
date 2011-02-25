@@ -344,21 +344,25 @@
 }
 
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+  NSUInteger from = fromIndexPath.row;
+  NSUInteger to = toIndexPath.row;
+  if (from == to ) {
+    return;
+  }
+  { // reorder feeds ...
+    id objToMove = [[self.feeds objectAtIndex:from] retain];
+    [self.feeds removeObjectAtIndex:from];
+    [self.feeds insertObject:objToMove atIndex:to];
+    [objToMove release];
+  }
+  { // ... and controllers
+    id objToMove = [[self.feedControllers objectAtIndex:from] retain];
+    [self.feedControllers removeObjectAtIndex:from];
+    [self.feedControllers insertObject:objToMove atIndex:to];
+    [objToMove release];
+  }
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 
 #pragma mark - Table view delegate
