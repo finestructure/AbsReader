@@ -17,9 +17,7 @@
 }
 
 
-- (void)test_init {  
-  GHAssertNotNil(self.feed, nil);
-}
+#pragma mark - Helpers
 
 
 - (void)checkProgress {
@@ -28,23 +26,6 @@
   } else {
     [self performSelector:@selector(checkProgress) withObject:nil afterDelay:0.1];
   }
-}
-
-
-- (void)test_parseXml {
-  NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
-  NSURL *url = [thisBundle URLForResource:@"rss_test" withExtension:@"xml"];
-  GHAssertNotNil(url, nil);
-
-  [self prepare];
-  self.feed.url = url;
-  [self.feed refresh];
-  [self checkProgress];
-  [self waitForStatus:kGHUnitWaitStatusSuccess timeout:1.0];
-  
-  GHAssertNotNil(self.feed.rssData, nil);
-  GHAssertEquals((int)[self.feed.rssData length], 30448, nil);
-  GHAssertEquals((int)[self.feed.stories count], 50, nil);
 }
 
 
@@ -63,6 +44,31 @@
          && [[NSRunLoop currentRunLoop] runMode: NSDefaultRunLoopMode beforeDate:loopUntil]) {
     loopUntil = [NSDate dateWithTimeIntervalSinceNow:0.1];
   }
+}
+
+
+#pragma mark - Tests
+
+
+- (void)test_init {  
+  GHAssertNotNil(self.feed, nil);
+}
+
+
+- (void)test_parseXml {
+  NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
+  NSURL *url = [thisBundle URLForResource:@"rss_test" withExtension:@"xml"];
+  GHAssertNotNil(url, nil);
+  
+  [self prepare];
+  self.feed.url = url;
+  [self.feed refresh];
+  [self checkProgress];
+  [self waitForStatus:kGHUnitWaitStatusSuccess timeout:1.0];
+  
+  GHAssertNotNil(self.feed.rssData, nil);
+  GHAssertEquals((int)[self.feed.rssData length], 30448, nil);
+  GHAssertEquals((int)[self.feed.stories count], 50, nil);
 }
 
 
