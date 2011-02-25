@@ -19,7 +19,6 @@
 		5A2A570E12CBA66C001095A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5A2A570F12CBA671001095A5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		5A2A574A12CBA97A001095A5 /* FeedCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7EE7512CB8D09002D123A /* FeedCache.m */; };
-		5A2A575712CBAA13001095A5 /* rss_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5AD7EED312CB9327002D123A /* rss_test.xml */; };
 		5A2A578112CBABBF001095A5 /* FeedCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578012CBABBF001095A5 /* FeedCacheTest.m */; };
 		5A2A578312CBABE3001095A5 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A578212CBABE3001095A5 /* GHUnitIOSTestMain.m */; };
 		5A2A57AD12CBAE0A001095A5 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A2A57AC12CBAE0A001095A5 /* GHUnit.framework */; };
@@ -29,6 +28,10 @@
 		5A817F0F12ECB0BD008AA8A9 /* FeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */; };
 		5A817F1012ECB0BD008AA8A9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */; };
 		5A817F1112ECB0BD008AA8A9 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */; };
+		5AA722501317E42300DEBDBC /* heise-atom.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5AA7224C1317E42300DEBDBC /* heise-atom.xml */; };
+		5AA722511317E42300DEBDBC /* heise.rdf in Resources */ = {isa = PBXBuildFile; fileRef = 5AA7224D1317E42300DEBDBC /* heise.rdf */; };
+		5AA722521317E42300DEBDBC /* rss_test.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5AA7224E1317E42300DEBDBC /* rss_test.xml */; };
+		5AA722531317E42300DEBDBC /* spiegel.rss in Resources */ = {isa = PBXBuildFile; fileRef = 5AA7224F1317E42300DEBDBC /* spiegel.rss */; };
 		5ABC038512ECBB19008D3641 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABC038312ECBB19008D3641 /* RootViewController.m */; };
 		5ABC038812ECBC14008D3641 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ABC038712ECBC14008D3641 /* RootViewController.xib */; };
 		5AD7E7C412C8E7A8002D123A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD7E7C212C8E7A8002D123A /* SettingsViewController.m */; };
@@ -62,6 +65,10 @@
 		5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebViewController.xib; path = Resources/WebViewController.xib; sourceTree = "<group>"; };
 		5A8EEF75130D4CF800CA4C8F /* AbsReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AbsReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A8EEF78130D4CF800CA4C8F /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AA7224C1317E42300DEBDBC /* heise-atom.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "heise-atom.xml"; sourceTree = "<group>"; };
+		5AA7224D1317E42300DEBDBC /* heise.rdf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = heise.rdf; sourceTree = "<group>"; };
+		5AA7224E1317E42300DEBDBC /* rss_test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = rss_test.xml; sourceTree = "<group>"; };
+		5AA7224F1317E42300DEBDBC /* spiegel.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = spiegel.rss; sourceTree = "<group>"; };
 		5ABC038212ECBB19008D3641 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		5ABC038312ECBB19008D3641 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		5ABC038712ECBC14008D3641 /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootViewController.xib; path = Resources/RootViewController.xib; sourceTree = "<group>"; };
@@ -72,7 +79,6 @@
 		5AD7EE7412CB8D09002D123A /* FeedCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedCache.h; sourceTree = "<group>"; };
 		5AD7EE7512CB8D09002D123A /* FeedCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedCache.m; sourceTree = "<group>"; };
 		5AD7EE8B12CB8EC4002D123A /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
-		5AD7EED312CB9327002D123A /* rss_test.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = rss_test.xml; path = Resources/rss_test.xml; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* AbsReader-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AbsReader-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,12 +153,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5AA7224B1317E42300DEBDBC /* test_data */,
 				5A817F0A12ECB0BD008AA8A9 /* MainWindow.xib */,
 				5A817F0B12ECB0BD008AA8A9 /* FeedViewController.xib */,
 				5ABC038712ECBC14008D3641 /* RootViewController.xib */,
 				5A817F0C12ECB0BD008AA8A9 /* SettingsViewController.xib */,
 				5A817F0D12ECB0BD008AA8A9 /* WebViewController.xib */,
-				5AD7EED312CB9327002D123A /* rss_test.xml */,
 				8D1107310486CEB800E47090 /* AbsReader-Info.plist */,
 				5AD7EA7712CA055A002D123A /* gear.png */,
 				5AD7EA2612C9FFFE002D123A /* gear@2x.png */,
@@ -181,6 +187,18 @@
 				5A8EEF78130D4CF800CA4C8F /* Tests.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		5AA7224B1317E42300DEBDBC /* test_data */ = {
+			isa = PBXGroup;
+			children = (
+				5AA7224C1317E42300DEBDBC /* heise-atom.xml */,
+				5AA7224D1317E42300DEBDBC /* heise.rdf */,
+				5AA7224E1317E42300DEBDBC /* rss_test.xml */,
+				5AA7224F1317E42300DEBDBC /* spiegel.rss */,
+			);
+			name = test_data;
+			path = Resources/test_data;
 			sourceTree = "<group>";
 		};
 		5AD7EE9012CB8EE1002D123A /* Tests */ = {
@@ -279,7 +297,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A2A575712CBAA13001095A5 /* rss_test.xml in Resources */,
+				5AA722501317E42300DEBDBC /* heise-atom.xml in Resources */,
+				5AA722511317E42300DEBDBC /* heise.rdf in Resources */,
+				5AA722521317E42300DEBDBC /* rss_test.xml in Resources */,
+				5AA722531317E42300DEBDBC /* spiegel.rss in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

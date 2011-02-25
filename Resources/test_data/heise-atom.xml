@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>heise online News</title>
+	<subtitle>Nachrichten nicht nur aus der Welt der Computer</subtitle>
+	<link href="http://www.heise.de/newsticker/" />
+	<link rel="self" href="http://www.heise.de/newsticker/heise-atom.xml" />
+	<updated>2011-02-25T13:25:00+01:00</updated>
+	<author>
+		<name>heise online</name>
+	</author>
+	<id>http://www.heise.de/newsticker/</id>
+
+
+	<entry>
+		<title>Schnellstart-System Splashtop OS kostenlos erhältlich</title>
+		<link href="http://www.heise.de/newsticker/meldung/Schnellstart-System-Splashtop-OS-kostenlos-erhaeltlich-1197985.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Schnellstart-System-Splashtop-OS-kostenlos-erhaeltlich-1197985.html/from/atom10</id>
+		<published>2011-02-25T13:25:00+01:00</published>
+		<updated>2011-02-25T13:25:40+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Bericht: Server-Markt ist 2010 solide zweistellig gewachsen</title>
+		<link href="http://www.heise.de/newsticker/meldung/Bericht-Server-Markt-ist-2010-solide-zweistellig-gewachsen-1197977.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Bericht-Server-Markt-ist-2010-solide-zweistellig-gewachsen-1197977.html/from/atom10</id>
+		<published>2011-02-25T12:45:00+01:00</published>
+		<updated>2011-02-25T12:45:52+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>3 Österreich will Festnetz-Breitband mit neuen Flatrates ausstechen</title>
+		<link href="http://www.heise.de/newsticker/meldung/3-Oesterreich-will-Festnetz-Breitband-mit-neuen-Flatrates-ausstechen-1197992.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/3-Oesterreich-will-Festnetz-Breitband-mit-neuen-Flatrates-ausstechen-1197992.html/from/atom10</id>
+		<published>2011-02-25T12:35:00+01:00</published>
+		<updated>2011-02-25T12:35:54+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Regulierer sieht keinen Handlungsbedarf in Sachen Netzneutralität</title>
+		<link href="http://www.heise.de/newsticker/meldung/Regulierer-sieht-keinen-Handlungsbedarf-in-Sachen-Netzneutralitaet-1197962.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Regulierer-sieht-keinen-Handlungsbedarf-in-Sachen-Netzneutralitaet-1197962.html/from/atom10</id>
+		<published>2011-02-25T12:05:00+01:00</published>
+		<updated>2011-02-25T12:06:01+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>SAP stellt Major Releases seiner BI-Applikationen vor</title>
+		<link href="http://www.heise.de/newsticker/meldung/SAP-stellt-Major-Releases-seiner-BI-Applikationen-vor-1197843.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/SAP-stellt-Major-Releases-seiner-BI-Applikationen-vor-1197843.html/from/atom10</id>
+		<published>2011-02-25T11:50:00+01:00</published>
+		<updated>2011-02-25T13:19:30+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Google cloudifiziert Microsofts Office</title>
+		<link href="http://www.heise.de/newsticker/meldung/Google-cloudifiziert-Microsofts-Office-1197768.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Google-cloudifiziert-Microsofts-Office-1197768.html/from/atom10</id>
+		<published>2011-02-25T11:30:00+01:00</published>
+		<updated>2011-02-25T11:46:36+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>HD-Zuspieler mit AirPlay </title>
+		<link href="http://www.heise.de/newsticker/meldung/HD-Zuspieler-mit-AirPlay-1197781.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/HD-Zuspieler-mit-AirPlay-1197781.html/from/atom10</id>
+		<published>2011-02-25T10:50:00+01:00</published>
+		<updated>2011-02-25T10:50:55+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>O2 macht erstmals mehr als eine Milliarde Euro Gewinn</title>
+		<link href="http://www.heise.de/newsticker/meldung/O2-macht-erstmals-mehr-als-eine-Milliarde-Euro-Gewinn-1197793.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/O2-macht-erstmals-mehr-als-eine-Milliarde-Euro-Gewinn-1197793.html/from/atom10</id>
+		<published>2011-02-25T10:36:00+01:00</published>
+		<updated>2011-02-25T10:36:57+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>EU-Kommission erwägt einheitliche europäische Telefonnummern</title>
+		<link href="http://www.heise.de/newsticker/meldung/EU-Kommission-erwaegt-einheitliche-europaeische-Telefonnummern-1197778.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/EU-Kommission-erwaegt-einheitliche-europaeische-Telefonnummern-1197778.html/from/atom10</id>
+		<published>2011-02-25T10:15:00+01:00</published>
+		<updated>2011-02-25T10:17:03+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Umsatz- und Gewinnrückgang bei der Deutschen Telekom</title>
+		<link href="http://www.heise.de/newsticker/meldung/Umsatz-und-Gewinnrueckgang-bei-der-Deutschen-Telekom-1197738.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Umsatz-und-Gewinnrueckgang-bei-der-Deutschen-Telekom-1197738.html/from/atom10</id>
+		<published>2011-02-25T09:55:00+01:00</published>
+		<updated>2011-02-25T13:28:31+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Bundestag verabschiedet De-Mail-Gesetz</title>
+		<link href="http://www.heise.de/newsticker/meldung/Bundestag-verabschiedet-De-Mail-Gesetz-1197727.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Bundestag-verabschiedet-De-Mail-Gesetz-1197727.html/from/atom10</id>
+		<published>2011-02-25T09:25:00+01:00</published>
+		<updated>2011-02-25T09:27:15+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Social Network gegen Krankheiten</title>
+		<link href="http://www.heise.de/newsticker/meldung/Social-Network-gegen-Krankheiten-1197691.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Social-Network-gegen-Krankheiten-1197691.html/from/atom10</id>
+		<published>2011-02-25T09:25:00+01:00</published>
+		<updated>2011-02-25T09:27:15+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Hybridauto ohne Bremsen</title>
+		<link href="http://www.heise.de/newsticker/meldung/Hybridauto-ohne-Bremsen-1197688.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Hybridauto-ohne-Bremsen-1197688.html/from/atom10</id>
+		<published>2011-02-25T08:55:00+01:00</published>
+		<updated>2011-02-25T08:57:21+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Deutsche Bestseller im US-Kindle-Store</title>
+		<link href="http://www.heise.de/newsticker/meldung/Deutsche-Bestseller-im-US-Kindle-Store-1196809.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Deutsche-Bestseller-im-US-Kindle-Store-1196809.html/from/atom10</id>
+		<published>2011-02-24T23:10:00+01:00</published>
+		<updated>2011-02-24T23:12:23+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Archos steigert Umsatz mit Tablets</title>
+		<link href="http://www.heise.de/newsticker/meldung/Archos-steigert-Umsatz-mit-Tablets-1197620.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Archos-steigert-Umsatz-mit-Tablets-1197620.html/from/atom10</id>
+		<published>2011-02-24T22:55:00+01:00</published>
+		<updated>2011-02-24T22:56:25+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Knapp eine Million Schadenersatz wegen unlizenzierter Software</title>
+		<link href="http://www.heise.de/newsticker/meldung/Knapp-eine-Million-Schadenersatz-wegen-unlizenzierter-Software-1197631.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Knapp-eine-Million-Schadenersatz-wegen-unlizenzierter-Software-1197631.html/from/atom10</id>
+		<published>2011-02-24T18:40:00+01:00</published>
+		<updated>2011-02-24T18:41:21+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Neue Details zu Mac OS X 10.7</title>
+		<link href="http://www.heise.de/newsticker/meldung/Neue-Details-zu-Mac-OS-X-10-7-1197511.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Neue-Details-zu-Mac-OS-X-10-7-1197511.html/from/atom10</id>
+		<published>2011-02-24T17:40:00+01:00</published>
+		<updated>2011-02-25T10:53:21+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Regulierer bestätigt neue Terminierungsentgelte für Mobilfunkanbieter</title>
+		<link href="http://www.heise.de/newsticker/meldung/Regulierer-bestaetigt-neue-Terminierungsentgelte-fuer-Mobilfunkanbieter-1197560.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Regulierer-bestaetigt-neue-Terminierungsentgelte-fuer-Mobilfunkanbieter-1197560.html/from/atom10</id>
+		<published>2011-02-24T17:25:00+01:00</published>
+		<updated>2011-02-24T17:25:42+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>LED-Backlight steigert Halbleiterumsatz</title>
+		<link href="http://www.heise.de/newsticker/meldung/LED-Backlight-steigert-Halbleiterumsatz-1197516.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/LED-Backlight-steigert-Halbleiterumsatz-1197516.html/from/atom10</id>
+		<published>2011-02-24T16:45:00+01:00</published>
+		<updated>2011-02-24T16:45:56+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>ISSCC: Prozessor und Speicher aus organischen Transistoren </title>
+		<link href="http://www.heise.de/newsticker/meldung/ISSCC-Prozessor-und-Speicher-aus-organischen-Transistoren-1197483.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/ISSCC-Prozessor-und-Speicher-aus-organischen-Transistoren-1197483.html/from/atom10</id>
+		<published>2011-02-24T16:40:00+01:00</published>
+		<updated>2011-02-24T16:41:53+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Siegfried Schneider neuer Präsident der Bayerischen Landeszentrale für neue Medien</title>
+		<link href="http://www.heise.de/newsticker/meldung/Siegfried-Schneider-neuer-Praesident-der-Bayerischen-Landeszentrale-fuer-neue-Medien-1197494.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Siegfried-Schneider-neuer-Praesident-der-Bayerischen-Landeszentrale-fuer-neue-Medien-1197494.html/from/atom10</id>
+		<published>2011-02-24T16:05:00+01:00</published>
+		<updated>2011-02-24T16:06:03+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Neues MacBook Pro setzt auf Thunderbolt und Quad-Core</title>
+		<link href="http://www.heise.de/newsticker/meldung/Neues-MacBook-Pro-setzt-auf-Thunderbolt-und-Quad-Core-1196846.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Neues-MacBook-Pro-setzt-auf-Thunderbolt-und-Quad-Core-1196846.html/from/atom10</id>
+		<published>2011-02-24T15:55:00+01:00</published>
+		<updated>2011-02-24T17:34:40+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Vorratsdaten: Sechs Monate im Leben des Malte Spitz</title>
+		<link href="http://www.heise.de/newsticker/meldung/Vorratsdaten-Sechs-Monate-im-Leben-des-Malte-Spitz-1197178.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Vorratsdaten-Sechs-Monate-im-Leben-des-Malte-Spitz-1197178.html/from/atom10</id>
+		<published>2011-02-24T15:52:00+01:00</published>
+		<updated>2011-02-24T19:24:25+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Light Peak heißt jetzt Thunderbolt: Mit 10 GBit/s durch den Draht</title>
+		<link href="http://www.heise.de/newsticker/meldung/Light-Peak-heisst-jetzt-Thunderbolt-Mit-10-GBit-s-durch-den-Draht-1196876.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Light-Peak-heisst-jetzt-Thunderbolt-Mit-10-GBit-s-durch-den-Draht-1196876.html/from/atom10</id>
+		<published>2011-02-24T15:25:00+01:00</published>
+		<updated>2011-02-25T09:20:04+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Experten raten Bundesregierung zur rechtlichen Absicherung der Netzneutralität</title>
+		<link href="http://www.heise.de/newsticker/meldung/Experten-raten-Bundesregierung-zur-rechtlichen-Absicherung-der-Netzneutralitaet-1196858.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Experten-raten-Bundesregierung-zur-rechtlichen-Absicherung-der-Netzneutralitaet-1196858.html/from/atom10</id>
+		<published>2011-02-24T15:11:00+01:00</published>
+		<updated>2011-02-24T15:12:19+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Neues Produkt: RAID-Alternative für Windows</title>
+		<link href="http://www.heise.de/newsticker/meldung/RAID-Alternative-fuer-Windows-1196823.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/RAID-Alternative-fuer-Windows-1196823.html/from/atom10</id>
+		<published>2011-02-24T15:02:00+01:00</published>
+		<updated>2011-02-24T15:12:48+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>SAP will Schadenersatz für Oracle-Datenklau drücken</title>
+		<link href="http://www.heise.de/newsticker/meldung/SAP-will-Schadenersatz-fuer-Oracle-Datenklau-druecken-1196803.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/SAP-will-Schadenersatz-fuer-Oracle-Datenklau-druecken-1196803.html/from/atom10</id>
+		<published>2011-02-24T14:50:00+01:00</published>
+		<updated>2011-02-24T14:50:33+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Kritik am geplanten Cyber-Abwehrzentrum</title>
+		<link href="http://www.heise.de/newsticker/meldung/Kritik-am-geplanten-Cyber-Abwehrzentrum-1196787.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Kritik-am-geplanten-Cyber-Abwehrzentrum-1196787.html/from/atom10</id>
+		<published>2011-02-24T14:43:00+01:00</published>
+		<updated>2011-02-24T14:44:39+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Samsung prämiert TV-App für umstrittenen Online-Videorecorder</title>
+		<link href="http://www.heise.de/newsticker/meldung/Samsung-praemiert-TV-App-fuer-umstrittenen-Online-Videorecorder-1196616.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Samsung-praemiert-TV-App-fuer-umstrittenen-Online-Videorecorder-1196616.html/from/atom10</id>
+		<published>2011-02-24T14:16:00+01:00</published>
+		<updated>2011-02-25T09:23:35+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Klarheit für die digitale Langzeitarchivierung im Urheberrecht gefordert</title>
+		<link href="http://www.heise.de/newsticker/meldung/Klarheit-fuer-die-digitale-Langzeitarchivierung-im-Urheberrecht-gefordert-1196752.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Klarheit-fuer-die-digitale-Langzeitarchivierung-im-Urheberrecht-gefordert-1196752.html/from/atom10</id>
+		<published>2011-02-24T13:58:00+01:00</published>
+		<updated>2011-02-24T13:58:53+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Leichter Umsatzzuwachs bei France Telecom</title>
+		<link href="http://www.heise.de/newsticker/meldung/Leichter-Umsatzzuwachs-bei-France-Telecom-1196699.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Leichter-Umsatzzuwachs-bei-France-Telecom-1196699.html/from/atom10</id>
+		<published>2011-02-24T12:45:00+01:00</published>
+		<updated>2011-02-24T12:47:08+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Gericht: Assange darf an Schweden ausgeliefert werden</title>
+		<link href="http://www.heise.de/newsticker/meldung/Gericht-Assange-darf-an-Schweden-ausgeliefert-werden-1196705.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Gericht-Assange-darf-an-Schweden-ausgeliefert-werden-1196705.html/from/atom10</id>
+		<published>2011-02-24T12:42:00+01:00</published>
+		<updated>2011-02-24T12:43:09+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Internet Society: Freies Internet in Gefahr</title>
+		<link href="http://www.heise.de/newsticker/meldung/Internet-Society-Freies-Internet-in-Gefahr-1196645.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Internet-Society-Freies-Internet-in-Gefahr-1196645.html/from/atom10</id>
+		<published>2011-02-24T12:20:00+01:00</published>
+		<updated>2011-02-24T12:55:42+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Sicherheitsproblem durch Microsofts Virenscanner</title>
+		<link href="http://www.heise.de/newsticker/meldung/Sicherheitsproblem-durch-Microsofts-Virenscanner-1196507.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Sicherheitsproblem-durch-Microsofts-Virenscanner-1196507.html/from/atom10</id>
+		<published>2011-02-24T11:00:00+01:00</published>
+		<updated>2011-02-24T11:36:45+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Telekom-Mitarbeiter demonstrieren am T-City-Schautag</title>
+		<link href="http://www.heise.de/newsticker/meldung/Telekom-Mitarbeiter-demonstrieren-am-T-City-Schautag-1196599.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Telekom-Mitarbeiter-demonstrieren-am-T-City-Schautag-1196599.html/from/atom10</id>
+		<published>2011-02-24T10:57:00+01:00</published>
+		<updated>2011-02-24T10:59:41+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Lebenszeichen: MPEG-4-Codec Xvid 1.3 veröffentlicht</title>
+		<link href="http://www.heise.de/newsticker/meldung/Lebenszeichen-MPEG-4-Codec-Xvid-1-3-veroeffentlicht-1196531.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Lebenszeichen-MPEG-4-Codec-Xvid-1-3-veroeffentlicht-1196531.html/from/atom10</id>
+		<published>2011-02-24T10:49:00+01:00</published>
+		<updated>2011-02-24T10:51:39+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>T-City Friedrichshafen: Merkel bei den Zukünftlern</title>
+		<link href="http://www.heise.de/newsticker/meldung/T-City-Friedrichshafen-Merkel-bei-den-Zukuenftlern-1196526.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/T-City-Friedrichshafen-Merkel-bei-den-Zukuenftlern-1196526.html/from/atom10</id>
+		<published>2011-02-24T10:25:00+01:00</published>
+		<updated>2011-02-24T10:59:30+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Apple-Hauptversammlung: Gute Stimmung, aber ohne Steve Jobs</title>
+		<link href="http://www.heise.de/newsticker/meldung/Apple-Hauptversammlung-Gute-Stimmung-aber-ohne-Steve-Jobs-1196518.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Apple-Hauptversammlung-Gute-Stimmung-aber-ohne-Steve-Jobs-1196518.html/from/atom10</id>
+		<published>2011-02-24T10:22:00+01:00</published>
+		<updated>2011-02-24T14:00:00+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Fujitsu zeigt Windows-Tablet mit Oak Trail</title>
+		<link href="http://www.heise.de/newsticker/meldung/Fujitsu-zeigt-Windows-Tablet-mit-Oak-Trail-1194677.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Fujitsu-zeigt-Windows-Tablet-mit-Oak-Trail-1194677.html/from/atom10</id>
+		<published>2011-02-24T10:08:00+01:00</published>
+		<updated>2011-02-24T12:16:44+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Gemeinsame Online-Plattform der Privatsender vor dem Aus</title>
+		<link href="http://www.heise.de/newsticker/meldung/Gemeinsame-Online-Plattform-der-Privatsender-vor-dem-Aus-1196498.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Gemeinsame-Online-Plattform-der-Privatsender-vor-dem-Aus-1196498.html/from/atom10</id>
+		<published>2011-02-24T10:06:00+01:00</published>
+		<updated>2011-02-24T10:07:51+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Bundeszocker haben etwas Spaß am Gerät</title>
+		<link href="http://www.heise.de/newsticker/meldung/Bundeszocker-haben-etwas-Spass-am-Geraet-1196448.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Bundeszocker-haben-etwas-Spass-am-Geraet-1196448.html/from/atom10</id>
+		<published>2011-02-24T09:43:00+01:00</published>
+		<updated>2011-02-24T09:43:59+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>&quot;Watson&quot; geht ins Krankenhaus</title>
+		<link href="http://www.heise.de/newsticker/meldung/Watson-geht-ins-Krankenhaus-1196429.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Watson-geht-ins-Krankenhaus-1196429.html/from/atom10</id>
+		<published>2011-02-24T09:26:00+01:00</published>
+		<updated>2011-02-24T09:28:02+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Java 7 im Soll: Oracle veröffentlicht Developer Preview für JDK 7</title>
+		<link href="http://www.heise.de/newsticker/meldung/Java-7-im-Soll-Oracle-veroeffentlicht-Developer-Preview-fuer-JDK-7-1196434.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Java-7-im-Soll-Oracle-veroeffentlicht-Developer-Preview-fuer-JDK-7-1196434.html/from/atom10</id>
+		<published>2011-02-24T09:18:00+01:00</published>
+		<updated>2011-02-24T09:18:51+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Wissenschaftler arbeiten an &quot;außerkörperlicher Erfahrung&quot;</title>
+		<link href="http://www.heise.de/newsticker/meldung/Wissenschaftler-arbeiten-an-ausserkoerperlicher-Erfahrung-1196426.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Wissenschaftler-arbeiten-an-ausserkoerperlicher-Erfahrung-1196426.html/from/atom10</id>
+		<published>2011-02-24T08:55:00+01:00</published>
+		<updated>2011-02-24T08:56:13+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>heise-Security-Konferenz: Die sichere Unternehmenskommunikation</title>
+		<link href="http://www.heise.de/newsticker/meldung/heise-Security-Konferenz-Die-sichere-Unternehmenskommunikation-1195633.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/heise-Security-Konferenz-Die-sichere-Unternehmenskommunikation-1195633.html/from/atom10</id>
+		<published>2011-02-24T07:50:00+01:00</published>
+		<updated>2011-02-24T13:42:14+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Diskussionen um Zuverlässigkeit von 25-Nanometer-Flash</title>
+		<link href="http://www.heise.de/newsticker/meldung/Diskussionen-um-Zuverlaessigkeit-von-25-Nanometer-Flash-1196300.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Diskussionen-um-Zuverlaessigkeit-von-25-Nanometer-Flash-1196300.html/from/atom10</id>
+		<published>2011-02-23T19:35:00+01:00</published>
+		<updated>2011-02-24T13:12:38+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Der ungewollte Kill-Switch </title>
+		<link href="http://www.heise.de/newsticker/meldung/Der-ungewollte-Kill-Switch-1196289.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Der-ungewollte-Kill-Switch-1196289.html/from/atom10</id>
+		<published>2011-02-23T18:15:00+01:00</published>
+		<updated>2011-02-23T18:15:16+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Verkauf von Computerspielen tritt auf der Stelle</title>
+		<link href="http://www.heise.de/newsticker/meldung/Verkauf-von-Computerspielen-tritt-auf-der-Stelle-1196155.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Verkauf-von-Computerspielen-tritt-auf-der-Stelle-1196155.html/from/atom10</id>
+		<published>2011-02-23T17:15:00+01:00</published>
+		<updated>2011-02-24T11:52:34+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Viele SSDs und USB-Sticks lassen sich nicht sicher löschen</title>
+		<link href="http://www.heise.de/newsticker/meldung/Viele-SSDs-und-USB-Sticks-lassen-sich-nicht-sicher-loeschen-1195973.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Viele-SSDs-und-USB-Sticks-lassen-sich-nicht-sicher-loeschen-1195973.html/from/atom10</id>
+		<published>2011-02-23T17:15:00+01:00</published>
+		<updated>2011-02-24T13:30:27+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Vodafone stellt Tablets aus und nennt Erscheinungstermine</title>
+		<link href="http://www.heise.de/newsticker/meldung/Vodafone-stellt-Tablets-aus-und-nennt-Erscheinungstermine-1195791.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Vodafone-stellt-Tablets-aus-und-nennt-Erscheinungstermine-1195791.html/from/atom10</id>
+		<published>2011-02-23T16:10:00+01:00</published>
+		<updated>2011-02-24T09:33:14+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Kinect-Sensoren ohne XBox nutzen</title>
+		<link href="http://www.heise.de/newsticker/meldung/Kinect-Sensoren-ohne-XBox-nutzen-1195701.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Kinect-Sensoren-ohne-XBox-nutzen-1195701.html/from/atom10</id>
+		<published>2011-02-23T16:00:00+01:00</published>
+		<updated>2011-02-23T16:01:11+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Fehlalarm durch Virenwächter auf Heise-Seiten</title>
+		<link href="http://www.heise.de/newsticker/meldung/Fehlalarm-durch-Virenwaechter-auf-Heise-Seiten-1196010.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Fehlalarm-durch-Virenwaechter-auf-Heise-Seiten-1196010.html/from/atom10</id>
+		<published>2011-02-23T15:59:00+01:00</published>
+		<updated>2011-02-24T11:02:33+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>ISSCC: China-Prozessor Godson rechnet am effizientesten</title>
+		<link href="http://www.heise.de/newsticker/meldung/ISSCC-China-Prozessor-Godson-rechnet-am-effizientesten-1195969.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/ISSCC-China-Prozessor-Godson-rechnet-am-effizientesten-1195969.html/from/atom10</id>
+		<published>2011-02-23T15:50:00+01:00</published>
+		<updated>2011-02-23T15:58:23+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>PCI-Express-SSDs mit Marvell-Controller für PCs und Notebooks</title>
+		<link href="http://www.heise.de/newsticker/meldung/PCI-Express-SSDs-mit-Marvell-Controller-fuer-PCs-und-Notebooks-1195538.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/PCI-Express-SSDs-mit-Marvell-Controller-fuer-PCs-und-Notebooks-1195538.html/from/atom10</id>
+		<published>2011-02-23T15:35:00+01:00</published>
+		<updated>2011-02-24T09:57:34+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Bundesregierung beschließt Cyber-Sicherheitsstrategie</title>
+		<link href="http://www.heise.de/newsticker/meldung/Bundesregierung-beschliesst-Cyber-Sicherheitsstrategie-1195666.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Bundesregierung-beschliesst-Cyber-Sicherheitsstrategie-1195666.html/from/atom10</id>
+		<published>2011-02-23T14:30:00+01:00</published>
+		<updated>2011-02-23T15:11:57+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Google unterstützt Förderpreis für innovativen Journalismus</title>
+		<link href="http://www.heise.de/newsticker/meldung/Google-unterstuetzt-Foerderpreis-fuer-innovativen-Journalismus-1195692.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Google-unterstuetzt-Foerderpreis-fuer-innovativen-Journalismus-1195692.html/from/atom10</id>
+		<published>2011-02-23T14:18:00+01:00</published>
+		<updated>2011-02-24T09:46:57+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Bitkom-Präsident: &quot;Die CeBIT ist das Davos der IT-Branche&quot;</title>
+		<link href="http://www.heise.de/newsticker/meldung/Bitkom-Praesident-Die-CeBIT-ist-das-Davos-der-IT-Branche-1195603.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Bitkom-Praesident-Die-CeBIT-ist-das-Davos-der-IT-Branche-1195603.html/from/atom10</id>
+		<published>2011-02-23T14:00:00+01:00</published>
+		<updated>2011-02-23T14:50:47+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>LibreOffice 3.3.1 veröffentlicht</title>
+		<link href="http://www.heise.de/newsticker/meldung/LibreOffice-3-3-1-veroeffentlicht-1195644.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/LibreOffice-3-3-1-veroeffentlicht-1195644.html/from/atom10</id>
+		<published>2011-02-23T13:55:00+01:00</published>
+		<updated>2011-02-23T13:55:28+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Microsoft will beim Cloud-Computing &quot;Tempomacher&quot; sein </title>
+		<link href="http://www.heise.de/newsticker/meldung/Microsoft-will-beim-Cloud-Computing-Tempomacher-sein-1195606.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Microsoft-will-beim-Cloud-Computing-Tempomacher-sein-1195606.html/from/atom10</id>
+		<published>2011-02-23T13:22:00+01:00</published>
+		<updated>2011-02-23T13:24:00+01:00</updated>
+	
+	</entry>
+
+	<entry>
+		<title>Unicode 6 führt &quot;erstauntes Gesicht&quot; ein</title>
+		<link href="http://www.heise.de/newsticker/meldung/Unicode-6-fuehrt-erstauntes-Gesicht-ein-1195391.html/from/atom10" />
+		<id>http://www.heise.de/newsticker/meldung/Unicode-6-fuehrt-erstauntes-Gesicht-ein-1195391.html/from/atom10</id>
+		<published>2011-02-23T12:44:00+01:00</published>
+		<updated>2011-02-23T13:39:35+01:00</updated>
+	
+	</entry>
+
+
+</feed>
+
