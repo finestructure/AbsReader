@@ -29,9 +29,9 @@
 }
 
 
-- (void)parseTestXml {
+- (void)parseResource:(NSString *)resource withExtension:(NSString *)extension {
   NSBundle *thisBundle = [NSBundle bundleForClass:[self class]];
-  NSURL *url = [thisBundle URLForResource:@"rss_test" withExtension:@"xml"];
+  NSURL *url = [thisBundle URLForResource:resource withExtension:extension];
   GHAssertNotNil(url, nil);
   
   self.feed.url = url;
@@ -73,7 +73,24 @@
 
 
 - (void)test_xmlContent {
-  [self parseTestXml];
+  [self parseResource:@"rss_test" withExtension:@"xml"];
+  GHAssertNotNil(self.feed.stories, nil);
+  // test string values
+  NSArray *tags = [NSArray arrayWithObjects:@"title", @"dc:creator", @"description", nil];
+  for (NSString *tag in tags) {
+    NSString *value = [[self.feed.stories objectAtIndex:0] objectForKey:tag];
+    GHAssertNotNil(value, @"value for %@ is nil", tag);
+    GHAssertTrue([value isKindOfClass:[NSString class]], @"requiring NSString for %@", tag);
+    GHAssertTrue([value length] > 0, @"length for %@ is 0", tag);
+  }
+  // test date value
+  NSDate *date = [[self.feed.stories objectAtIndex:0] objectForKey:@"pubDate"];
+  GHAssertTrue([date isKindOfClass:[NSDate class]], @"requiring NSDate");
+}
+
+
+- (void)test_rdfContent {
+  [self parseResource:@"heise" withExtension:@"rdf"];
   GHAssertNotNil(self.feed.stories, nil);
   // test string values
   NSArray *tags = [NSArray arrayWithObjects:@"title", @"dc:creator", @"description", nil];
