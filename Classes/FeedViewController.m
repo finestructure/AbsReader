@@ -29,9 +29,9 @@
    */
   self.navigationItem.leftBarButtonItem.isAccessibilityElement = YES;
   self.navigationItem.leftBarButtonItem.accessibilityLabel = @"refresh";
-  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)] autorelease];
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear.png"] style:UIBarButtonItemStylePlain target:self action:@selector(settingsButtonPressed)];
   
-  self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge]autorelease];
+  self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
   CGFloat x = newsTable.bounds.size.width/2;
   CGFloat y = newsTable.bounds.size.height/2;
   CGPoint pos = CGPointMake(x, y);
@@ -46,7 +46,6 @@
     gr.numberOfTouchesRequired = 1;
     gr.delaysTouchesBegan = YES;
     [newsTable addGestureRecognizer:gr];
-    [gr release];
   }
   {
     UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTouchDoubleTap:)];
@@ -55,25 +54,22 @@
     gr.numberOfTouchesRequired = 2;
     gr.delaysTouchesBegan = YES;
     [newsTable addGestureRecognizer:gr];
-    [gr release];
   }
   {
     UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleRightSwipe:)];
     gr.delaysTouchesBegan = YES;
     gr.direction = UISwipeGestureRecognizerDirectionRight;
     [newsTable addGestureRecognizer:gr];
-    [gr release];
   }
   {
     UISwipeGestureRecognizer *gr = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleLeftSwipe:)];
     gr.delaysTouchesBegan = YES;
     gr.direction = UISwipeGestureRecognizerDirectionLeft;
     [newsTable addGestureRecognizer:gr];
-    [gr release];
   }
   
   NSMutableArray *buttons = [NSMutableArray array];
-  [buttons addObject:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)] autorelease]];
+  [buttons addObject:[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"check.png"] style:UIBarButtonItemStylePlain target:self action:@selector(markAllRead)]];
   self.toolbarItems = buttons;
 
   [[NSNotificationCenter defaultCenter] addObserverForName:kFeedInfoUpdated object:nil queue:nil usingBlock:^(NSNotification *notification) {
@@ -178,7 +174,6 @@
   vc.feed = self.feed;
   vc.isNew = NO;
   [self.navigationController pushViewController:vc animated:YES];
-  [vc release];
 }
 
 
@@ -200,7 +195,7 @@
 
 
 - (void)markAllRead {
-  UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Mark all read" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Mark Read" otherButtonTitles:nil] autorelease];
+  UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Mark all read" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Mark Read" otherButtonTitles:nil];
   [sheet showFromBarButtonItem:[self.toolbarItems objectAtIndex:0] animated:YES];
 }
 
@@ -255,7 +250,7 @@
 	NSString * errorString = [NSString stringWithFormat:@"Error fetching feed (Error code %i )", [error code]];
 	NSLog(@"%@", errorString);
 	
-	UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Error fetching feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error fetching feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
 }
 
@@ -275,7 +270,7 @@
 	NSString * errorString = [NSString stringWithFormat:@"%@ (Error code %i)", [error description], [error code]];
 	NSLog(@"Error loading feed: %@", errorString);
 	
-	UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+	UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Error loading feed" message:[error localizedDescription] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
 	[errorAlert show];
 }
 
@@ -289,7 +284,6 @@
   WebViewController *vc = [[WebViewController alloc] initWithNibName:@"WebViewController" bundle:nil];
   vc.link = link;
   [self.navigationController pushViewController:vc animated:YES];
-  [vc release];
 
   [self markCellAsRead:indexPath];
 
@@ -314,7 +308,7 @@ const CGFloat kBottomHeight = 15;
 
 - (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier {
 	
-	UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
   
   // author
   {
@@ -323,7 +317,7 @@ const CGFloat kBottomHeight = 15;
     CGFloat width = 80;
     CGFloat height = kTopHeight;
     CGRect rect = CGRectMake(x, y, width, height);
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
     label.tag = 1;
     label.font = [UIFont systemFontOfSize:12];
     label.adjustsFontSizeToFitWidth = NO;
@@ -339,7 +333,7 @@ const CGFloat kBottomHeight = 15;
     CGFloat width = kRowWidth - x - kRightOffset;
     CGFloat height = kTopHeight;
     CGRect rect = CGRectMake(x, y, width, height);
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
     label.tag = 2;
     label.font = [UIFont systemFontOfSize:12];
     label.adjustsFontSizeToFitWidth = NO;
@@ -356,7 +350,7 @@ const CGFloat kBottomHeight = 15;
     CGFloat width = kRowWidth - x - kRightOffset;
     CGFloat height = kMiddleHeight;
     CGRect rect = CGRectMake(x, y, width, height);
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
     label.tag = 3;
     label.font = [UIFont boldSystemFontOfSize:16];
     label.adjustsFontSizeToFitWidth = NO;
@@ -371,7 +365,7 @@ const CGFloat kBottomHeight = 15;
     CGFloat width = kRowWidth - x - kRightOffset;
     CGFloat height = kBottomHeight;
     CGRect rect = CGRectMake(x, y, width, height);
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
     label.tag = 4;
     label.font = [UIFont boldSystemFontOfSize:12];
     label.adjustsFontSizeToFitWidth = NO;
@@ -393,7 +387,6 @@ const CGFloat kBottomHeight = 15;
     label.textColor = [UIColor grayColor];
     label.text = @"•";
     [cell.contentView addSubview:label];
-    [label release];
   }
   
   cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -466,9 +459,6 @@ const CGFloat kBottomHeight = 15;
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 #pragma mark - UIActionSheetDelegate

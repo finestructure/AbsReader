@@ -125,7 +125,8 @@
   self.rssData = [NSMutableData data];
   self.stories = [NSMutableArray array];
   NSURLRequest *request = [NSURLRequest requestWithURL:self.url];
-  [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+  NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+  [conn start];
 }
 
 
@@ -182,7 +183,6 @@
       formatter = [[NSDateFormatter alloc] init];
       NSLocale *enUS = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
       [formatter setLocale:enUS];
-      [enUS release];
       [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss z"];
     }
     NSDate *date = [formatter dateFromString:self.currentValue];
@@ -214,7 +214,7 @@
   if ([challenge previousFailureCount] == 0) {
     if (self.username == nil || [[self username] isEqualToString:@""] || self.password == nil) {
       NSString *msg = [NSString stringWithFormat:@"Feed '%@' requires authentication but credentials are not fully provided. Please enter them in the feed settings.", self.title];
-      UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"Login required" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login required" message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
       [alert show];
       [[challenge sender] cancelAuthenticationChallenge:challenge];
     } else {
@@ -233,7 +233,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
   //NSLog(@"finished loading");
-  rssParser = [[[NSXMLParser alloc] initWithData:self.rssData] autorelease];
+  rssParser = [[NSXMLParser alloc] initWithData:self.rssData];
   [rssParser setDelegate:self];
   [rssParser setShouldProcessNamespaces:NO];
   [rssParser setShouldReportNamespacePrefixes:NO];

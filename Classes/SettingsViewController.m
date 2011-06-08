@@ -28,7 +28,7 @@
   NSString *url = self.urlField.text;
   
   if (url == nil) {
-    UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"No URL specified" message:@"Please provide a valid URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"No URL specified" message:@"Please provide a valid URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [errorAlert show];
     return;
   }
@@ -46,7 +46,7 @@
   NSDictionary *defaults = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"Feeds"];
   
   if (self.isNew && [defaults objectForKey:url] != nil) {
-    UIAlertView * errorAlert = [[[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+    UIAlertView * errorAlert = [[UIAlertView alloc] initWithTitle:@"Feed already exists" message:@"A feed with the given URL has already been configured. Please enter a new URL." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [errorAlert show];
     return;
   } else {
@@ -74,8 +74,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
   [super viewDidLoad];
-  self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)] autorelease];
-  self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
+  self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(save:)];
+  self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)];
   
 	self.titleField.text = self.feed.title;
   self.urlField.text = self.feed.urlString;
@@ -121,9 +121,6 @@
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

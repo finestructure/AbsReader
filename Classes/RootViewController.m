@@ -25,9 +25,6 @@
 }
 
 
-- (void)dealloc {
-  [super dealloc];
-}
 
 
 - (void)didReceiveMemoryWarning {
@@ -65,10 +62,9 @@
 
 - (void)addFeed:(id)sender {
   SettingsViewController *vc = [[SettingsViewController alloc] initWithNibName:@"SettingsViewController" bundle:nil];
-  vc.feed = [[[FeedCache alloc] init] autorelease];
+  vc.feed = [[FeedCache alloc] init];
   vc.isNew = YES;
   [self.navigationController pushViewController:vc animated:YES];
-  [vc release];
 }
 
 
@@ -125,7 +121,7 @@
 
 
 - (void)markAllRead {
-  UIActionSheet *sheet = [[[UIActionSheet alloc] initWithTitle:@"Mark all read" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Mark Read" otherButtonTitles:nil] autorelease];
+  UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"Mark all read" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Mark Read" otherButtonTitles:nil];
   [sheet showFromBarButtonItem:[self.toolbarItems objectAtIndex:0] animated:YES];
 }
 
@@ -144,7 +140,6 @@
     b.isAccessibilityElement = YES;
     b.accessibilityLabel = @"add feed";
     self.navigationItem.rightBarButtonItem = b;
-    [b release];
   }
 
   [self loadFeedList];
@@ -156,19 +151,16 @@
     b.isAccessibilityElement = YES;
     b.accessibilityLabel = @"mark all read";
     [buttons addObject:b];
-    [b release];
   }
   {
     UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [buttons addObject:b];
-    [b release];
   }
   {
     UIBarButtonItem *b = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
     b.isAccessibilityElement = YES;
     b.accessibilityLabel = @"refresh";
     [buttons addObject:b];
-    [b release];
   }
   self.toolbarItems = buttons;
   
@@ -216,7 +208,7 @@
 
 - (UITableViewCell *)tableViewCellWithReuseIdentifier:(NSString *)identifier {
 	
-	UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
   
   const CGFloat rowHeight = 24;
   const CGFloat rowWidth = 320;
@@ -228,7 +220,7 @@
     CGFloat width = 200;
     CGFloat height = rowHeight;
     CGRect rect = CGRectMake(x, y, width, height);
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
     label.tag = 1;
     label.font = [UIFont boldSystemFontOfSize:16];
     label.adjustsFontSizeToFitWidth = NO;
@@ -243,7 +235,7 @@
     CGFloat width = 30;
     CGFloat height = rowHeight;
     CGRect rect = CGRectMake(x, y, width, height);
-    UILabel *label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
     label.tag = 2;
     label.font = [UIFont boldSystemFontOfSize:12];
     label.adjustsFontSizeToFitWidth = NO;
@@ -351,16 +343,14 @@
     return;
   }
   { // reorder feeds ...
-    id objToMove = [[self.feeds objectAtIndex:from] retain];
+    id objToMove = [self.feeds objectAtIndex:from];
     [self.feeds removeObjectAtIndex:from];
     [self.feeds insertObject:objToMove atIndex:to];
-    [objToMove release];
   }
   { // ... and controllers
-    id objToMove = [[self.feedControllers objectAtIndex:from] retain];
+    id objToMove = [self.feedControllers objectAtIndex:from];
     [self.feedControllers removeObjectAtIndex:from];
     [self.feedControllers insertObject:objToMove atIndex:to];
-    [objToMove release];
   }
 }
 
