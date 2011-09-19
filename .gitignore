@@ -5,3 +5,4 @@ AbsReader.xcodeproj/xcuserdata/*
 AutomationTests/AppReaderTests.trace/*
 tuneup
 releases/*.ipa
+releases/iOS_Team_Provisioning_Profile_.mobileprovision
