@@ -37,6 +37,8 @@ echo Copying to host...
 scp $tempdir/$ipafile $publishing_target
 scp $tempdir/index.html $publishing_target
 scp $tempdir/$manifest $publishing_target
+scp Resources/app_icon-57.png $publishing_target
+scp releases/profile-57.png $publishing_target
 scp releases/iOS_Team_Provisioning_Profile_.mobileprovision $publishing_target
 
 # clean up
